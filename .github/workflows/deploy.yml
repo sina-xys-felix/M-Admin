@@ -1,0 +1,56 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main # 部署分支 如果是 master 分支，则改为 master
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses:
+          actions/checkout@v2
+
+          # 安装 Node.js 和 pnpm
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # 选择你的 Node.js 版本
+
+      - name: Install pnpm # 安装 pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist # 打包后的文件路径
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' # 部署分支 如果是 master 分支，则改为 refs/heads/master
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN  }} # 输入生成的 secrect 的名字，如果名字为 GITHUB_TOKEN ，则为 secrets.GITHUB_TOKEN
+          publish_dir: ./dist # 打包后的文件路径

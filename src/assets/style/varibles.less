@@ -1,0 +1,162 @@
+/**  global config */
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-border: rgb(var(--gray-3));
+  --color-bg-popup: var(--color-bg-5);
+  --color-neutral-1: rgb(var(--gray-1));
+  --color-neutral-2: rgb(var(--gray-2));
+  --color-neutral-3: rgb(var(--gray-3));
+  --color-neutral-4: rgb(var(--gray-4));
+  
+  --color-neutral-5: rgb(var(--gray-5));
+  --color-neutral-6: rgb(var(--gray-6));
+  --color-neutral-7: rgb(var(--gray-7));
+  --color-neutral-8: rgb(var(--gray-8));
+  --color-neutral-9: rgb(var(--gray-9));
+  --color-neutral-10: rgb(var(--gray-10));
+  --color-text-1: var(--color-neutral-10);
+  --color-text-2: var(--color-neutral-8);
+  --color-text-3: var(--color-neutral-6);
+  --color-text-4: var(--color-neutral-4);
+  --color-border-1: var(--color-neutral-2);
+  --color-border-2: var(--color-neutral-3);
+  --color-border-3: var(--color-neutral-4);
+  --color-border-4: var(--color-neutral-6);
+  --color-fill-1: var(--color-neutral-1);
+  --color-fill-2: var(--color-neutral-2);
+  --color-fill-3: var(--color-neutral-3);
+  --color-fill-4: var(--color-neutral-4);
+  --color-primary-light-1: rgb(var(--primary-1));
+  --color-primary-light-2: rgb(var(--primary-2));
+  --color-primary-light-3: rgb(var(--primary-3));
+  --color-primary-light-4: rgb(var(--primary-4));
+  --color-link-light-1: rgb(var(--link-1));
+  --color-link-light-2: rgb(var(--link-2));
+  --color-link-light-3: rgb(var(--link-3));
+  --color-link-light-4: rgb(var(--link-4));
+  --color-secondary: var(--color-neutral-2);
+  --color-secondary-hover: var(--color-neutral-3);
+  --color-secondary-active: var(--color-neutral-4);
+  --color-secondary-disabled: var(--color-neutral-1);
+  --color-danger-light-1: rgb(var(--danger-1));
+  --color-danger-light-2: rgb(var(--danger-2));
+  --color-danger-light-3: rgb(var(--danger-3));
+  --color-danger-light-4: rgb(var(--danger-4));
+  --color-success-light-1: rgb(var(--success-1));
+  --color-success-light-2: rgb(var(--success-2));
+  --color-success-light-3: rgb(var(--success-3));
+  --color-success-light-4: rgb(var(--success-4));
+  --color-warning-light-1: rgb(var(--warning-1));
+  --color-warning-light-2: rgb(var(--warning-2));
+  --color-warning-light-3: rgb(var(--warning-3));
+  --color-warning-light-4: rgb(var(--warning-4));
+  --border-radius-none: 0;
+  --border-radius-small: 2px;
+  --border-radius-medium: 4px;
+  --border-radius-large: 8px;
+  --border-radius-circle: 50%;
+  --color-tooltip-bg: rgb(var(--gray-10));
+  --color-spin-layer-bg: rgba(255, 255, 255, 0.6);
+  --color-menu-dark-bg: #232324;
+  --color-menu-light-bg: #ffffff;
+  --color-menu-dark-hover: rgba(255, 255, 255, 0.04);
+  --color-mask-bg: rgba(29, 33, 41, 0.6);
+
+  --color-custom-header-th:#eff6fd;
+  --color-custom-modal:#eff5ff;
+  --color-custom-background:var(--color-white);
+
+  --color-bg-red-transparent:rgba(255,0,0,.1);
+  --color-bg-green-transparent:rgba(0,255,0,.1);
+  --color-bg-lg-1:#c8daf2;
+  --color-bg-lg-2:#dfebfc;
+  --color-bg-lg-3:#373739;
+  --color-icon:var(--color-bg-2);
+
+}
+
+// 自定义的颜色在切换主题色时需要重新指定
+body[arco-theme='dark']{
+  --color-custom-header-th:var(--color-bg-3);
+  --color-custom-modal:var(--color-bg-2);
+  --color-custom-background:var(--color-bg-3);
+  --color-bg-red-transparent:rgba(255, 165, 0,.3);
+  --color-bg-green-transparent:rgba(255,0,0,.1);
+  --color-bg-lg-1:#373739;
+  --color-bg-lg-2:var(--color-bg-2);
+  --color-bg-lg-3:var(--color-bg-1);
+  --color-icon:#dfebfc;
+}
+
+@size-none: 0;
+
+@width-full: 100%;
+
+@width-half:50%;
+
+@gap-sm: 10px;
+
+@gap-md: 16px;
+
+@gap-24: 24px;
+
+@font-size-sm: 14px;
+
+@font-size-md: 16px;
+
+@font-size-lg: 18px;
+
+@font-size-xl: 20px;
+
+@font-size-xxl: 24px;
+
+@background-color: var(--color-custom-background);
+
+@table-header-color:  var(--color-custom-header-th);
+
+@modal-header-color: var(--color-custom-modal);
+
+@border-color:var(--color-neutral-3);
+
+@text-color:var(--color-text-1);
+
+@font-weight-600: 600;
+
+
+@i:40;
+
+.loop(@i)when(@i>0)
+{
+    .loop((@i - 1));
+    .mr@{i}{
+      margin-right:(1px * @i);
+    }
+    .ml@{i}{
+      margin-left:(1px * @i);
+    }
+    .mt@{i}{
+      margin-top:(1px * @i);
+    }
+    .mb@{i}{
+      margin-bottom:(1px * @i);
+    }
+    .pr@{i}{
+      padding-right:(1px * @i);
+    }
+    .pl@{i}{
+      padding-left:(1px * @i);
+    }
+    .pt@{i}{
+      padding-top:(1px * @i);
+    }
+    .pb@{i}{
+      padding-bottom:(1px * @i);
+    }
+}
+
+.loop(@i);
+
+
+
+

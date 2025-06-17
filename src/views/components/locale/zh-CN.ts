@@ -1,0 +1,17 @@
+export default {
+  'components.footer': '系统底部',
+  'components.iconfont': 'MIconFont',
+  'components.iframe': 'MIFrame',
+  'components.tabbar': '页签',
+  'components.btn.group': '常用按钮组',
+  'components.dict': '字典',
+  'components.empty': '空数据',
+  'components.form': 'MFrom',
+  'components.pagination': '表格页脚',
+  'components.search.form': '表格查询条件',
+  'components.speak': '文字转语音',
+  'components.tinymce': '编辑器',
+  'components.image.upload': '图片上传',
+  'components.file.upload': '文件上传',
+  'components.quarter.select': '季度选择器',
+}

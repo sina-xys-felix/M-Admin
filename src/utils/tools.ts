@@ -1,0 +1,137 @@
+import { pinyin } from 'pinyin-pro'
+import { isArray } from './is'
+
+/**
+ * @description 处理 prop，当 prop 为多级嵌套时 ==> 返回最后一级 prop
+ * @param {String} prop 当前 prop
+ * @return
+ * */
+export const handleProp = (prop: string) => {
+  const propArr = prop && prop.split('.')
+  if (propArr.length === 1) return prop
+  return propArr[propArr.length - 1]
+}
+
+/**
+ * @description 根据枚举列表查询当需要的数据（如果指定了 label 和 value 的 key值，会自动识别格式化）
+ * @param {String} callValue 当前单元格值
+ * @param {Array} enumData 字典列表
+ * @param {Array} fieldNames 指定 label && value 的 key 值
+ * @param {String} type 过滤类型（目前只有 tag）
+ * @return
+ * */
+export function filterEnum(
+  callValue: any,
+  enumData: any[] | undefined,
+  fieldNames?: { label: string; value: string },
+  type?: string
+): string {
+  const value = fieldNames?.value ?? 'value'
+  const label = fieldNames?.label ?? 'label'
+  let filterData: { [key: string]: any } = {}
+  if (Array.isArray(enumData)) filterData = enumData.find((item: any) => item[value] === callValue)
+  if (type === 'tag') return filterData?.tagType ? filterData.tagType : ''
+  return filterData ? filterData[label] : '--'
+}
+
+/**
+ * @description 处理无数据情况
+ * @param {String} callValue 需要处理的值
+ * @return
+ * */
+export function formatValue(callValue: any) {
+  // 如果当前值为数组,使用 / 拼接（根据需求自定义）
+  if (isArray(callValue)) return callValue.length ? callValue.join(' / ') : '--'
+  return callValue ?? '--'
+}
+
+
+//身份证验证
+export function checkId(value: any, callback: any) {
+  if (value) {
+    if (/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
+      // callback({ result: true })
+    } else {
+      callback('请输入正确的身份证号码')
+    }
+  } else {
+    // callback('请输入正确的身份证号码')
+  }
+}
+// 必填
+export function checkIdBT(value: any, callback: any) {
+  if (value) {
+    if (/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
+      // callback({ result: true })
+    } else {
+      callback('请输入正确的身份证号码')
+    }
+  } else {
+    callback('请输入身份证号码')
+  }
+}
+
+
+//电话号码验证
+export function checkPhone(value: number | undefined, callback: any) {
+  if (value) {
+    // 将 number 转换为 string
+    const strValue = value.toString()
+
+    if (/^1/.test(strValue)) {
+      if (/^1\d{10}$/.test(strValue)) {
+        // callback({ result: true })
+      } else {
+        callback('请输入11位的手机号')
+      }
+    } else if (/^0/.test(strValue)) {
+      if (/^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/.test(strValue)) {
+        // callback({ result: true })
+      } else {
+        callback('请用0xxx-xxxxxxx格式')
+      }
+    } else {
+      callback('请输入11位手机号或0xxx-xxxxxxx格式座机号')
+    }
+  }
+}
+
+// 速查码
+export const findQuickCode = (text: string) => {
+  if (!text) return ''
+  const first = pinyin(text, { pattern: 'first', toneType: 'none' })
+  return first.toString().trim().replace(/\s+/g, '')
+}
+
+export function analyzeIDCard(IDCard: string) {
+  const getDataByIdCard = {
+    sexCode: '',
+    birthDay: '',
+    age: 0,
+  }
+  //获取用户身份证号码
+  //获取性别
+  if (parseInt(IDCard.substr(16, 1)) % 2 == 1) {
+    getDataByIdCard.sexCode = '1' //男
+  } else {
+    getDataByIdCard.sexCode = '2' //女
+  }
+  //获取出生年月日
+  const yearBirth = IDCard.substring(6, 10)
+  const monthBirth = IDCard.substring(10, 12)
+  const dayBirth = IDCard.substring(12, 14)
+  const birthDate = yearBirth + '-' + monthBirth + '-' + dayBirth
+  //获取当前年月日并计算年龄
+  const myDate = new Date()
+  const monthNow = myDate.getMonth() + 1
+  const dayNow = myDate.getDay()
+  let age = myDate.getFullYear() - yearBirth
+  if (monthNow < monthBirth || (monthNow == monthBirth && dayNow < dayBirth)) {
+    age--
+  }
+  //得到年龄
+  getDataByIdCard.birthDay = birthDate
+  getDataByIdCard.age = age
+  //返回性别和年龄
+  return getDataByIdCard
+}
