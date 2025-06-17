@@ -1,0 +1,1 @@
+import{d as r,H as t,aK as e}from"./arco.00f4c3af.js";import{M as o}from"./index.53dc7e22.js";import"./index.096e242c.js";import"./chart.a5f49603.js";import"./vue.b06bbe48.js";const d=r({__name:"index",setup(a){return(s,p)=>(t(),e(o,{src:"https://arco.design/vue/docs/start"}))}});export{d as default};
