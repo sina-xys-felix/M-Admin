@@ -7,21 +7,20 @@ const Api = {
 }
 
 export function getRoleList(data: any) {
-  return request.post({
-    url: Api.list,
-    data,
+  return request.get({
+    url: `${Api.list}?current=${data.index}&pageSize=${data.size}`,
   })
 }
 
 export function deleteRole(data: any) {
-  return request.post({
+  return request.get({
     url: Api.delete,
     data,
   })
 }
 
 export function setRoleStatus(data: any) {
-  return request.post({
+  return request.get({
     url: Api.status,
     data,
   })

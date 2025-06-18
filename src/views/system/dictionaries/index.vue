@@ -107,14 +107,6 @@
     data: null,
   })
 
-  const searchParams = {
-    index: 0,
-    size: 100,
-    sort: 'index',
-    descending: true,
-    name: '',
-  }
-
   const { t } = useI18n()
   const columns = computed<ColumnProps[]>(() => [
     {
@@ -184,7 +176,7 @@
   })
 
   const getDictPage = async () => {
-    const res = await getDictList(searchParams)
+    const res = await getDictList()
     if (res) {
       originTreeData.value = res.list
       treeData.value = res.list

@@ -149,7 +149,7 @@
 <script lang="ts" setup>
   import { ref, computed } from "vue";
   import { useI18n } from "vue-i18n";
-  import { FormInstance } from "@arco-design/web-vue;
+  import { FormInstance } from "@arco-design/web-vue";
   import { ROW_GUTTER } from "@/common/constants/index";
   import { Operations } from "@/common/enums/status-enum";
   import { FORM_CONFIG } from "@/common/constants/form-config";

@@ -22,9 +22,6 @@ const api = {
   delete: '/dict/removeItem',
 }
 
-interface ISearchItemParams extends Partial<ISearchParams> {
-  dictId?: string | number
-}
 /**
  * @description 获取字典列表,分页
  * @param {SearchParams} params 查询参数

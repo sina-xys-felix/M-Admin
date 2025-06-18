@@ -23,9 +23,8 @@ const Api = {
  * @param status
  * */
 export const geStaffList = (data: SearchParams) => {
-  return request.post({
-    url: Api.list,
-    data,
+  return request.get({
+    url: `${Api.list}?current=${data.index}&pageSize=${data.size}`,
   })
 }
 

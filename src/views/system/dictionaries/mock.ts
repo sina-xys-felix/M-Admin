@@ -3,23 +3,8 @@ import qs from 'query-string'
 import setupMock, { successResponseWrap } from '@/utils/setup-mock'
 import { GetParams } from '@/common/types/global'
 
-const { Random } = Mock
-
-const data1 = Mock.mock({
-  'list|12': [
-    {
-      'id|8': /[A-Z][a-z][-][0-9]/,
-      'value|2-3': /[0-9]/,
-      'name|4-8': /[A-Z]/,
-      'alias|4': /[A-Z]/,
-      'code|4-8': /[A-Z]/,
-      'quickCode|1': ['1', '2', '3'],
-      'status|1': [0, 1],
-    },
-  ],
-})
 const data = Mock.mock({
-  'list': [
+  list: [
     {
       id: '1',
       value: '1',
@@ -187,10 +172,7 @@ const data = Mock.mock({
 
 setupMock({
   setup() {
-    Mock.mock(new RegExp('/api/dict/list'), (params: GetParams) => {
-      const { current = 1, pageSize = 10 } = qs.parseUrl(params.url).query
-      const p = current as number
-      const ps = pageSize as number
+    Mock.mock(new RegExp('/api/dict/list'), () => {
       return successResponseWrap({
         list: [
           { id: '1', name: '性别', editable: true },
@@ -203,12 +185,12 @@ setupMock({
     })
 
     Mock.mock(new RegExp('/api/dict/items'), (params: GetParams) => {
-      const { current = 1, pageSize = 10, key = '1' } = JSON.parse(params.body)
+      const { current = 1, pageSize = 10, key = '1' } = qs.parseUrl(params.url).query
       const p = current as number
       const ps = pageSize as number
       const result = data.list.filter((item) => item.value === key).slice((p - 1) * ps, p * ps)
       return successResponseWrap({
-        list:result ,
+        list: result,
         total: result.length,
       })
     })

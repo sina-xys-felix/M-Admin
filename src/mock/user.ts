@@ -1,12 +1,11 @@
 import Mock from 'mockjs'
 import setupMock, { successResponseWrap, failResponseWrap } from '@/utils/setup-mock'
-
+import qs from 'query-string'
 import { MockParams } from '@/common/types/mock'
 import { isLogin } from '@/utils/auth'
 
 setupMock({
   setup() {
-
     // 用户信息
     Mock.mock(new RegExp('/api/user/info'), () => {
       if (isLogin()) {
@@ -35,7 +34,7 @@ setupMock({
 
     // 登录
     Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
-      const { account, password } = JSON.parse(params.body)
+      const { account, password } = qs.parseUrl(params.url).query
       if (!account) {
         return failResponseWrap(null, '用户名不能为空', 50000)
       }
