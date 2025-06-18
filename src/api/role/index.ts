@@ -12,13 +12,6 @@ export function getRoleList(data: any) {
   })
 }
 
-export function deleteRole(data: any) {
-  return request.get({
-    url: Api.delete,
-    data,
-  })
-}
-
 export function setRoleStatus(data: any) {
   return request.get({
     url: Api.status,

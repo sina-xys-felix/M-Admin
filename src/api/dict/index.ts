@@ -144,14 +144,3 @@ export const deleteDictItem = (id: string) => {
   })
 }
 
-/**
- * @description 获取字典项详情
- * @param {string} id 参数
- * @returns {any}
- * */
-export const getDictItemDetail = (dictId: string, id: string) => {
-  return request.post({
-    url: api.get,
-    data: { dictId, id },
-  })
-}
