@@ -70,6 +70,7 @@ type SearchProps = {
   render?: (scope: SearchRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
 }
 
+
 // 表格列的配置
 type Alias = {
   isShow?: boolean // 是否显示列
@@ -88,7 +89,7 @@ type RowSelectionType = 'radio' | 'checkbox'
 
 interface TableProps {
   columns: ColumnProps[] // 列的配置项，即表头显示内容，==> 必传
-  data?: any[] // 静态data
+  data?: T[] // 静态data
   requestApi?: (param: any) => Promise<AxiosResponse<T, any>> // 请求表格的api, ==> 必传  AxiosResponse ==> Result
   requestAuto?: boolean // 是否自动查询
   dataCallback?: (data: any) => any // 返回数据的回调函数，可以对数据进行处理 ==> 非必传

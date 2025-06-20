@@ -7,7 +7,7 @@ const DOCUMENT: ServerRouteRecordRaw[] = [
     name: 'Document',
     component: DEFAULT_LAYOUT,
     meta: {
-      id: '12',
+      id: '16',
       locale: 'menu.document',
       icon: 'home',
       requiresAuth: true,
@@ -23,7 +23,7 @@ const DOCUMENT: ServerRouteRecordRaw[] = [
           icon: 'font-colors',
           requiresAuth: true,   
           roles: ['*'],
-          id: '1201',
+          id: '1601',
         },
       },
       {
@@ -35,7 +35,7 @@ const DOCUMENT: ServerRouteRecordRaw[] = [
           icon: 'right-circle',
           requiresAuth: true,
           roles: ['*'],
-          id: '1201',
+          id: '1602',
         },
       },
     ],

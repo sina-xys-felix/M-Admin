@@ -20,7 +20,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         name: 'Dictionaries',
         component: () => import('@/views/system/dictionaries/index.vue'),
         meta: {
-          id: '1006',
+          id: '1001',
           locale: 'menu.system.dict',
           requiresAuth: true,
           icon: 'interaction',
@@ -32,7 +32,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         name: 'role',
         component: () => import('@/views/system/roles/index.vue'),
         meta: {
-          id: '1006',
+          id: '1002',
           locale: 'menu.system.role',
           requiresAuth: true,
           icon: 'user-group',
@@ -44,7 +44,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         name: 'user',
         component: () => import('@/views/system/user/index.vue'),
         meta: {
-          id: '1006',
+          id: '1003',
           locale: 'menu.system.user',
           requiresAuth: true,
           icon: 'user',
@@ -56,7 +56,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         name: 'menu',
         component: () => import('@/views/system/menu/index.vue'),
         meta: {
-          id: '1006',
+          id: '1004',
           locale: 'menu.system.menu',
           requiresAuth: true,
           icon: 'menu',

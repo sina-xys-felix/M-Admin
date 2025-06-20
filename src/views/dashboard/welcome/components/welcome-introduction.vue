@@ -2,7 +2,7 @@
   <Card :title="$t('dashboard.welcome.introduction')">
     <div class="introduction">
       <div class="introduction-header">
-        感谢您选择M-Admin作为您的项目开发脚手架。M-Admin是一个基于Vue3的轻量级后台管理系统，旨在为开发者提供一个快速、简洁、易用的后台管理系统。
+        感谢您选择M-Admin作为您的项目开发脚手架。 M-Admin是一款基于Vue3的轻量级后台管理框架，旨在为开发者提供一个快速、简洁、易用的后台管理系统。
       </div>
       <div class="introduction-content">
         <p>官方网站：<a href="https://m-admin.cn" target="_blank">https://m-admin.cn</a></p>

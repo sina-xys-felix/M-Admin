@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "vite --config ./config/vite.config.dev.ts",
     "prod": "vite --config ./config/vite.config.prod.ts",
-    "build": "vite build --config ./config/vite.config.prod.ts",
     "build:prod": " vite build --config ./config/vite.config.prod.ts",
     "report": "cross-env REPORT=true npm run build",
     "preview": "npm run build:prod && vite preview --host",
@@ -108,7 +107,7 @@
     "vue-tsc": "^1.0.14"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china",

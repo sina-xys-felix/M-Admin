@@ -35,7 +35,7 @@ const DASHBOARD: ServerRouteRecordRaw[] = [
           icon: 'computer',
           requiresAuth: true,
           roles: ['*'],
-          id: '1201',
+          id: '1202',
         },
       },
     ],
