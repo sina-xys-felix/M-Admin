@@ -1,0 +1,1 @@
+import{d as e,H as t,aK as r}from"./arco.d535f592.js";import{M as o}from"./index.2d407de5.js";import"./index.334d1a72.js";import"./chart.4d67ba92.js";import"./vue.95f8cfa8.js";const d=e({__name:"index",setup(a){return(p,s)=>(t(),r(o,{src:"https://cn.vitejs.dev/guide/"}))}});export{d as default};
