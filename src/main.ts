@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import ArcoVue, { Modal } from '@arco-design/web-vue'
 import ArcoVueIcon from '@arco-design/web-vue/es/icon'
-import globalComponents from '@/components'
+import globalComponents from '@/components/index'
 import Particles from 'particles.vue3'
 import vueDompurifyHTMLPlugin from 'vue-dompurify-html'
 import './mock'
