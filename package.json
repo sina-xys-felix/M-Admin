@@ -8,8 +8,6 @@
   "scripts": {
     "dev": "vite --config ./config/vite.config.dev.ts",
     "prod": "vite --config ./config/vite.config.prod.ts",
-    "build": "vite build --config ./config/vite.config.prod.ts",
-    "build:prod": "vite build --config ./config/vite.config.prod.ts",
     "report": "cross-env REPORT=true npm run build",
     "preview": "npm run build:prod && vite preview --host",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
@@ -52,6 +50,7 @@
     "qs": "^6.11.2",
     "query-string": "^8.2.0",
     "rollup-plugin-external-globals": "^0.9.2",
+    "vite-plugin-mock": "2.9.8",
     "vite-plugin-remove-console": "^2.2.0",
     "vue": "^3.3.4",
     "vue-cropper": "^1.1.3",

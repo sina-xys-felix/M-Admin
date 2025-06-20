@@ -17,10 +17,16 @@ const Api = {
  * @param {LoginData} data
  * */
 export const login = (data: LoginData) => {
-  return request.get<Result>({
-    url: `${Api.login}?account=${data.account}&password=${data.password}`,
+  return request.post<Result>({
+    url: `${Api.login}`,
+    data
   })
 }
+// export const login = (data: LoginData) => {
+//   return request.get<Result>({
+//     url: `${Api.login}?account=${data.account}&password=${data.password}`,
+//   })
+// }
 
 /**
  * @description logout
