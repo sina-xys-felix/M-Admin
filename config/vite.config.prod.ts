@@ -22,6 +22,8 @@ export default mergeConfig(
       // removeConsole(),
       viteMockServe({
         mockPath: '../mock', // Mock 文件存放目录
+        logger: true, //  是否在控制台显示请求日志
+        supportTs: true, // 是否读取ts文件模块
         localEnabled: true, // 开发环境启用
         prodEnabled: true, // 生产环境禁用（除非你需要测试构建后的 Mock）
         injectCode: `
