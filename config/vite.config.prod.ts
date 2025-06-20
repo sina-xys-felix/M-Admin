@@ -7,6 +7,7 @@ import configStyleImportPlugin from './plugin/styleImport'
 import configImageminPlugin from './plugin/imagemin'
 import removeConsole from 'vite-plugin-remove-console'
 import externalGlobal from 'rollup-plugin-external-globals'
+import { viteMockServe } from 'vite-plugin-mock'
 
 export default mergeConfig(
   {
@@ -19,6 +20,9 @@ export default mergeConfig(
       configStyleImportPlugin(),
       configImageminPlugin(),
       removeConsole(),
+      viteMockServe({
+        mockPath:'../src/mock',
+      })
     ],
     build: {
       rollupOptions: {
