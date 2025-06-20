@@ -7,7 +7,6 @@ export default defineMock([
     method: 'post',
     timeout: 50,
     response: ({ body }) => {
-      debugger
       const { account, password } = body
       if (!account) {
         return failResponseWrap(null, '用户名不能为空', 50000)

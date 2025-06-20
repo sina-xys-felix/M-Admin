@@ -8,7 +8,6 @@ import configImageminPlugin from './plugin/imagemin'
 import removeConsole from 'vite-plugin-remove-console'
 import externalGlobal from 'rollup-plugin-external-globals'
 
-
 export default mergeConfig(
   {
     mode: 'production',
@@ -19,7 +18,7 @@ export default mergeConfig(
       configArcoResolverPlugin(),
       configStyleImportPlugin(),
       configImageminPlugin(),
-       removeConsole(),
+      removeConsole(),
     ],
     build: {
       rollupOptions: {
