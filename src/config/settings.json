@@ -9,11 +9,9 @@
   "menuCollapse": false,
   "footer": true,
   "themeColor": "#001529",
-  "themeColor1": "#165DFF",
   "menuWidth": 200,
   "globalSettings": false,
   "device": "desktop",
   "tabBar": true,
   "menuFromServer": false,
-  "serverMenu": []
 }
