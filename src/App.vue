@@ -12,10 +12,6 @@
   import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn'
   import GlobalSetting from '@/components/global-setting/index.vue'
   import useLocale from '@/hooks/locale'
-  import { TITLE_MAP } from '@/common/constants/index'
-  import config from '@/config/settings.json'
-
-  document.title = TITLE_MAP[config.category].login
 
   const { currentLocale } = useLocale()
   const locale = computed(() => {
