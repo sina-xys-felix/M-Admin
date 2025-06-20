@@ -19,7 +19,7 @@ export default mergeConfig(
       configArcoResolverPlugin(),
       configStyleImportPlugin(),
       configImageminPlugin(),
-      removeConsole(),
+      // removeConsole(),
       viteMockServe({
         mockPath: '../mock', // Mock 文件存放目录
         localEnabled: true, // 开发环境启用
