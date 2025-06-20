@@ -17,6 +17,7 @@ const Api = {
  * @param {LoginData} data
  * */
 export const login = (data: LoginData) => {
+  debugger
   return request.post<Result>({
     url: `${Api.login}`,
     data
