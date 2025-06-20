@@ -19,7 +19,7 @@ export default mergeConfig(
       configArcoResolverPlugin(),
       configStyleImportPlugin(),
       configImageminPlugin(),
-      // removeConsole(),
+       removeConsole(),
     ],
     build: {
       rollupOptions: {
