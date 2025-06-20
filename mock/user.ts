@@ -1,5 +1,5 @@
 import { defineMock } from './config'
-import { type MockTokenItem, getDelayTime, resultError, resultSuccess } from './utils'
+import { getDelayTime, resultError, resultSuccess } from './utils'
 
 export default defineMock([
   {
@@ -7,14 +7,14 @@ export default defineMock([
     method: 'post',
     timeout: getDelayTime(),
     response: ({ body }) => {
-      const { username, password } = body
-      if (!username) return resultError(null, '用户名不能为空', 50000)
+      const { account, password } = body
+      if (!account) return resultError(null, '用户名不能为空', 50000)
       if (!password) return resultError(null, '密码不能为空', 50000)
-      if (username === 'admin' && password === '123456') {
+      if (account === 'admin' && password === 'admin') {
         const token: MockTokenItem = 'token_admin'
         return resultSuccess({ token })
       }
-      if (username === 'user' && password === '123456') {
+      if (account === 'user' && password === '123456') {
         const token: MockTokenItem = 'token_user'
         return resultSuccess({ token })
       }

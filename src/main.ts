@@ -4,6 +4,7 @@ import ArcoVueIcon from '@arco-design/web-vue/es/icon'
 import globalComponents from '@/components/index'
 import Particles from 'particles.vue3'
 import vueDompurifyHTMLPlugin from 'vue-dompurify-html'
+import { setupProdMockServer } from './mockProd'
 // import './mock'
 import router from './router'
 import store from './store'
@@ -28,5 +29,10 @@ app.use(globalComponents)
 app.use(directive)
 app.use(vueDompurifyHTMLPlugin)
 app.use(Particles)
+
+
+// if (process.env.NODE_ENV === 'production') {
+  setupProdMockServer()
+// }
 
 app.mount('#app')
