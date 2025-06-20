@@ -7,7 +7,7 @@ import configStyleImportPlugin from './plugin/styleImport'
 import configImageminPlugin from './plugin/imagemin'
 import removeConsole from 'vite-plugin-remove-console'
 import externalGlobal from 'rollup-plugin-external-globals'
-import { viteMockServe } from 'vite-plugin-mock'
+
 
 export default mergeConfig(
   {
@@ -20,17 +20,6 @@ export default mergeConfig(
       configStyleImportPlugin(),
       configImageminPlugin(),
       // removeConsole(),
-      viteMockServe({
-        mockPath: '../mock', // Mock 文件存放目录
-        logger: true, //  是否在控制台显示请求日志
-        supportTs: true, // 是否读取ts文件模块
-        localEnabled: true, // 开发环境启用
-        prodEnabled: true, // 生产环境禁用（除非你需要测试构建后的 Mock）
-        injectCode: `
-        import { setupProdMockServer } from '../src/mockProd';
-        setupProdMockServer();
-      `, // 可选：生产环境注入代码（需额外配置）
-      }),
     ],
     build: {
       rollupOptions: {
