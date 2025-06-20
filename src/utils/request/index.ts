@@ -124,6 +124,7 @@ const transform: AxiosTransform = {
 
   // 响应拦截器处理，根据返回的code再进行处理，用来处理业务异常
   responseInterceptors: (res: any) => {
+     debugger
     if (res?.status !== ResultEnum.SUCCESS) {
       Message.error('网络错误！')
     }
@@ -137,6 +138,7 @@ const transform: AxiosTransform = {
     }
     // 请求报错
     else {
+       debugger
       Message.error(res?.data.message)
       setTimeout(() => {
         if (router) router.push('/login')
