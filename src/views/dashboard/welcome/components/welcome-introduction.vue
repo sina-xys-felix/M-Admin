@@ -17,7 +17,7 @@
           >
         </p>
         <p>
-          Gitee源码：<a href="https://github.com/sina-xys-felix/M-Admin" target="_blank"
+          Gitee源码：<a href="https://gitee.com/sina_xys/M-Admin" target="_blank"
             >https://gitee.com/sina_xys/M-Admin</a
           >
         </p>
