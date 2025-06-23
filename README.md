@@ -42,7 +42,7 @@ http://doc.m-admin.cn/
 
 | 平台              | 预览地址                                                                              | 仓库地址                                                                        |
 | ----------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **gitee**（码云） | <a href="https://m-admin.cn" target="_blank">M-Admin 预览地址</a>   | <a href="https://gitee.com/sina_xys/m-admin" target="_blank">Gitee  仓库地址</a> |
+| **gitee**（码云） | <a href="https://m-admin.cn" target="_blank">M-Admin 预览地址</a>   | <a href="https://gitee.com/sina_xys/M-Admin" target="_blank">Gitee  仓库地址</a> |
 | **github**        | <a href="https://m-admin.cn" target="_blank">M-Admin 预览地址</a> | <a href="https://github.com/sina-xys-felix/M-Admin" target="_blank">Github 仓库地址</a> |
 
 ## 项目示例图
