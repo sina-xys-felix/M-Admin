@@ -1,0 +1,16 @@
+export default {
+  'sys.dict.title': 'DictList',
+  'form.name': 'name',
+  'form.value': 'value',
+  'form.sort': 'sort',
+  'sys.dict.alias': 'alias',
+  'form.code': 'code',
+  'sys.dict.eng': 'eng',
+  'sys.dict.short': 'short',
+  'sys.dict.abbr': 'abbr',
+  'form.quickCode': 'quickCode',
+  'sys.dict.style': 'style',
+  'sys.dict.description': 'description',
+  'sys.dict.item.title': 'DictItemList',
+  'sys.dict.placeholder.title': 'placeholder',
+}

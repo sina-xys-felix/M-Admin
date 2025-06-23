@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    // "isolatedModules": true,
+    // "noImplicitAny": true,// 此规则不允许变量或函数参数具有隐式 any 类型  @ts-ignore 
+    // "noImplicitThis": true,//此规则不允许 this 隐式定义上下文
+    // "alwaysStrict": true,// 此规则指定始终以严格模式检查每个模块，并且在编译之后的 JavaScript 文件中加入"use strict"，用来告诉浏览器该 JavaScript 为严格模式。
+    // "strictBindCallApply": true, // 此规则可以确保使用具有正确参数的 call()、bind() 和 apply() 函数
+    // "strictNullChecks": true, // 此规则使得 null和 undefined 值不能赋值给非这两种类型的值，别的类型的值也不能赋给它们。使用该规则时，可以强制开发人员编写具有更好类型描述的代码
+    // "strictFunctionTypes": true, //  此规则将强制在构造函数中初始化所有属性值
+    // "strictPropertyInitialization": true, // 此规则会更彻底地检查函数参数。Typescript 参数默认是双向协变的，这意味着它们既可以是协变的，也可以是逆变的。方差是一种深入了解子类型关系的方法。当参数是协方差时，我们可以将特定类型分配给更广泛的类型（例如将子类型分配给超类型）。逆变是相反的：可以将更广泛的类型分配给特定类型（例如将超类型分配给子类型
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "src/**/*.vue","./*.d.ts"],
+  "exclude": ["node_modules"]
+}
