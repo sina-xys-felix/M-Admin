@@ -47,7 +47,7 @@ export default defineMock([
   },
   {
     url: '/user/logout',
-    method: 'post',
+    method: 'get',
     timeout: 50,
     response: () => {
       return successResponseWrap('登出成功')

@@ -108,7 +108,8 @@
             :stripe="stripe"
             :size="size"
             :scroll="{
-              y: '100%',
+              y: (isCollapseSearchForm ? tableScroll : tableScroll + (rows - 1) * 52) - 41,
+              minWidth: horizontalScroll,
               x: horizontalScroll,
             }"
             :expandedKeys="activeRowkeys"
@@ -122,6 +123,12 @@
             @row-click="handleRowClick"
             :expandable="getExpandable()"
             :row-selection="getRowSelection()"
+            :style="{
+              height:
+                (isCollapseSearchForm ? tableScroll : tableScroll + (rows - 1) * 52) +
+                ((isShowSearchForm && isExpandSearchForm) || isUseTitle ? 0 : 16) +
+                'px',
+            }"
             class="m-table"
           >
             <!-- 展开行图标   -->
@@ -330,10 +337,12 @@
   const size = ref<SizeProps>('medium')
   // 表格 DOM
   const tableRef = ref<InstanceType<typeof Table>>()
+  // 计算表格滚动的高度
+  const tableScroll = ref<number>(587)
   // 计算表格横向滚动的高度
   const maxWidth = ref<number>(500)
   const maxHeight = ref<number>(500)
-  maxHeight.value = document.documentElement.offsetHeight - 32 - 60 - 48 - 32 - 16
+  maxHeight.value = document.documentElement.offsetHeight - 188
   // @ts-ignore
   const horizontalScroll = ref<string | number | boolean>()
   // 根据是否填充空行来确定最小行高
@@ -389,6 +398,7 @@
   const treeConfig = ref<any>()
   treeConfig.value = treeColums && treeColums[0]?.search
 
+  tableScroll.value = document.documentElement.offsetHeight - 173
   const cacheName = props.remember ? `${findQuickCode(props.title)}SearchCache` : ''
   const searchCache = props.remember ? JSON.parse(localStorage.getItem(cacheName)!) || {} : {}
   const tableInitParams = props.remember ? Object.assign({}, props.initParam, searchCache) : props.initParam
@@ -531,12 +541,12 @@
     () => appStore.footer,
     (value) => {
       if (value) {
-        maxHeight.value = document.documentElement.offsetHeight - 164
+        maxHeight.value = document.documentElement.offsetHeight - 164-1
       } else {
-        maxHeight.value = document.documentElement.offsetHeight - 164 + 40
+        maxHeight.value = document.documentElement.offsetHeight - 164 + 40-1
       }
     },
-    { deep: true }
+    { immediate: true, deep: true }
   )
 
   watch(
@@ -553,7 +563,8 @@
   )
 
   const onResize = () => {
-    maxHeight.value = document.documentElement.offsetHeight - 164
+    maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124)-1
+    tableScroll.value = document.documentElement.offsetHeight - 173 - 16
     if (appStore.menuCollapse) {
       maxWidth.value = document.documentElement.offsetWidth - 90 - 48
     } else {
@@ -566,6 +577,22 @@
     // 是否需要显示
     if ((!slots['header-left'] || domLength === 0) && !slots['header-right'] && !props.toolButton) {
       isHeader.value = false
+    }
+    // 显示表头
+    if (isHeader.value) {
+      tableScroll.value -= 72
+    }
+    // 标题高度
+    if (props.title || isUseTitle.value || isUseSubTitle.value || props.subTitle) {
+      tableScroll.value -= 36
+    }
+    // 分页高度32 + 14(上间距)
+    if (props.pagination) {
+      tableScroll.value -= 46
+    }
+    // 查询条件 rows.value * 52
+    if (isShowSearchForm.value) {
+      tableScroll.value -= rows.value * 52
     }
   }
 
@@ -602,6 +629,7 @@
     clearSelection,
     isSelected,
     selectedList,
+    tableScroll,
     selectedListIds,
     activeRowkeys,
     handleCurrentChange,
