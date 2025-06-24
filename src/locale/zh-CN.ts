@@ -90,6 +90,9 @@ export default {
   'sys.userMenage.newPassword': '新密码',
   'sys.userMenage.password2': '确认密码',
   'navbar.action.locale': '语言切换',
+  'navbar.action.document': '项目文档',
+  'navbar.action.github': 'Github源码',
+  'navbar.action.gitee': 'Gitee源码',
 
   ...localeLogin,
   ...localeRouterTitle,

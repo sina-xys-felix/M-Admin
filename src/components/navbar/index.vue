@@ -141,26 +141,26 @@
           </a-avatar>
           <template #content>
             <a-doption>
-              <a-space @click="switchRoles">
+              <a-space @click="handleClick('1')">
                 <icon-tag class="icon-normal" />
                 <span>
-                  {{ $t('messageBox.switchRoles') }}
+                  {{ $t('navbar.action.document') }}
                 </span>
               </a-space>
             </a-doption>
             <a-doption>
-              <a-space @click="$router.push({ name: 'Info' })">
-                <icon-user class="icon-success" />
+              <a-space @click="handleClick('2')">
+                <icon-google-circle-fill class="icon-success" />
                 <span>
-                  {{ $t('messageBox.userCenter') }}
+                  {{ $t('navbar.action.gitee') }}
                 </span>
               </a-space>
             </a-doption>
             <a-doption>
-              <a-space @click="$router.push({ name: 'Setting' })">
-                <icon-settings class="icon-normal" />
+              <a-space @click="handleClick('3')">
+                <icon-github class="icon-normal" />
                 <span>
-                  {{ $t('messageBox.userSettings') }}
+                  {{ $t('navbar.action.github') }}
                 </span>
               </a-space>
             </a-doption>
@@ -240,9 +240,16 @@
     })
     triggerBtn.value.dispatchEvent(event)
   }
-  const switchRoles = async () => {
-    const res = await userStore.switchRoles()
-    Message.success(res as string)
+  const handleClick = async (type: string) => {
+    if (type === '1') {
+      window.open('http://doc.m-admin.cn', '_blank')
+    }
+    if (type === '2') {
+      window.open('https://gitee.com/sina_xys/M-Admin', '_blank')
+    }
+    if (type === '3') {
+      window.open('https://github.com/sina-xys-felix/M-Admin', '_blank')
+    }
   }
   const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void
 </script>

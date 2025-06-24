@@ -1,5 +1,8 @@
 <template>
   <a-config-provider :locale="locale">
+    <template #loading>
+      <icon-loading/>
+    </template>
     <router-view />
     <global-setting />
   </a-config-provider>

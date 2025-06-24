@@ -16,7 +16,7 @@
             <!-- 具有深层异步依赖的组件 -->
             <template #default>
               <MTree
-                v-if="treeColums.length"
+                v-if="treeColumns.length"
                 ref="treeRef"
                 :tree-data="treeConfig?.treeProps?.treeData"
                 v-model:selected-keys="searchParam[treeConfig.key]"
@@ -394,9 +394,9 @@
   // 接收colums 并设置为响应式
   const tableColumns = ref<ColumnProps[]>(colums)
   // 过滤需要用tree显示的列配置
-  const treeColums = props.columns.filter((item) => item?.search?.treeProps)
+  const treeColumns = props.columns.filter((item) => item?.search?.treeProps)
   const treeConfig = ref<any>()
-  treeConfig.value = treeColums && treeColums[0]?.search
+  treeConfig.value = treeColumns && treeColumns[0]?.search
 
   tableScroll.value = document.documentElement.offsetHeight - 173
   const cacheName = props.remember ? `${findQuickCode(props.title)}SearchCache` : ''
