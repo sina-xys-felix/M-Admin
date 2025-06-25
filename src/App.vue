@@ -1,12 +1,11 @@
 <template>
   <a-config-provider :locale="locale">
     <template #loading>
-      <icon-loading/>
+      <icon-loading />
     </template>
     <router-view />
     <global-setting />
   </a-config-provider>
-
 </template>
 
 <script lang="ts" setup>
@@ -27,4 +26,22 @@
         return enUS
     }
   })
+
+  disableRefresh()
+
+  function disableRefresh() {
+    // 禁用 F5 / Ctrl+R / Cmd+R
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F5' || e.keyCode === 116 || ((e.ctrlKey || e.metaKey) && e.key === 'r')) {
+        e.preventDefault()
+        // alert('页面刷新已被禁止')
+      }
+    })
+
+    // 禁用右键菜单（防止右键刷新）
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+      // alert('右键菜单已被禁用')
+    })
+  }
 </script>
