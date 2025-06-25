@@ -109,7 +109,6 @@
       slotName: 'index',
       width: 60,
       align: 'center',
-      // fixed: "left",
     },
     {
       title: t('basicTable.columns.number'),

@@ -38,11 +38,11 @@
 
 <script lang="ts">
   export default {
-    name: 'XPagination',
+    name: 'MPagination',
   }
 </script>
 
-<script setup lang="ts" name="XPagination">
+<script setup lang="ts" name="MPagination">
   import { useI18n } from 'vue-i18n'
   import { Pagination } from '@/common/types/global'
   import { PAGINATION_OPTIONS } from '@/common/constants'

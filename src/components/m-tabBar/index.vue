@@ -4,7 +4,7 @@
       <div class="tab-bar-box">
         <div class="tab-bar-scroll">
           <div class="tags-wrap">
-            <tab-item v-for="(tag, index) in tagList" :key="tag.fullPath" :index="index" :item-data="tag" />
+            <m-tab-item v-for="(tag, index) in tagList" :key="tag.fullPath" :index="index" :item-data="tag" />
           </div>
         </div>
         <div class="tag-bar-operation"></div>
@@ -18,7 +18,7 @@
   import type { RouteLocationNormalized } from 'vue-router'
   import { listenerRouteChange, removeRouteListener } from '@/utils/route-listener'
   import { useAppStore, useTabBarStore } from '@/store'
-  import TabItem from './tab-item.vue'
+  import MTabItem from './tab-item.vue'
 
   const appStore = useAppStore()
   const tabBarStore = useTabBarStore()

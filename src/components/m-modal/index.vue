@@ -22,7 +22,7 @@
 
 <script lang="ts">
   export default {
-    name: 'XModal',
+    name: 'MModal',
   }
 </script>
 

@@ -120,14 +120,18 @@
                     key={element?.name}
                     v-slots={{
                       icon,
-                      title: () => h(compile(t(element?.meta?.locale || ''))),
+                      title: () => h(compile(
+                        `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${t(element?.meta?.locale || '')}</span>`
+                        )),
                     }}
                   >
                     {travel(element?.children)}
                   </a-sub-menu>
                 ) : (
                   <a-menu-item key={element?.name} v-slots={{ icon }} onClick={() => goto(element)}>
-                    {t(element?.meta?.locale || '')}
+                    <span style={{ color: appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)' }}>
+                      {t(element?.meta?.locale || '')}
+                    </span>
                   </a-menu-item>
                 )
               nodes.push(node as never)
