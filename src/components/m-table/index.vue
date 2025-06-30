@@ -274,6 +274,7 @@
   import { findQuickCode } from '@/utils/tools'
   import config from '@/config/settings.json'
   import type { TableProps } from './types'
+  import { AnyObject } from '@/common/types/global'
 
   const emits = defineEmits(['expandedChange', 'search', 'reset'])
 
@@ -367,7 +368,7 @@
   const { rows } = storeToRefs(tableStore)
 
   // 列转义
-  const getColumnText = (list: any[], val: string | number): string => {
+  const getColumnText = (list: AnyObject[], val: string | number): string => {
     let columnText = ''
     const isTree = list.find((item) => item.children!)
     if (isTree) {
@@ -490,7 +491,7 @@
     emits('expandedChange', rowKeys)
   }
   // 点击行时触发
-  const handleRowClick = (record: any) => {
+  const handleRowClick = (record: AnyObject) => {
     if (props.isExpand) {
       ;(activeRowkeys.value ?? []).push(record[props.selectId])
       activeRowkeys.value = Array.from(new Set(activeRowkeys.value))
@@ -498,7 +499,7 @@
   }
 
   // 点击树节点时触发
-  const onSelect = (values: (string | number)[], data: any) => {
+  const onSelect = (values: (string | number)[], data: AnyObject) => {
     treeNode.value = data
     searchParam.value[treeConfig.value?.key] = values
     getTableList()
@@ -541,9 +542,9 @@
     () => appStore.footer,
     (value) => {
       if (value) {
-        maxHeight.value = document.documentElement.offsetHeight - 164-1
+        maxHeight.value = document.documentElement.offsetHeight - 164 - 1
       } else {
-        maxHeight.value = document.documentElement.offsetHeight - 164 + 40-1
+        maxHeight.value = document.documentElement.offsetHeight - 164 + 40 - 1
       }
     },
     { immediate: true, deep: true }
@@ -563,7 +564,7 @@
   )
 
   const onResize = () => {
-    maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124)-1
+    maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124) - 1
     tableScroll.value = document.documentElement.offsetHeight - 173 - 16
     if (appStore.menuCollapse) {
       maxWidth.value = document.documentElement.offsetWidth - 90 - 48

@@ -1,6 +1,7 @@
 import { h } from 'vue'
 import { Message } from '@arco-design/web-vue'
 import { IconDownload } from '@arco-design/web-vue/es/icon'
+import { AnyObject } from '@/common/types/global'
 
 /**
  * @description 接收数据流生成blob，创建链接，下载文件
@@ -12,9 +13,9 @@ import { IconDownload } from '@arco-design/web-vue/es/icon'
  * @return void
  * */
 export const useDownload = async (
-  api: (param: any) => Promise<any>,
+  api: (param: AnyObject) => Promise<AnyObject>,
   tempName: string,
-  params: any = {},
+  params: AnyObject = {},
   isNotify = true,
   fileType = '.csv'
   // fileType = '.xlsx'

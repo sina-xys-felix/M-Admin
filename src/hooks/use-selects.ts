@@ -1,3 +1,4 @@
+import { AnyObject } from '@/common/types/global'
 import { ref } from 'vue'
 
 /**
@@ -13,7 +14,7 @@ export const useSelection = (selectId = 'id') => {
   const selectedListIds = ref([])
 
   // 获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
-  const getRowKeys = (row: any) => {
+  const getRowKeys = (row: AnyObject) => {
     return row[selectId] as string
   }
 
@@ -22,7 +23,7 @@ export const useSelection = (selectId = 'id') => {
    * @param {Array} record 当前选择行的所有数据
    * @return void
    */
-  const selectionChange = (rowKeys: (string | number)[] /*  rowKey: any, record: any */) => {
+  const selectionChange = (rowKeys: (string | number)[] ) => {
     selectedListIds.value = rowKeys
     rowKeys.length === 0 ? (isSelected.value = false) : (isSelected.value = true)
   }

@@ -1,6 +1,6 @@
 import isString from 'lodash/isString'
 import merge from 'lodash/merge'
-import type { InternalAxiosRequestConfig } from 'axios'
+import type { InternalAxiosRequestConfig,AxiosRequestConfig ,AxiosResponse,AxiosError} from 'axios'
 import type { AxiosTransform, CreateAxiosOptions } from './axios-transform'
 import { VAxios } from './axios-service'
 import { joinTimestamp, formatRequestDate, setObjToUrlParams } from './utils'
@@ -108,9 +108,9 @@ const transform: AxiosTransform = {
   },
 
   // 请求拦截器处理，设置请求头
-    requestInterceptors: (config: any, options: any ) => {
+    requestInterceptors: (config: AxiosRequestConfig) => {
     // 请求之前处理config
-    if (config.url?.indexOf('/user/login') > -1) {
+    if (config?.url?.indexOf('/user/login') > -1) {
       // console.log('登录')
     } else {
       const token = getToken()
@@ -123,7 +123,7 @@ const transform: AxiosTransform = {
   },
 
   // 响应拦截器处理，根据返回的code再进行处理，用来处理业务异常
-  responseInterceptors: (res: any) => {
+  responseInterceptors: (res: AxiosResponse) => {
     if (res?.status !== ResultEnum.SUCCESS) {
       Message.error('网络错误！')
     }

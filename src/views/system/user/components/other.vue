@@ -294,32 +294,6 @@
     }
   }
 
-  const onChange = ({ values, context }: { values: string[]; context: any }) => {
-    const options = context.optionInfos
-    values &&
-      values.forEach((item, index) => {
-        if (index === 0) {
-          // 省
-          formData.value.provinceId = item as any
-        }
-        if (index === 1) {
-          // 市
-          formData.value.cityId = item as any
-        }
-        if (index === 2) {
-          // 区/县
-          formData.value.districtId = item as any
-        }
-        if (index === 3) {
-          // 街道
-          formData.value.streetId = item as any
-        }
-        if (index === 4) {
-          // 村/社区
-          formData.value.communityId = item as any
-        }
-      })
-  }
 </script>
 
 <style lang="less" scoped>

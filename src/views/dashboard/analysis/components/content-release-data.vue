@@ -8,10 +8,16 @@
   </a-spin>
 </template>
 
+
+<script lang="ts">
+  export default {
+    name: 'ContentReleaseData',
+  }
+</script>
+
 <script setup lang="ts">
   import Card from '../../components/card.vue'
-
-  import { ToolTipFormatterParams } from '@/types/echarts'
+  import { ToolTipFormatterParams } from '@/common/types/echarts'
   import useLoading from '@/hooks/loading'
   import { queryContentPublish, ContentPublishRecord } from '@/api/dashboard'
   import useChartOption from '@/hooks/chart-option'

@@ -44,7 +44,7 @@
 
 <script setup lang="ts" name="MPagination">
   import { useI18n } from 'vue-i18n'
-  import { Pagination } from '@/common/types/global'
+  import { AnyObject, Pagination } from '@/common/types/global'
   import { PAGINATION_OPTIONS } from '@/common/constants'
 
   interface PaginationProps {
@@ -61,7 +61,7 @@
   const { t } = useI18n()
 
   const pageSelect = computed(() => {
-    return PAGINATION_OPTIONS.map((item: any) => {
+    return PAGINATION_OPTIONS.map((item: AnyObject) => {
       return {
         value: item.value,
         label: t(`${item.label}`),

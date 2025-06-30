@@ -22,11 +22,6 @@ export const login = (data: LoginData) => {
     data
   })
 }
-// export const login = (data: LoginData) => {
-//   return request.get<Result>({
-//     url: `${Api.login}?account=${data.account}&password=${data.password}`,
-//   })
-// }
 
 /**
  * @description logout

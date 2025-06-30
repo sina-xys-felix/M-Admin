@@ -1,5 +1,5 @@
 import { TableStateProps } from '@/common/types/table'
-import { Pagination } from '@/common/types/global'
+import { AnyObject, Pagination } from '@/common/types/global'
 import useLoading from '@/hooks/loading'
 
 const { loading, setLoading } = useLoading(false)
@@ -16,7 +16,7 @@ export const useTable = (
   initParam: { [key: string]: unknown } = {},
   isPageable = true,
   fillRows = false,
-  dataCallBack?: (data: any) => any
+  dataCallBack?: (data: AnyObject) => AnyObject
 ) => {
   const state = reactive<TableStateProps>({
     // 表格数据
@@ -44,12 +44,11 @@ export const useTable = (
   const pageParam = computed({
     get: () => {
       return {
-        // current: state.pageable.current - 1 < 0 ? 0 : state.pageable.current - 1,
         current: state.pageable.current,
         pageSize: state.pageable.pageSize,
       }
     },
-    set: (newVal: any) => {
+    set: (newVal: AnyObject) => {
       console.log('我是分页更新之后的值', newVal)
     },
   })
@@ -138,7 +137,7 @@ export const useTable = (
   const updatedTotalParam = () => {
     state.totalParam = {}
     // 处理查询参数，可以给查询参数加自定义前缀操作
-    const nowSearchParam: { [key: string]: any } = {}
+    const nowSearchParam: { [key: string]: unknown } = {}
     // 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
     for (const key in state.searchParam) {
       // * 某些情况下参数为 false/0 也应该携带参数

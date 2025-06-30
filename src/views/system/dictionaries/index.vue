@@ -88,10 +88,12 @@
   import { routerParams } from '@/common/types/page'
   import { Operations } from '@/common/enums/status-enum'
   import { IDictProps } from '@/api/dict/types'
+  import { AnyObject } from '@/common/types/global'
+  import { DataCallBackProps } from '@/api/types'
 
   export interface MixinParams extends Partial<routerParams> {
     isDict?: boolean
-    data?: any
+    data?: AnyObject | null
     dictId?: string
   }
 
@@ -197,7 +199,7 @@
   }
 
   // 处理数据的回调
-  const dataCallback = (data: any) => {
+  const dataCallback = (data: DataCallBackProps) => {
     return {
       list: data.list,
       total: data.total,
@@ -207,8 +209,8 @@
   }
 
   // 节点操作
-  const onClickNode = (type: string, node: any) => {
-    currentDictKey.value = [node.id]
+  const onClickNode = (type: string, node: AnyObject) => {
+    currentDictKey.value = [node?.id]
     if (type === '1') {
       modalParams.value.id = node.id
       modalParams.value.type = Operations.EDIT
@@ -235,9 +237,9 @@
   }
 
   function searchData(keyword: string): TreeNodeData[] {
-    const loop = (data: any) => {
+    const loop = (data: TreeNodeData[]) => {
       const result: TreeNodeData[] = []
-      data.forEach((item: any) => {
+      data.forEach((item: TreeNodeData) => {
         if (
           item.quickCode.toLowerCase().indexOf(keyword.toLowerCase()) > -1 ||
           item.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1
@@ -264,7 +266,7 @@
     return title.toLowerCase().indexOf(searchKey.value.toLowerCase())
   }
   // 切换状态
-  const change = async (record: any) => {
+  const change = async (record: AnyObject) => {
     Message.info('您点击了切换按钮!')
   }
 

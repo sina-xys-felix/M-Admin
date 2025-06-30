@@ -42,6 +42,8 @@
   import { geStaffList } from '@/api/staff/index'
   import { Message, SelectOptionData, TableColumnData } from '@arco-design/web-vue'
   import { MTableInstance } from '@/components/m-table/types'
+  import { DataCallBackProps } from '@/api/types'
+  import { AnyObject } from '@/common/types/global'
 
   const generateFormModel = () => {
     return {
@@ -143,7 +145,7 @@
   ])
 
   // 表格查询api
-  const getTableList = (params: any) => {
+  const getTableList = (params: AnyObject) => {
     if (params.status) params.status = Number(params.status)
     else params.status = null
     let newParams = JSON.parse(JSON.stringify(params))
@@ -151,16 +153,16 @@
   }
 
   // 处理数据的回调
-  const dataCallback = (data: any) => {
+  const dataCallback = (data: DataCallBackProps) => {
     return {
       list: data.list,
       total: data.total,
-      current: data.index,
-      pageSize: data.size,
+      current: data.current,
+      pageSize: data.pageSize,
     }
   }
 
-  const handleClickOps = async ({ type, record }: { type: number; record: any }) => {
+  const handleClickOps = async ({ type, record }: { type: number; record: AnyObject }) => {
     Message.info('您点击了按钮')
   }
 </script>

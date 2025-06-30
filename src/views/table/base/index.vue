@@ -58,6 +58,8 @@
   import { useI18n } from 'vue-i18n'
   import { Message } from '@arco-design/web-vue'
   import { MTableInstance, ColumnProps } from '@/components/m-table/types'
+  import { DataCallBackProps } from '@/api/types'
+  import { AnyObject } from '@/common/types/global'
   import { queryPolicyList } from '@/api/table'
 
   const { t } = useI18n()
@@ -180,7 +182,7 @@
       title: t('basicTable.columns.createdTime'),
       dataIndex: 'createdTime',
       slotName: 'createdTime',
-      minWidth:120
+      minWidth: 120,
     },
     {
       title: t('basicTable.columns.status'),
@@ -203,13 +205,13 @@
   ])
 
   // 表格查询api
-  const getTableList = (params: any) => {
+  const getTableList = (params: AnyObject) => {
     let newParams = JSON.parse(JSON.stringify(params))
     return queryPolicyList(newParams)
   }
 
   // 处理数据的回调
-  const dataCallback = (data: any) => {
+  const dataCallback = (data: DataCallBackProps) => {
     return {
       list: data.list,
       total: data.total,

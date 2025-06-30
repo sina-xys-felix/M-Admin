@@ -1,4 +1,6 @@
 import { request } from '@/utils/request'
+import { IPageable } from '../types'
+import { AnyObject } from '@/common/types/global'
 
 const Api = {
   list: '/user/list',
@@ -6,13 +8,13 @@ const Api = {
   status: '/user/set',
 }
 
-export function getRoleList(data: any) {
+export function getRoleList(data: IPageable) {
   return request.get({
     url: `${Api.list}?current=${data.index}&pageSize=${data.size}`,
   })
 }
 
-export function setRoleStatus(data: any) {
+export function setRoleStatus(data: AnyObject) {
   return request.get({
     url: Api.status,
     data,

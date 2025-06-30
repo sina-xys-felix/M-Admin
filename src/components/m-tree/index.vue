@@ -22,36 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { TreeNodeData } from '@arco-design/web-vue'
-  export interface TreeOptions {
-    selectedKeys?: (string | number)[] // 选中的树节点
-    checkedKeys?: (string | number)[] // 选择复选框的值
-    checkable?: boolean // 是否在节点前添加复选框
-    treeData: TreeNodeData[] | undefined // tree 绑定的数据
-    checkStrictly?: boolean // 是否取消父子节点关联
-    multiple?: boolean // 是否多选
-    fieldNames?: {
-      key: string
-      title: string
-      children: string
-    }
-  }
-
-  interface selectedOptions {
-    selected?: boolean
-    selectedNodes?: TreeNodeData[]
-    node?: TreeNodeData
-    e?: Event
-  }
-
-  interface checkedOptions {
-    checked?: boolean
-    checkedNodes?: TreeNodeData[]
-    node?: TreeNodeData
-    e?: Event
-    halfCheckedKeys?: (string | number)[]
-    halfCheckedNodes?: TreeNodeData[]
-  }
+  import { TreeOptions, selectedOptions, checkedOptions } from './types'
 
   withDefaults(defineProps<TreeOptions>(), {
     checkable: false,
@@ -67,7 +38,7 @@
   const emits = defineEmits(['select', 'check'])
 
   //   点击数节点时触发
-  const onSelect = (selectedKeys: (string | number)[], data: selectedOptions): any => {
+  const onSelect = (selectedKeys: (string | number)[], data: selectedOptions) => {
     emits('select', selectedKeys, data)
   }
 

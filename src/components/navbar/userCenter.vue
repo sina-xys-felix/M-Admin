@@ -136,6 +136,7 @@
   import { FormInstance } from '@arco-design/web-vue'
   import { ROW_GUTTER } from '@/common/constants/index'
   import { FORM_CONFIG } from '@/common/constants/form-config'
+import { AnyObject } from '@/common/types/global';
 
   const { t } = useI18n()
   const visible = ref<boolean>(false)
@@ -144,11 +145,7 @@
   const disabled = ref<boolean>(true)
   const formRef = ref<FormInstance>()
 
-  interface IUserProps {
-    [key: string]: any
-  }
-
-  const formData = ref<IUserProps>({
+  const formData = ref<AnyObject>({
     name: '',
     userName: '',
     mobile: '',

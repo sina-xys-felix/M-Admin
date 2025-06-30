@@ -13,7 +13,7 @@ export default function usePermission() {
         route.meta?.roles?.includes(userStore?.role)
       )
     },
-    findFirstPermissionRoute(_routers: any, role = 'admin') {
+    findFirstPermissionRoute(_routers: RouteRecordRaw[], role = 'admin') {
       const cloneRouters = [..._routers]
       while (cloneRouters.length) {
         const firstElement = cloneRouters.shift()

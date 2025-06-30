@@ -24,7 +24,8 @@
   import { ref, watch } from 'vue'
   import { CascaderFieldNames, CascaderOption } from '@arco-design/web-vue'
   import { findTreeNode } from '@/utils/tree'
-  import { getDictItemList } from '@/api/dict/index'
+  import { getDictOptions } from '@/api/dict/index'
+  import { AnyObject } from '@/common/types/global'
 
   interface SelectProps {
     modelValue: string | number | (string | number)[]
@@ -37,12 +38,12 @@
     fieldNames?: CascaderFieldNames
     fallback?: boolean
     treeCheckable?: boolean
-    requestParam?: any
+    requestParam?: AnyObject
     isRequestParam?: boolean
     checkStrictly?: boolean
     readonly?: boolean
     mode?: number
-    data?: any[]
+    data?: AnyObject[]
     formServe?: boolean // 过滤时选项是否需要远程请求
   }
 
@@ -124,7 +125,7 @@
       //   // 特殊字典处理，TODO
       // } else {
       // 通用字典处理
-      const response = await getDictItemList(Number(props.code))
+      const response = await getDictOptions(Number(props.code))
       if (response) {
         let res = appendNodeInTree(response)
         options.value = res
@@ -137,8 +138,8 @@
     }
   }
 
-  const appendNodeInTree = (tree: any) => {
-    tree.forEach((ele: any) => {
+  const appendNodeInTree = (tree: CascaderOption[]) => {
+    tree.forEach((ele: CascaderOption) => {
       if (ele.children && ele.children.length !== 0) {
         appendNodeInTree(ele.children)
       } else {

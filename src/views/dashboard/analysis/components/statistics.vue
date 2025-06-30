@@ -14,6 +14,12 @@
   </div>
 </template>
 
+<script lang="ts">
+  export default {
+    name: 'AnalysisStat',
+  }
+</script>
+
 <script setup lang="ts">
   import MIconFont from '@/components/m-iconfont/index.vue'
 

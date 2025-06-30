@@ -2,6 +2,7 @@ import { onMounted, onUnmounted, Ref, unref } from 'vue'
 import echarts from './library'
 import { SVGRenderer, CanvasRenderer } from 'echarts/renderers'
 import { RenderType, ThemeType } from './types'
+import { AnyObject } from '@/common/types/global'
 
 export function useECharts(
   elparams: Ref<HTMLDivElement> | HTMLDivElement,
@@ -26,7 +27,7 @@ export function useECharts(
   }
 
   // 配置
-  function setOption(option: any) {
+  function setOptions(option: AnyObject) {
     showLoading()
 
     if (!echartsInstance) initCharts()

@@ -12,7 +12,7 @@ function checkPermission(el: HTMLElement, binding: DirectiveBinding) {
       el.parentNode.removeChild(el)
     }
   } else {
-    throw new Error(`need roles! Like v-permission="['10000','10001']"`)
+    throw new Error(`need ids! Like v-permission="['10000','10001']"`)
   }
 }
 

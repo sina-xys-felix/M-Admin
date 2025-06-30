@@ -67,6 +67,8 @@
     all = 'all',
   }
 
+  type EactionTypes = 'reload' | 'current' | 'left' | 'right' | 'others' | 'all'
+
   const props = defineProps({
     itemData: {
       type: Object as PropType<TagProps>,
@@ -119,7 +121,7 @@
     return tagList.value.findIndex((el) => el.fullPath === route.fullPath)
   }
 
-  const actionSelect = async (value: any) => {
+  const actionSelect = async (value: EactionTypes) => {
     const { itemData, index } = props
     const copyTagList = [...tagList.value]
     if (value === Eaction.current) {

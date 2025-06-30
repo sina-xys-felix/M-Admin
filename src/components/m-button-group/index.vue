@@ -6,19 +6,16 @@
         <a-tooltip :content="t('common.table.look')">
           <a-button v-if="showDetail" v-permission="detailCode" @click="handleClickOps(Operations.LOOK, record)">
             <icon-eye size="18" />
-            <!-- <img src="@/assets/images/detail.png" /> -->
           </a-button>
         </a-tooltip>
         <a-tooltip :content="t('common.table.edit')">
           <a-button v-if="showUpdate" v-permission="updateCode" @click="handleClickOps(Operations.EDIT, record)">
             <icon-edit size="18" />
-            <!-- <img src="@/assets/images/edit.png" /> -->
           </a-button>
         </a-tooltip>
         <a-tooltip :content="t('common.table.delete')">
           <a-button v-if="showRemove" v-permission="removeCode" @click="handleClickOps(Operations.DELETE, record)">
             <icon-delete size="16" />
-            <!-- <img src="@/assets/images/delete.png" /> -->
           </a-button>
         </a-tooltip>
       </template>
@@ -49,11 +46,12 @@
   import { useI18n } from 'vue-i18n'
   import { Operations } from '@/common/enums/status-enum'
   import { SpaceSizeProps } from '@/common/types/index'
+  import { AnyObject } from '@/common/types/global'
   // 思考？不参与权限校验，只显示部分,实现方式
   type DirectionProps = 'vertical' | 'horizontal'
 
   interface IBtnGroupProps {
-    record: any
+    record: AnyObject
     updateCode?: string
     detailCode?: string
     removeCode?: string

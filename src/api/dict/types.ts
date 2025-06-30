@@ -1,35 +1,20 @@
-import type { PositionType } from '@/api/org/types'
+import { StatusNumProps } from '@/common/types/index'
 export interface ICommonProps {
-
-  code?: any
+  code?: string | number
   enable?: boolean
-  remark?: string
-  sort?: number
-  level?: number
-
   id?: string | number
   name?: string
   alias?: string
-
   quickCode?: string
-  value?: string
-  short?: string
-  abbr?: string
-  eng?: string
-
   description?: string
-  thumbnail?: string
-  image?: string
-  style?: string
-  index?: number
-  editable?: boolean
-  xppId?: number
-  status?: PositionType
-
+  status?: StatusNumProps
   parentId?: string | number
-  typeId?: string | number
 }
 
-export interface IDictProps extends Partial<ICommonProps> {
-  dictItems?: IDictItemProps[]
+export interface IDictProps extends Partial<ICommonProps> {}
+
+export interface DictItemSearch {
+  current: number
+  pageSize: number
+  key: string
 }

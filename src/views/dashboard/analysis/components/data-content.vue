@@ -8,14 +8,20 @@
   </a-spin>
 </template>
 
+<script lang="ts">
+  export default {
+    name: 'DataContent',
+  }
+</script>
+
 <script setup lang="ts">
   import Card from '../../components/card.vue'
   import { graphic } from 'echarts'
   import useLoading from '@/hooks/loading'
   import { queryContentData, ContentDataRecord } from '@/api/dashboard'
   import useChartOption from '@/hooks/chart-option'
-  import { ToolTipFormatterParams } from '@/types/echarts'
-  import { AnyObject } from '@/types/global'
+  import { ToolTipFormatterParams } from '@/common/types/echarts'
+  import { AnyObject } from '@/common/types/global'
   import { useAppStore } from '@/store'
 
   function graphicFactory(side: AnyObject, isDark: boolean) {
@@ -106,7 +112,7 @@
         },
         axisLabel: {
           color: isDark ? 'rgba(255, 255, 255, 0.7)' : '#4E5969',
-          formatter(value: any, idx: number) {
+          formatter(value: string, idx: number) {
             if (idx === 0) return value
             return `${value}k`
           },

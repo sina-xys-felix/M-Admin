@@ -20,6 +20,7 @@
 <script lang="ts" setup>
   import { reactive, computed, shallowRef } from 'vue'
   import vue3Tinymce from '@jsdawn/vue3-tinymce'
+import { AnyObject } from '@/common/types/global';
 
   interface TinymceProps {
     height?: number // 编辑器默认初始高度
@@ -79,7 +80,7 @@
     },
   })
 
-  const imagesCallback = (response: any) => {
+  const imagesCallback = (response: AnyObject) => {
     return response
   }
 
@@ -132,7 +133,7 @@
     // custom_images_upload_header: props.customImagesUploadHeader,
     // // 上传 api 额外的参数。图片默认 file
     // custom_images_upload_param: props.customImagesUploadParams,
-    // images_upload_handler: (blobInfo: any) =>
+    // images_upload_handler: (blobInfo: Anyobject) =>
     //   new Promise((resolve, reject) => {
     //     resolve('上传成功!')
     //   }),

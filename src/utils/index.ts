@@ -2,7 +2,7 @@ import { Fn } from '@vueuse/core'
 
 type TargetContext = '_self' | '_parent' | '_blank' | '_top'
 
-export const openWindow = (url: string, opts?: { target?: TargetContext; [key: string]: any }) => {
+export const openWindow = (url: string, opts?: { target?: TargetContext; [key: string]: unknown }) => {
   const { target = '_blank', ...others } = opts || {}
   window.open(
     url,

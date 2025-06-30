@@ -1,6 +1,6 @@
 import { request } from '@/utils/request'
-import { IStaffProps } from './types'
-import { SearchParams } from '../types'
+import IStaffProps from './types'
+import { IPageable } from '../types'
 /**
  * @name 职员接口API
  * @author xuyingping
@@ -22,7 +22,7 @@ const Api = {
  * @param mobile
  * @param status
  * */
-export const geStaffList = (data: SearchParams) => {
+export const geStaffList = (data: IPageable) => {
   return request.get({
     url: `${Api.list}?current=${data.index}&pageSize=${data.size}`,
   })

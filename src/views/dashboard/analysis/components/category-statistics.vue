@@ -8,6 +8,12 @@
   </a-spin>
 </template>
 
+<script lang="ts">
+  export default {
+    name: 'CategoryStatistics',
+  }
+</script>
+
 <script setup lang="ts">
   import useLoading from '@/hooks/loading'
   import Card from '../../components/card.vue'

@@ -1,3 +1,5 @@
+import { AnyObject } from "./global"
+
 export interface Pageable {
   current: number
   pageSize: number
@@ -5,7 +7,7 @@ export interface Pageable {
 }
 
 export interface TableStateProps {
-  tableData: any[]
+  tableData: AnyObject[]
   pageable: Pageable
   searchParam: {
     [key: string]: unknown

@@ -1,3 +1,4 @@
+import { AnyObject } from '@/common/types/global'
 import type { Ref } from 'vue'
 export interface IUseRequestOption<T = any> {
   // 是否开启防抖 时长
@@ -18,7 +19,7 @@ export interface IUseRequestOption<T = any> {
 export interface IUseRequestConfig<D, T> {
   loading: Ref<boolean>
   data: Ref<T | undefined>
-  run: (...args: any[]) => Promise<void>
+  run: (...args: AnyObject[]) => Promise<void>
   runParams: (params: D) => Promise<void>
 }
 

@@ -37,48 +37,51 @@
 </script>
 
 <script lang="ts" setup>
-import { computed } from "vue";
-import { useI18n } from "vue-i18n";
-import { handleProp } from "@/utils/tools";
-import { ColumnProps } from "@/components/m-table/types";
+  import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { handleProp } from '@/utils/tools'
+  import { ColumnProps } from '@/components/m-table/types'
+  import { AnyObject } from '@/common/types/global'
+  import { CascaderOption } from '@arco-design/web-vue'
 
-interface SearchItemProps {
-  column: ColumnProps;
-  searchParam: { [key: string]: any };
-}
+  interface SearchItemProps {
+    column: ColumnProps
+    searchParam: AnyObject
+  }
 
-const props = defineProps<SearchItemProps>();
+  const props = defineProps<SearchItemProps>()
 
-const { t } = useI18n();
+  const { t } = useI18n()
 
-// 处理透传的 search.Props
-const handleSearchProps = (searchProps: any) => {
-  return searchProps ?? searchProps;
-};
+  // 处理透传的 search.Props
+  const handleSearchProps = (searchProps: AnyObject) => {
+    return searchProps ?? searchProps
+  }
 
-// 判断placeholder
-const placeholder = computed(() => {
-  const search = props.column.search;
-  return (
-    search?.props?.placeholder ?? (["input", "textarea"].includes(search?.el) ? t("common.input") : t("common.select"))
-  );
-});
+  // 判断placeholder
+  const placeholder = computed(() => {
+    const search = props.column.search
+    return (
+      search?.props?.placeholder ??
+      (['input', 'textarea'].includes(search?.el) ? t('common.input') : t('common.select'))
+    )
+  })
 
-const filterOption = (inputValue: string, option: any) => {
-  return (
-    (option.name || "").indexOf(inputValue) > -1 ||
-    (option.quickCode || "").indexOf(inputValue) > -1 ||
-    (option.code || "").indexOf(inputValue) > -1
-  );
-};
+  const filterOption = (inputValue: string, option: CascaderOption) => {
+    return (
+      (option.name || '').indexOf(inputValue) > -1 ||
+      (option.quickCode || '').indexOf(inputValue) > -1 ||
+      (option.code || '').indexOf(inputValue) > -1
+    )
+  }
 
-// 判断 是否有清除按钮 (当搜素框有值时，不显示清除按钮)
-const allowClear = computed(() => {
-  const search = props.column.search;
-  return (
-    search?.el !== "input-number" ??
-    search?.props?.clearable ??
-    (search?.defaultValue == null || search?.defaultValue == undefined)
-  );
-});
+  // 判断 是否有清除按钮 (当搜素框有值时，不显示清除按钮)
+  const allowClear = computed(() => {
+    const search = props.column.search
+    return (
+      search?.el !== 'input-number' ??
+      search?.props?.clearable ??
+      (search?.defaultValue == null || search?.defaultValue == undefined)
+    )
+  })
 </script>

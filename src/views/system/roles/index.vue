@@ -52,6 +52,8 @@
   import { ColumnProps, MTableInstance } from '@/components/m-table/types'
   import type { TableColumnData } from '@arco-design/web-vue/es/table/interface'
   import { Message } from '@arco-design/web-vue'
+  import { DataCallBackProps } from '@/api/types'
+  import { AnyObject } from '@/common/types/global'
 
   const generateFormModel = () => {
     return {
@@ -140,18 +142,18 @@
   ])
 
   // 表格查询api
-  const getTableList = (params: any) => {
+  const getTableList = (params: AnyObject) => {
     let newParams = JSON.parse(JSON.stringify(params))
     return getRoleList(newParams)
   }
 
   // 处理数据的回调
-  const dataCallback = (data: any) => {
+  const dataCallback = (data: DataCallBackProps) => {
     return {
       list: data?.list,
       total: data?.total,
-      current: data?.index || 1,
-      pageSize: data?.size || 15,
+      current: data?.current || 1,
+      pageSize: data?.pageSize || 15,
     }
   }
 
@@ -161,12 +163,12 @@
   }
 
   // 操作按钮
-  const handleClickOps = async ({ type, record }: { type: number; record: any }): Promise<void> => {
+  const handleClickOps = async ({ type, record }: { type: number; record: AnyObject }): Promise<void> => {
     Message.info('您点击了按钮')
   }
 
   // 设置状态
-  const change = async (record: any) => {
+  const change = async (record: AnyObject) => {
     Message.info('您点击了切换按钮')
   }
 </script>

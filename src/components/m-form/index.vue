@@ -85,13 +85,14 @@
   import { FieldRule, ValidatedError, ColProps, FormInstance } from '@arco-design/web-vue'
   import { Layout, Size, Align, RowConfigProps, MFormItemProps } from './types'
   import { ROW_GUTTER, DEFAULT_GRID_NUMS_EXTEND } from '@/common/constants'
+  import { AnyObject } from '@/common/types/global'
   import MSearchFormItem from '../m-search-form/components/index.vue'
   import MTinymce from '@/components/m-tinymce/index.vue'
 
   // 表单属性
   interface MFormProps {
     columns: MFormItemProps[] // 表单项配置
-    formData: { [key: string]: any } // 表单绑定的值,默认为{}
+    formData: AnyObject // 表单绑定的值,默认为{}
     layout?: Layout // 表单的布局方式，包括水平、垂直、多列,默认为 horizontal
     size?: Size //表单控件的尺寸,默认为medium
     labelColProps?: ColProps //标签元素布局选项。参数同 <col> 组件一致,默认为 { span: 5, offset: 0 }

@@ -76,6 +76,7 @@
   import { useTableStore } from '@/store'
   import { IconRefresh } from '@arco-design/web-vue/es/icon'
   import type { ColumnProps } from '@/components/m-table/types'
+  import { AnyObject } from '@/common/types/global'
   import {
     ROW_GUTTER,
     MAX_SEARCH_ITEM_NUMBER,
@@ -92,9 +93,9 @@
     isHeader?: boolean
     showExpand?: boolean
     searchColumns?: ColumnProps[] // 搜索列，用来加载搜索列的内容
-    searchParam?: { [key: string]: any } // 搜索配置项,即 搜索列的各个属性初始值
-    search: (param: any) => void // 搜索方法
-    reset: (param: any) => void // 重置方法
+    searchParam?: AnyObject // 搜索配置项,即 搜索列的各个属性初始值
+    search: (param: AnyObject) => void // 搜索方法
+    reset: (param: AnyObject) => void // 重置方法
   }
 
   const props = withDefaults(defineProps<ProTableProps>(), {

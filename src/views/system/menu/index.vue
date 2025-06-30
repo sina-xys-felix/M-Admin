@@ -26,6 +26,7 @@
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { MenuItem } from '@arco-design/web-vue'
   import { ColumnProps, MTableInstance } from '@/components/m-table/types'
   import { getUserMenus } from '@/api/table'
 
@@ -95,7 +96,7 @@
   })
 
   // 组装tree
-  const loadChildren = (list: any[]) => {
+  const loadChildren = (list: MenuItem[]) => {
     return list.map((item) => {
       if (item.children && item.children.length > 0) {
         loadChildren(item.children)

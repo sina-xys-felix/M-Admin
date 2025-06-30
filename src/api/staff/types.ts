@@ -53,6 +53,6 @@ export interface IOtherProps {
   status?: number
 }
 
-type IStaffProps = IBaseInfo & IOtherProps & { [key: string]: any }
+type IStaffProps = IBaseInfo & IOtherProps & { [key: string]: unknown }
 
 export default IStaffProps

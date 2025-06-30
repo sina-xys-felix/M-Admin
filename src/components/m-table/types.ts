@@ -1,19 +1,19 @@
 import { VNode, ComponentPublicInstance } from 'vue'
+import { TableExpandable, TableRowSelection } from '@arco-design/web-vue'
 import type { TableColumnData } from '@arco-design/web-vue/es/table/interface'
 import type { ShortcutType } from '@arco-design/web-vue/es/date-picker/interface'
-import { TreeOptions } from '@/components/x-tree/index.vue'
-import MTable from '@/components/x-table/index.vue'
-import { TableExpandable, TableRowSelection } from '@arco-design/web-vue'
 import { AxiosResponse } from 'axios'
+import { TreeOptions } from '@/components/m-tree/types'
+import MTable from '@/components/m-table/index.vue'
 
-// 属性枚举
+// 属性枚举，建议为该接口添加更具体的类型定义，若无法确定，可考虑移除索引签名
 interface EnumProps {
   label: string // 选项框中显示的文字
   value: string // 选项框中的值
   disabled?: boolean // 是否禁用选项框
   tagType?: string // 当 tag 为 true 时，此选择会指定 tag 显示类型
   children?: EnumProps[]
-  [key: string]: any // 选项框中的值，对应form中的field
+  [key: string]: unknown
 }
 
 // 搜索条件搜索类型
@@ -39,13 +39,13 @@ type DataProps = {
 // 筛选类型
 type Filters = Record<string, string[]>
 // 排序
-type Sorter = { filed: string; direction: 'ascend' | 'descend' } | Record<string, never>
+type Sorter = { field: string; direction: 'ascend' | 'descend' } | Record<string, never>
 
 // 范围选择器类型
 type RangePickerType = 'date' | 'year' | 'quarter' | 'week' | 'month'
 
 type SearchRenderScope = {
-  searchParam: { [key: string]: any }
+  searchParam: Record<string, unknown>
   placeholder: string
   clearable: boolean
   options: EnumProps[]
@@ -56,11 +56,11 @@ type SearchRenderScope = {
 type SearchProps = {
   el?: SearchType // 当前搜索框的类型
   isShow?: boolean // 搜索列是否可见
-  props?: any // 搜索项参数或者属性，根据arco-design官方文档来确定，该属性会透传到组件
+  props?: Record<string, unknown>
   key?: string // 当搜索项 key 值不为 field时，可以通过key来指定
   order?: number // 搜索框的排序，从小到大一次排列
   options?: DataProps[] // 渲染查询条件的数据,select 或者  cascader
-  defaultValue?: string | number | boolean | any[] // 搜索框默认值
+  defaultValue?: string | number | boolean | unknown[]
   mode?: RangePickerType // 时间选择器为范围选择器时，范围选择器类型
   shortcuts?: ShortcutType[] // 时间选择器，快捷时间
   custom?: boolean // 是否自定义查询条件内容
@@ -70,7 +70,6 @@ type SearchProps = {
   render?: (scope: SearchRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
 }
 
-
 // 表格列的配置
 type Alias = {
   isShow?: boolean // 是否显示列
@@ -79,7 +78,7 @@ type Alias = {
 }
 
 interface ColumnProps extends TableColumnData {
-  enum?: any
+  enum?: Record<string, unknown>
   search?: SearchProps // 搜索列配置
 
   extra?: Alias // 表格列的其他配置
@@ -87,18 +86,18 @@ interface ColumnProps extends TableColumnData {
 
 type RowSelectionType = 'radio' | 'checkbox'
 
-interface TableProps {
+interface TableProps<T = unknown> {
   columns: ColumnProps[] // 列的配置项，即表头显示内容，==> 必传
   data?: T[] // 静态data
-  requestApi?: (param: any) => Promise<AxiosResponse<T, any>> // 请求表格的api, ==> 必传  AxiosResponse ==> Result
+  requestApi?: (param: Record<string, unknown>) => Promise<AxiosResponse<T, unknown>>
   requestAuto?: boolean // 是否自动查询
-  dataCallback?: (data: any) => any // 返回数据的回调函数，可以对数据进行处理 ==> 非必传
+  dataCallback?: (data: T) => T
   isSplit?: boolean // 是否需要拆分布局，左右布局的形式
   spanSplit?: number // 左边部分占多少栅格数,共24等分
   splitLine?: boolean // 是否需要分隔线
   title?: string // 表格标题,在表格打印的时候用
   subTitle?: string // 子标题（分隔时，左边块的标题），需配合isSplit使用
-  initParam?: any // 初始化参数
+  initParam?: Record<string, unknown>
   pagination?: boolean // 是否需要分页组件，默认为true
   bordered?: boolean // 是否需要表格纵向边框，默认为false
   stripe?: boolean // 是否开启斑马纹，默认为false
@@ -116,6 +115,9 @@ interface TableProps {
   tableShow?: boolean // 是否展示表格，默认为true
 }
 
-type MTableInstance = Omit<InstanceType<typeof MTable>, keyof Partial<ComponentPublicInstance> | keyof TableProps>
+type MTableInstance<T = unknown> = Omit<
+  InstanceType<typeof MTable>,
+  keyof Partial<ComponentPublicInstance> | keyof TableProps<T>
+>
 
 export { EnumProps, SearchType, SearchProps, ColumnProps, MTableInstance, SearchRenderScope, TableProps }

@@ -2,10 +2,5 @@
 export interface LoginData {
   password: string
   account: string
-}
-
-// 修改密码
-export interface ChangePassword {
-  oldPassword: string
-  newPassword: string
+  [key:string]:unknown
 }

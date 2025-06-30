@@ -39,7 +39,5 @@ export interface UserState {
   nation?: string
   points?: number
   roles?: roleType
-  tenants?: any[]
-  organs?: any[]
   [key: string]: unknown;
 }
