@@ -16,7 +16,7 @@ export default {
   'settings.menu': '默认布局',
   'settings.topMenu': '顶部布局',
   'settings.tabBar': '多页签',
-  'settings.footer': '底部',
+  'settings.footer': '页脚',
   'settings.otherSettings': '其他设置',
   'settings.colorWeak': '色弱模式',
   'settings.alertContent':

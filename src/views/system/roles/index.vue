@@ -6,6 +6,7 @@
       :selectId="'id'"
       :stripe="true"
       :columns="columns"
+      :bordered="{ cell: true }"
       :init-param="formModel"
       :request-api="getTableList"
       :data-callback="dataCallback"

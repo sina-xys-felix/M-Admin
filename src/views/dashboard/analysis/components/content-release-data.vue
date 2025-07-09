@@ -161,6 +161,6 @@
   .chart {
     width: 100%;
     padding: 16px;
-    height: 296px;
+    height: calc(100% - 16px);
   }
 </style>

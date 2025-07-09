@@ -63,7 +63,7 @@
     return {
       grid: {
         left: '3%',
-        right: '0',
+        right: '16',
         top: '10',
         bottom: '30',
       },
@@ -216,6 +216,6 @@
   .chart {
     width: 100%;
     padding: 16px;
-    height: 296px;
+    height: calc(100% - 16px);
   }
 </style>

@@ -29,15 +29,18 @@
     height: 100%;
     overflow: auto;
     padding: 16px;
+    display: flex;
+    flex-direction: column;
     .block {
       border-radius: 8px;
       margin-bottom: 16px;
     }
     .panel {
       width: 100%;
-      height: 328px;
+      // height: 328px;
       display: flex;
       gap: 16px;
+      flex: 1;
       &-item {
         background: var(--color-bg-2);
         border-radius: 8px;

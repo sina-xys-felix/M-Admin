@@ -5,6 +5,7 @@
       :selectId="'id'"
       :title="t('mer.menu')"
       :columns="columns"
+      :bordered="{ cell: true }"
       :data="tableData"
       isTreeTable
       :expandedRowKeys="expandedRowKeys"

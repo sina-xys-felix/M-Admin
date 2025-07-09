@@ -5,6 +5,7 @@
       :title="t('sys.dict.title')"
       :selected="'id'"
       :columns="columns"
+      :bordered="{ cell: true }"
       :request-api="getDictItemPage"
       :dataCallback="dataCallback"
       :isShowSearchForm="false"

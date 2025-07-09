@@ -28,13 +28,11 @@
         </a-row>
       </a-form>
     </a-col>
+    <!--      -->
     <a-divider
       :style="{
         height: `${rows > 1 ? (expand ? rowHeight : 32) : rowHeight}px`,
-        opacity:
-          rows <= 1 && searchColumns.length !== GRID_TOTAL / (isSplit ? DEFAULT_GRID_NUMS_EXTEND : DEFAULT_GRID_NUMS)
-            ? '0'
-            : '1',
+        opacity: rows <= 1 && !showLine ? '0' : '1',
       }"
       direction="vertical"
     />
@@ -119,6 +117,8 @@
 
   const showColumns = ref<ColumnProps[]>([])
 
+  const showLine = ref(true)
+
   const emits = defineEmits(['changeExpand'])
   const onExpand = () => {
     expand.value = !expand.value
@@ -129,12 +129,11 @@
     rows.value =
       Math.ceil(props.searchColumns.length / Math.ceil(GRID_TOTAL / maxSpan)) ||
       Math.ceil(props.searchColumns.length / (props.isSplit ? MAX_SEARCH_ITEM_NUMBER_SPLIT : MAX_SEARCH_ITEM_NUMBER))
-
     rowHeight.value = rows.value > 1 ? rows.value * 41 : 32
-
     showColumns.value = props.searchColumns
-
     expand.value = props.showExpand
+    const sumSpan = maxArr.reduce((acc, curr) => acc + curr, 0)
+    showLine.value = sumSpan >= GRID_TOTAL
   })
 
   defineExpose({
@@ -153,7 +152,4 @@
   :deep(.arco-form-item) {
     margin-bottom: 16px;
   }
-  // :deep(.arco-btn-size-medium) {
-  //   height: auto;
-  // }
 </style>

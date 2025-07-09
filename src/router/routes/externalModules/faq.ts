@@ -1,5 +1,5 @@
 export default {
-  path: 'https://gitee.com/sina_xys/m-admin',
+  path: 'https://gitee.com/sina_xys/M-Admin',
   name: 'MFaq',
   meta: {
     locale: 'menu.document.url',

@@ -5,6 +5,7 @@
       :title="t('staff.title')"
       :selectId="'memberId'"
       :columns="columns"
+      :bordered="{ cell: true }"
       :init-param="formModel"
       :request-api="getTableList"
       :data-callback="dataCallback"
@@ -91,6 +92,7 @@
       search: {
         el: 'input',
         order: 1,
+        span: 8,
       },
     },
     {
@@ -111,6 +113,7 @@
       search: {
         el: 'input',
         order: 2,
+        span: 8,
       },
     },
     {
@@ -132,6 +135,7 @@
       search: {
         el: 'select',
         order: 5,
+        span: 8,
         options: statusOptions.value,
       },
     },
