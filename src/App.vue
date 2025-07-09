@@ -27,7 +27,7 @@
     }
   })
 
-  // disableRefresh()
+  disableRefresh()
 
   function disableRefresh() {
     // 禁用 F5 / Ctrl+R / Cmd+R
