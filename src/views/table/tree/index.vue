@@ -4,6 +4,7 @@
       ref="basicTableRef"
       :title="t('menu.table.columnar')"
       :sub-title="t('menu.table.tree.area')"
+      :bordered="{ cell: true }"
       :columns="columns"
       :selectId="'id'"
       :init-param="formModel"
@@ -21,7 +22,7 @@
       <template #status="{ record }">
         <span v-if="record.status === 'offline'" class="circle"></span>
         <span v-else class="circle pass"></span>
-        {{ t(`basicTable.form.status.${record.status}`) }}
+        {{ record.status === 'offline' ? t('common.status.disabled') : t('common.status.normal') }}
       </template>
       <template #createdTime="{ record }">
         {{ record.createdTime?.slice(0, 10) }}
@@ -47,7 +48,6 @@
   import { AnyObject } from '@/common/types/global'
   import { queryPolicyList } from '@/api/table'
   import { treeData } from './data'
-
 
   const { t } = useI18n()
 
@@ -96,7 +96,7 @@
       title: t('basicTable.columns.index'),
       dataIndex: 'index',
       slotName: 'index',
-      width: 60,
+      width: 64,
       align: 'center',
       fixed: 'left',
     },
@@ -129,6 +129,9 @@
       title: t('basicTable.columns.contentType'),
       dataIndex: 'contentType',
       width: 150,
+      extra: {
+        isShow: false,
+      },
       search: {
         treeProps: {
           treeData: treeData,
@@ -165,10 +168,15 @@
       },
     },
     {
+      title: t('basicTable.columns.address'),
+      dataIndex: 'address',
+      minWidth: 160,
+    },
+    {
       title: t('basicTable.columns.createdTime'),
       dataIndex: 'createdTime',
       slotName: 'createdTime',
-      minWidth: 160,
+      width: 160,
     },
     {
       title: t('basicTable.columns.status'),

@@ -58,7 +58,7 @@ export default {
   'common.table.search': '搜索',
   'common.table.look': '详情',
   'common.table.edit': '修改',
-  'common.table.delete': '删除',
+  'common.table.delete': '批量删除',
   'common.table.permission': '权限分配',
   'common.export.selectedRows': '导出所选行',
   'common.export.current': '导出当前页',

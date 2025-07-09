@@ -1,5 +1,5 @@
 import { VNode, ComponentPublicInstance } from 'vue'
-import { TableExpandable, TableRowSelection } from '@arco-design/web-vue'
+import { TableExpandable, TableRowSelection,TableBorder } from '@arco-design/web-vue'
 import type { TableColumnData } from '@arco-design/web-vue/es/table/interface'
 import type { ShortcutType } from '@arco-design/web-vue/es/date-picker/interface'
 import { AxiosResponse } from 'axios'
@@ -99,7 +99,7 @@ interface TableProps<T = unknown> {
   subTitle?: string // 子标题（分隔时，左边块的标题），需配合isSplit使用
   initParam?: Record<string, unknown>
   pagination?: boolean // 是否需要分页组件，默认为true
-  bordered?: boolean // 是否需要表格纵向边框，默认为false
+  bordered?: boolean | TableBorder // 是否需要表格纵向边框，默认为false
   stripe?: boolean // 是否开启斑马纹，默认为false
   toolButton?: boolean // 是否显示表格功能按钮 ==> 非必传（默认为true）,打印和导出功能
   selectId?: string // 当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
@@ -113,6 +113,7 @@ interface TableProps<T = unknown> {
   expandedRowKeys?: string[] // 树形表格，设置默认展开的值
   remember?: boolean // 用户配置是否记录查询条件的内容，默认为true
   tableShow?: boolean // 是否展示表格，默认为true
+  showExpand?: boolean // 是否适配展开功能
 }
 
 type MTableInstance<T = unknown> = Omit<

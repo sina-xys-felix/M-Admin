@@ -266,15 +266,16 @@
   import { useTable } from '@/hooks/use-table'
   import { useSelection } from '@/hooks/use-selects'
   import { ColumnProps } from './types'
+  import { findQuickCode } from '@/utils/tools'
+  import config from '@/config/settings.json'
+  import { findTreeNode, findSelectOption } from '@/utils/tree'
+  import type { TableProps } from './types'
+  import { AnyObject } from '@/common/types/global'
   import MSearchForm from '@/components/m-search-form/index.vue'
   import MTableHeader from './components/m-table-header.vue'
   import MEmpty from '@/components/m-empty/index.vue'
   import MPagiantion from '@/components/m-paginantion/index.vue'
-  import { findTreeNode, findSelectOption } from '@/utils/tree'
-  import { findQuickCode } from '@/utils/tools'
-  import config from '@/config/settings.json'
-  import type { TableProps } from './types'
-  import { AnyObject } from '@/common/types/global'
+  import MTree from '@/components/m-tree/index.vue'
 
   const emits = defineEmits(['expandedChange', 'search', 'reset'])
 
@@ -300,16 +301,17 @@
     expandedRowKeys: () => [],
     remember: false,
     tableShow: true,
+    showExpand: true,
   })
 
   // 组件异步加载
-  const MTree = defineAsyncComponent({
-    loader: () => import('@/components/m-tree/index.vue'),
-    loadingComponent: MEmpty,
-    delay: 15, // 毫秒
-    errorComponent: MEmpty,
-    timeout: 3000, // 毫秒
-  })
+  // const MTree = defineAsyncComponent({
+  //   loader: () => import('@/components/m-tree/index.vue'),
+  //   loadingComponent: MEmpty,
+  //   delay: 15, // 毫秒
+  //   errorComponent: MEmpty,
+  //   timeout: 3000, // 毫秒
+  // })
   //  插槽集
   const slots = useSlots()
   //  用来记录是否使用了子标题 插槽
@@ -676,7 +678,7 @@
         width: 100%;
         height: 100%;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: hidden;
       }
     }
   }

@@ -65,7 +65,7 @@ export const useTable = (
       Object.assign(state.totalParam, state.searchInitParam, state.searchParam, isPageable ? pageParam.value : {})
       const params = filterParams(state.totalParam)
       let data = await api!(params)
-      const maxRows = isPageable ? state.pageable.pageSize : 15
+      const maxRows = isPageable ? state.pageable.pageSize : 10
       // 如果后台有分页数据返回，则在这里进行解构赋值
       if (dataCallBack) {
         data = dataCallBack(data)
@@ -173,7 +173,7 @@ export const useTable = (
    * */
   const reset = (remember?: boolean) => {
     state.pageable.current = 1
-    state.pageable.pageSize = 15
+    state.pageable.pageSize = 10
     state.searchParam = {}
     // 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
     if (remember) {

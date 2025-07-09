@@ -10,6 +10,12 @@ export function queryPolicyList(data: SearchParamsProps) {
   })
 }
 
+export function queryBasicList(data: SearchParamsProps) {
+  return request.get({
+    url: `/list/basic?current=${data.index}&pageSize=${data.size}`,
+  })
+}
+
 export function getUserMenus() {
   return request.get({
     url: '/sys/list',

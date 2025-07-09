@@ -4,18 +4,33 @@
       ref="basicTableRef"
       :title="t('menu.list.basicTable')"
       :columns="columns"
+      :bordered="{ cell: true }"
       :selectId="'id'"
       :init-param="formModel"
       :request-api="getTableList"
       :data-callback="dataCallback"
+      :isRowSelection="true"
     >
-      <template #header-left>
-        <a-button type="primary" @click="handleCreate">
-          <template #icon>
-            <icon-plus theme="outline" size="16" />
-          </template>
-          {{ t('common.add') }}
-        </a-button>
+      <template #header-left="{ isSelected }">
+        <a-space>
+          <a-button type="primary" @click="handleCreate">
+            <template #icon>
+              <icon-plus theme="outline" size="16" />
+            </template>
+            {{ t('common.add') }}
+          </a-button>
+          <a-button
+            type="primary"
+            status="danger"
+            :disabled="!isSelected"
+            @click="handleClickOps({ type: Operations.DELETE, record: {} })"
+          >
+            <template #icon>
+              <icon-delete theme="outline" size="16" />
+            </template>
+            {{ t('common.table.delete') }}
+          </a-button>
+        </a-space>
       </template>
       <template #header-right>
         <a-button type="primary" @click="handleCreate">
@@ -26,23 +41,43 @@
         </a-button>
       </template>
 
-      <template #index="{ rowIndex }">
-        {{ rowIndex + 1 }}
+      <template #avatar="{ record }">
+        <a-avatar
+          auto-fix-font-size
+          :size="30"
+          :style="{
+            backgroundColor: '#3370ff',
+            fontSize: '18px',
+          }"
+        >
+          {{ record.name.slice(0, 1) }}
+        </a-avatar>
       </template>
-
       <template #filterType="{ record }">
         {{ t(`basicTable.form.filterType.${record.filterType}`) }}
       </template>
+      <template #count="{ record }">
+        <a-statistic :value="Number(record.count)" show-group-separator :value-style="{ fontSize: '14px' }">
+          <template #prefix> ￥ </template>
+        </a-statistic>
+      </template>
       <template #status="{ record }">
-        <span v-if="record.status === 'offline'" class="circle"></span>
-        <span v-else class="circle pass"></span>
-        {{ t(`basicTable.form.status.${record.status}`) }}
+        <a-switch
+          v-model="record.status"
+          checked-value="1"
+          unchecked-value="0"
+          checked-color="#165dff"
+          unchecked-color="#ff5722"
+        >
+          <template #checked> {{ t('common.status.normal') }} </template>
+          <template #unchecked> {{ t('common.status.disabled') }} </template>
+        </a-switch>
       </template>
       <template #createdTime="{ record }">
         {{ record.createdTime?.slice(0, 10) }}
       </template>
       <template #operations="{ record }">
-        <MBtnGroup :record="record" :is-permission="false"> </MBtnGroup>
+        <MBtnGroup :record="record" :is-permission="false" mode="mix" @handle-click-ops="handleClickOps"> </MBtnGroup>
       </template>
     </MTable>
   </div>
@@ -60,17 +95,16 @@
   import { MTableInstance, ColumnProps } from '@/components/m-table/types'
   import { DataCallBackProps } from '@/api/types'
   import { AnyObject } from '@/common/types/global'
-  import { queryPolicyList } from '@/api/table'
+  import { queryBasicList } from '@/api/table'
+  import { Operations } from '@/common/enums/status-enum'
 
   const { t } = useI18n()
 
   const generateFormModel = () => {
     return {
-      number: '',
       name: '',
-      contentType: '',
-      filterType: '',
-      createdTime: [],
+      phone: '',
+      email: '',
       status: '',
     }
   }
@@ -78,20 +112,6 @@
   const formModel = ref(generateFormModel())
 
   const basicTableRef = ref<MTableInstance | null>(null)
-
-  const cascaderOptions = computed(() => [
-    {
-      value: '1',
-      label: '一级',
-      children: [
-        { value: '11', label: '一级1' },
-        { value: '12', label: '一级2' },
-        { value: '13', label: '一级3' },
-      ],
-    },
-    { value: '2', label: '二级' },
-    { value: '3', label: '三级' },
-  ])
 
   const statusOptions = computed(() => [
     {
@@ -106,54 +126,45 @@
 
   const columns = computed<ColumnProps[]>(() => [
     {
-      title: t('basicTable.columns.index'),
-      dataIndex: 'index',
-      slotName: 'index',
-      width: 60,
-      align: 'center',
+      title: t('basicTable.columns.avatar'),
+      dataIndex: 'avatar',
+      slotName: 'avatar',
+      width: 72,
     },
     {
-      title: t('basicTable.columns.number'),
-      dataIndex: 'number',
+      title: t('basicTable.columns.name'),
+      dataIndex: 'name',
       width: 120,
-      extra: {
-        isShow: true,
-      },
       search: {
         el: 'input',
         order: 1,
       },
     },
     {
-      title: t('basicTable.columns.name'),
-      dataIndex: 'name',
-      width: 150,
+      title: t('basicTable.columns.phone'),
+      dataIndex: 'phone',
+      width: 160,
       search: {
-        el: 'cascader',
+        el: 'input',
         order: 2,
-        options: cascaderOptions.value,
-        props: {
-          defaultValue: '',
-        },
       },
     },
     {
-      title: t('basicTable.columns.contentType'),
-      dataIndex: 'contentType',
-      width: 150,
+      title: t('basicTable.columns.email'),
+      dataIndex: 'email',
+      width: 240,
+      ellipsis: true,
+      tooltip: true,
       search: {
-        el: 'range-picker',
-        order: 3,
-        props: {
-          defaultValue: ['2023-02-24', '2024-02-24'],
-        },
+        el: 'input',
+        order: 2,
       },
     },
     {
       title: t('basicTable.columns.filterType'),
       dataIndex: 'filterType',
       slotName: 'filterType',
-      width: 150,
+      width: 160,
       filterable: {
         filters: [
           {
@@ -173,21 +184,29 @@
     {
       title: t('basicTable.columns.count'),
       dataIndex: 'count',
+      slotName: 'count',
       width: 120,
+      align: 'right',
       sortable: {
         sortDirections: ['ascend'],
       },
     },
     {
+      title: t('basicTable.columns.address'),
+      dataIndex: 'address',
+      minWidth: 160,
+    },
+    {
       title: t('basicTable.columns.createdTime'),
       dataIndex: 'createdTime',
       slotName: 'createdTime',
-      minWidth: 120,
+      width: 120,
     },
     {
       title: t('basicTable.columns.status'),
       dataIndex: 'status',
       slotName: 'status',
+      align: 'center',
       width: 100,
       search: {
         el: 'cascader',
@@ -199,7 +218,7 @@
       title: t('basicTable.columns.operations'),
       dataIndex: 'operations',
       slotName: 'operations',
-      width: 130,
+      width: 220,
       fixed: 'right',
     },
   ])
@@ -207,7 +226,7 @@
   // 表格查询api
   const getTableList = (params: AnyObject) => {
     let newParams = JSON.parse(JSON.stringify(params))
-    return queryPolicyList(newParams)
+    return queryBasicList(newParams)
   }
 
   // 处理数据的回调
@@ -220,7 +239,12 @@
     }
   }
 
+  const handleClickOps = ({ type, record }: { type: number; record: AnyObject }) => {
+    console.log(`type:${type},record:${JSON.stringify(record)}`)
+    Message.info('您点击了按钮！')
+  }
+
   const handleCreate = () => {
-    Message.info('您点击了操作按钮！')
+    Message.info('您点击了新增按钮！')
   }
 </script>

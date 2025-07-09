@@ -1,5 +1,6 @@
 import { pinyin } from 'pinyin-pro'
 import { isArray } from './is'
+import { AnyFn } from '@vueuse/core'
 
 /**
  * @description 处理 prop，当 prop 为多级嵌套时 ==> 返回最后一级 prop
@@ -13,41 +14,18 @@ export const handleProp = (prop: string) => {
 }
 
 /**
- * @description 根据枚举列表查询当需要的数据（如果指定了 label 和 value 的 key值，会自动识别格式化）
- * @param {String} callValue 当前单元格值
- * @param {Array} enumData 字典列表
- * @param {Array} fieldNames 指定 label && value 的 key 值
- * @param {String} type 过滤类型（目前只有 tag）
- * @return
- * */
-export function filterEnum(
-  callValue: any,
-  enumData: any[] | undefined,
-  fieldNames?: { label: string; value: string },
-  type?: string
-): string {
-  const value = fieldNames?.value ?? 'value'
-  const label = fieldNames?.label ?? 'label'
-  let filterData: { [key: string]: any } = {}
-  if (Array.isArray(enumData)) filterData = enumData.find((item: any) => item[value] === callValue)
-  if (type === 'tag') return filterData?.tagType ? filterData.tagType : ''
-  return filterData ? filterData[label] : '--'
-}
-
-/**
  * @description 处理无数据情况
  * @param {String} callValue 需要处理的值
  * @return
  * */
-export function formatValue(callValue: any) {
+export function formatValue(callValue: AnyFn) {
   // 如果当前值为数组,使用 / 拼接（根据需求自定义）
   if (isArray(callValue)) return callValue.length ? callValue.join(' / ') : '--'
   return callValue ?? '--'
 }
 
-
 //身份证验证
-export function checkId(value: any, callback: any) {
+export function checkId(value: string, callback: AnyFn) {
   if (value) {
     if (/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
       // callback({ result: true })
@@ -59,7 +37,7 @@ export function checkId(value: any, callback: any) {
   }
 }
 // 必填
-export function checkIdBT(value: any, callback: any) {
+export function checkIdBT(value: string, callback: AnyFn) {
   if (value) {
     if (/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
       // callback({ result: true })
@@ -73,7 +51,7 @@ export function checkIdBT(value: any, callback: any) {
 
 
 //电话号码验证
-export function checkPhone(value: number | undefined, callback: any) {
+export function checkPhone(value: number | undefined, callback: AnyFn) {
   if (value) {
     // 将 number 转换为 string
     const strValue = value.toString()

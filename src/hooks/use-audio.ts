@@ -1,12 +1,16 @@
 import { onUnmounted, ref } from 'vue'
-import { Howl, Howler } from 'howler'
+import { Howl } from 'howler'
 
 interface AudioConfig {
   src: string
   loop?: boolean
   volume?: number
 }
-
+/**
+ * @description 音频播放
+ * @param {AudioConfig[]} audioConfigs 音频配置
+ * @return {void}
+ * */
 export function useHowler(audioConfigs: AudioConfig[]): void {
   const sounds = ref<Howl[]>([])
 

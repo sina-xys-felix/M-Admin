@@ -137,7 +137,7 @@ const transform: AxiosTransform = {
     }
     // 请求报错
     else {
-      Message.error(res?.data.message)
+      Message.error(res?.data.message || '请求错误!')
       setTimeout(() => {
         if (router) router.push('/login')
         else window.location.href = '/login'

@@ -29,21 +29,18 @@ export default function usePermission() {
       }
       return _routers
     },
-    // You can add any rules you want
-  }
-}
-
-// 表格列权限控制
-export function checkColumnsPermission(value: string | number): boolean {
-  if (!settings.menuFromServer) return true
-  const userStore = useUserStore()
-  const { roles } = userStore
-  if (value) {
-    return (
-      (roles && roles[0].operationIds.includes(value)) ||
-      (roles[0].operationIds && roles[0].operationIds.length === 1 && roles[0].operationIds[0] === '0')
-    )
-  } else {
-    return true
+    checkColumnsPermission(value: string | number): boolean {
+      if (!settings.menuFromServer) return true
+      const userStore = useUserStore()
+      const { roles } = userStore
+      if (value) {
+        return (
+          (roles && roles[0].operationIds.includes(value)) ||
+          (roles[0].operationIds && roles[0].operationIds.length === 1 && roles[0].operationIds[0] === '0')
+        )
+      } else {
+        return true
+      }
+    },
   }
 }

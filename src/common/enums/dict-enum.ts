@@ -1,5 +1,3 @@
-import config from '@/config/settings.json'
-
 /**
  * @name 字典枚举
  *  * @description

@@ -133,6 +133,8 @@
     rowHeight.value = rows.value > 1 ? rows.value * 41 : 32
 
     showColumns.value = props.searchColumns
+
+    expand.value = props.showExpand
   })
 
   defineExpose({

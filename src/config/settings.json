@@ -11,7 +11,6 @@
   "themeColor": "#001529",
   "menuWidth": 200,
   "globalSettings": false,
-  "device": "desktop",
   "tabBar": true,
   "menuFromServer": false
 }

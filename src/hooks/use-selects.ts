@@ -9,9 +9,9 @@ export const useSelection = (selectId = 'id') => {
   // 是否选中数据
   const isSelected = ref<boolean>(false)
   // 选中的数据列表
-  const selectedList = ref([])
+  const selectedList = ref<AnyObject[]>([])
   // 选中数据的rowKey
-  const selectedListIds = ref([])
+  const selectedListIds = ref<(string | number)[]>([])
 
   // 获取行数据的 Key,用来优化 Table 的渲染;在使用跨页多选时,该属性是必填的
   const getRowKeys = (row: AnyObject) => {
@@ -23,7 +23,7 @@ export const useSelection = (selectId = 'id') => {
    * @param {Array} record 当前选择行的所有数据
    * @return void
    */
-  const selectionChange = (rowKeys: (string | number)[] ) => {
+  const selectionChange = (rowKeys: (string | number)[]) => {
     selectedListIds.value = rowKeys
     rowKeys.length === 0 ? (isSelected.value = false) : (isSelected.value = true)
   }

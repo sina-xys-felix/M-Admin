@@ -23,7 +23,7 @@
   })
 
   function getIconfontSymbol(): string {
-    return 'https://at.alicdn.com/t/c/font_4927225_csts7g0zo8m.js'
+    return 'https://at.alicdn.com/t/c/font_4927225_xnxm81zchj.js'
   }
 
   const IconFont = Icon.addFromIconFontCn({ src: getIconfontSymbol() })

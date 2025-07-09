@@ -24,12 +24,15 @@ export default {
   // columns
   'basicTable.columns.index': '序号',
   'basicTable.columns.number': '集合编号',
-  'basicTable.columns.name': '集合名称',
-  'basicTable.columns.contentType': '内容体裁',
-  'basicTable.columns.filterType': '筛选方式',
-  'basicTable.columns.count': '内容量',
+  'basicTable.columns.avatar': '头像',
+  'basicTable.columns.name': '名称',
+  'basicTable.columns.phone': '手机号',
+  'basicTable.columns.email': '电子邮箱',
+  'basicTable.columns.filterType': '数据来源',
+  'basicTable.columns.count': '支付金额',
   'basicTable.columns.createdTime': '创建时间',
   'basicTable.columns.status': '状态',
+  'basicTable.columns.address': '详细地址',
   'basicTable.columns.operations': '操作',
   'basicTable.columns.operations.view': '查看',
   'menu.table.tree.area': '区域树',
@@ -44,9 +47,6 @@ export default {
   'basicTable.actions.density': '密度',
   'basicTable.actions.columnSetting': '列设置',
 
-
   'basicTable.actions.one': '条件一',
   'basicTable.actions.two': '条件二',
-
-
-};
+}
