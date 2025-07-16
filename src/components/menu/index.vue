@@ -97,7 +97,7 @@
                     h(
                       compile(
                         `<icon-${element?.meta?.icon} style="font-size:${
-                          element.children.length || !element.component ? '18px' : '16px'
+                          element.children.length || !element.component ? '20px' : '18px'
                         };color: var(--color-white);background-color: ${
                           index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
                         };padding: 2px;border-radius: 4px;font-weight:500" />
@@ -108,7 +108,11 @@
                     element?.meta?.remix
                       ? h(
                           compile(`
-                      <i class="ri-${element?.meta?.remix}" style="width:18px;height:18px;background-color: ${
+                      <i class="ri-${element?.meta?.remix}" style="width:${
+                            element.children.length || !element.component ? '20px' : '18px'
+                          };height:${
+                            element.children.length || !element.component ? '20px' : '18px'
+                          };background-color: ${
                             index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
                           };padding: 2px;border-radius: 4px;"></i>
                         `)
@@ -120,9 +124,14 @@
                     key={element?.name}
                     v-slots={{
                       icon,
-                      title: () => h(compile(
-                        `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${t(element?.meta?.locale || '')}</span>`
-                        )),
+                      title: () =>
+                        h(
+                          compile(
+                            `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${t(
+                              element?.meta?.locale || ''
+                            )}</span>`
+                          )
+                        ),
                     }}
                   >
                     {travel(element?.children)}

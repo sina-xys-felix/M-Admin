@@ -49,7 +49,6 @@ export function checkIdBT(value: string, callback: AnyFn) {
   }
 }
 
-
 //电话号码验证
 export function checkPhone(value: number | undefined, callback: AnyFn) {
   if (value) {
@@ -112,4 +111,21 @@ export function analyzeIDCard(IDCard: string) {
   getDataByIdCard.age = age
   //返回性别和年龄
   return getDataByIdCard
+}
+
+/**
+ * 屏幕缩放
+ * width: 1920px;
+ * height: 1080px;
+ * transform-origin: 0 0;
+ * position: absolute;
+ * left: 50%;
+ * top: 50%;
+ * transform: translate(-50%, -50%) scale(1);
+ */
+export function resizeScreen(width = 1920, height = 1080) {
+  const scaleX = window.innerWidth / width
+  const scaleY = window.innerHeight / height
+  const scale = Math.min(scaleX, scaleY)
+  document.getElementById('app').style.transform = `scale(${scale})`
 }

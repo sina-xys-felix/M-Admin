@@ -59,11 +59,11 @@
             <MTabBar />
           </template>
           <template v-if="current === 5">
+            <a-alert> 公用按钮组 （默认提供详情，编辑，删除三个按钮，如需更多按钮通过slot自定义） </a-alert>
             <a-space direction="vertical" fill :size="[16, 16]">
-              <a-space>
+              <a-divider orientation="left">图标模式</a-divider>
+              <a-space direction="vertical">
                 <MBtnGroup :is-permission="false" @handle-click-ops="handleClickOps" />
-              </a-space>
-              <a-space>
                 <MBtnGroup :record="{}" :is-permission="false" @handle-click-ops="handleClickOps">
                   <template #before>
                     <a-tooltip :content="$t('common.add')">
@@ -80,6 +80,14 @@
                     </a-tooltip>
                   </template>
                 </MBtnGroup>
+              </a-space>
+              <a-divider orientation="left">文字模式</a-divider>
+              <a-space>
+                <MBtnGroup :is-permission="false" mode="text" @handle-click-ops="handleClickOps" />
+              </a-space>
+              <a-divider orientation="left">混合模式</a-divider>
+              <a-space>
+                <MBtnGroup :is-permission="false" mode="mix" @handle-click-ops="handleClickOps" />
               </a-space>
             </a-space>
           </template>
@@ -109,7 +117,7 @@
                 :labelColProps="{ flex: '120px' }"
                 :wrapperColProps="{ flex: 1 }"
               />
-              <div style="text-align: center;">
+              <div style="text-align: center">
                 <a-space>
                   <a-button html-type="submit">
                     <template #icon><icon-refresh /></template>
@@ -131,6 +139,7 @@
           </template>
           <template v-if="current === 10">
             <a-space direction="vertical" fill :size="[16, 16]">
+              <a-divider orientation="left">常规MSearchForm</a-divider>
               <MSearchForm
                 ref="MSearchFormRef"
                 :search-columns="searchColumns"
@@ -139,7 +148,7 @@
                 :search="onSearch"
                 :reset="onReset"
               />
-              <a-divider />
+              <a-divider orientation="left">可收缩的MSearchForm</a-divider>
               <MSearchForm ref="MSearchFormRef1" :search-columns="mSearchColumns" :search-param="mFormData" />
             </a-space>
           </template>
@@ -154,7 +163,9 @@
           </template>
           <template v-if="current === 13">
             <a-space direction="vertical">
-              <MQuarterSelect v-model="quarter" />
+              <a-alert>原生组件中，popup显示的Text为Q1、Q2的形式，更改为1季度、2季度的显示方式，增加用户体验。</a-alert>
+
+              <MQuarterSelect v-model="quarter" style="width: 240px" />
             </a-space>
           </template>
         </div>
@@ -458,7 +469,7 @@
     data: { values: Record<string, any>; errors: Record<string, ValidatedError> | undefined },
     ev: Event
   ) => {
-    const errors = await mFormRef.value.onSubmit()
+    const errors = await mFormRef.value.onSubmit(data, ev)
     if (!errors) {
       console.log('验证成功')
     }
@@ -492,7 +503,7 @@
       Message.info('您点击了编辑按钮')
     }
     if (type === Operations.SEARCH) {
-      Message.info('您点击了查询按钮按钮')
+      Message.info('您点击了查询按钮')
     }
     if (type === Operations.DELETE) {
       Message.info('您点击了删除按钮')
@@ -537,7 +548,7 @@
     }
   }
 
-  :deep(.arco-space-item){
-        color: var(--color-text-2);
+  :deep(.arco-space-item) {
+    color: var(--color-text-2);
   }
 </style>

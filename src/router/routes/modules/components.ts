@@ -157,7 +157,7 @@ const Components: ServerRouteRecordRaw[] = [
       },
     ],
   },
-  // 组件示例
+  // 常用组件
   {
     path: '/components',
     name: 'Components',
@@ -207,7 +207,7 @@ const Components: ServerRouteRecordRaw[] = [
         meta: {
           locale: 'menu.directive.water.marker',
           requiresAuth: true,
-          icon: 'menu',
+          icon: 'bg-colors',
           roles: ['*'],
           id: '1701',
         },
@@ -219,7 +219,7 @@ const Components: ServerRouteRecordRaw[] = [
         meta: {
           locale: 'menu.directive.throttle',
           requiresAuth: true,
-          icon: 'menu',
+          icon: 'experiment',
           roles: ['*'],
           id: '1702',
         },
@@ -231,14 +231,14 @@ const Components: ServerRouteRecordRaw[] = [
         meta: {
           locale: 'menu.directive.debounce',
           requiresAuth: true,
-          icon: 'menu',
+          icon: 'sync',
           roles: ['*'],
           id: '1702',
         },
       },
     ],
   },
-  // 异常页
+  // 异常管理
   {
     path: '/exception',
     name: 'Exception',

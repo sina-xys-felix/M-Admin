@@ -16,7 +16,7 @@
       :label-align="(FORM_CONFIG.labelAlign as any)"
       :merge-props="false"
       :content-flex="FORM_CONFIG.contentFlex"
-      :disabled="disabled" 
+      :disabled="disabled"
       :layout="(FORM_CONFIG.layout as any)"
     >
       <a-row :gutter="ROW_GUTTER * 2">
@@ -136,7 +136,7 @@
   import { FormInstance } from '@arco-design/web-vue'
   import { ROW_GUTTER } from '@/common/constants/index'
   import { FORM_CONFIG } from '@/common/constants/form-config'
-import { AnyObject } from '@/common/types/global';
+  import { AnyObject } from '@/common/types/global'
 
   const { t } = useI18n()
   const visible = ref<boolean>(false)

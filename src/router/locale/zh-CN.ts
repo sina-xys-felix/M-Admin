@@ -1,5 +1,5 @@
 export default {
-  'menu.home': '首页',
+  'menu.home': '数据概览',
   'menu.dashboard.welcome': '欢迎页',
   'menu.dashboard.analysis': '分析页',
   'menu.table': '列表管理',
@@ -17,8 +17,8 @@ export default {
   'menu.form.menus.third.2': '三级级菜单-2',
   'menu.form.menus.third.3': '三级级菜单-3',
   'menu.component.basic': '常用组件',
-  'menu.exception': '异常页',
-  'menu.components': '组件示例',
+  'menu.exception': '异常管理',
+  'menu.components': '常用组件',
   'menu.directive': '自定义指令',
   'menu.directive.water.marker': '水印',
   'menu.directive.throttle': '节流',
@@ -31,8 +31,8 @@ export default {
   'menu.system.user': '用户管理',
   'menu.system.role': '角色管理',
   'menu.system.menu': '系统菜单',
-  'menu.document': '文档',
-  'menu.document.arco': 'ArcoDesign文档',
-  'menu.document.vite': 'Vite文档',
+  'menu.document': '参考文档',
+  'menu.document.arco': 'ArcoDesign',
+  'menu.document.vite': 'Vite',
   'menu.document.url': '项目地址(外链)'
 }

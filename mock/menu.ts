@@ -202,7 +202,7 @@ const data = {
     {
       id: '7000',
       parentId: '1000',
-      name: '异常页',
+      name: '异常管理',
       index: 0,
       level: 1,
       isRoot: false,
@@ -210,7 +210,7 @@ const data = {
       type: 0,
       code: 'ex',
       quickCode: 'ex',
-      alias: '异常页',
+      alias: '异常管理',
       isShow: true,
       isOpen: false,
       status: 1,

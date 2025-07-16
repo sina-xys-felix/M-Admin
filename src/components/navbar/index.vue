@@ -8,15 +8,15 @@
   >
     <div class="left-side">
       <a-space>
-        <img alt="logo" width="32" height="32" src="@/assets/images/logo.png" />
+        <img alt="logo" width="40" height="40" src="@/assets/images/logo.png" />
         <a-typography-title
           type="danger"
           :style="{
             margin: 0,
-            fontSize: '18px',
+            fontSize: '24px',
             color: appStore.darkMenu ? 'var(--color-white)' : 'var(--color-text-1)',
           }"
-          :heading="2"
+          :heading="1"
         >
           M-Admin
         </a-typography-title>
@@ -35,13 +35,12 @@
         <a-tooltip :content="$t('settings.language')">
           <a-button
             class="nav-btn"
-            :style="{ borderColor: appStore.darkMenu ? 'rgb(46,46,48)' : '' }"
-            type="outline"
+            type="text"
             :shape="'circle'"
             @click="setDropDownVisible"
           >
             <template #icon>
-              <icon-language />
+              <icon-language  />
             </template>
           </a-button>
         </a-tooltip>
@@ -63,8 +62,7 @@
         >
           <a-button
             class="nav-btn"
-            :style="{ borderColor: appStore.darkMenu ? 'rgb(46,46,48)' : '' }"
-            type="outline"
+            type="text"
             :shape="'circle'"
             @click="handleToggleTheme"
           >
@@ -81,8 +79,7 @@
             <a-badge :count="9" dot>
               <a-button
                 class="nav-btn"
-                :style="{ borderColor: appStore.darkMenu ? 'rgb(46,46,48)' : '' }"
-                type="outline"
+                type="text"
                 :shape="'circle'"
                 @click="setPopoverVisible"
               >
@@ -107,8 +104,7 @@
         <a-tooltip :content="isFullscreen ? $t('settings.navbar.screen.toExit') : $t('settings.navbar.screen.toFull')">
           <a-button
             class="nav-btn"
-            :style="{ borderColor: appStore.darkMenu ? 'rgb(46,46,48)' : '' }"
-            type="outline"
+            type="text"
             :shape="'circle'"
             @click="toggleFullScreen"
           >
@@ -123,8 +119,7 @@
         <a-tooltip :content="$t('settings.title')">
           <a-button
             class="nav-btn"
-            :style="{ borderColor: appStore.darkMenu ? 'rgb(46,46,48)' : '' }"
-            type="outline"
+            type="text"
             :shape="'circle'"
             @click="setVisible"
           >
@@ -282,7 +277,7 @@
   .left-side {
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 16px;
   }
 
   .center-side {
@@ -291,7 +286,7 @@
 
   .right-side {
     display: flex;
-    padding-right: 20px;
+    padding-right: 16px;
     list-style: none;
     :deep(.locale-select) {
       border-radius: 20px;
@@ -299,7 +294,7 @@
     li {
       display: flex;
       align-items: center;
-      padding: 0 10px;
+      padding: 0 6px;
     }
 
     a {
@@ -307,9 +302,9 @@
       text-decoration: none;
     }
     .nav-btn {
-      border-color: rgb(var(--gray-2));
+      // border-color: rgb(var(--gray-2));
       color: rgb(var(--gray-8));
-      font-size: 16px;
+      font-size: 18px;
     }
     .trigger-btn,
     .ref-btn {
