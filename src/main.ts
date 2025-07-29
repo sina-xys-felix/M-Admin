@@ -13,6 +13,7 @@ import App from './App.vue'
 import '@arco-design/web-vue/dist/arco.css'
 import '@/assets/style/global.less'
 import '@/assets/style/varibles.less'
+import 'remixicon/fonts/remixicon.css'
 
 const app = createApp(App)
 

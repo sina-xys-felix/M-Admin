@@ -14,5 +14,6 @@ export default {
   'components.image.upload': 'MImageUpload',
   'components.file.upload': 'MFileUpload',
   'components.quarter.select': 'MQuarterSelect',
+   'components.image': 'UploadIMage',
 
 }

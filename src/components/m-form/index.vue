@@ -63,7 +63,7 @@
               :column="handleColumns(item.field)"
               :search-param="formData"
             />
-            <MTinymce v-else :value="formData[item.field]" v-bind="item.props" />
+            <MEditor v-else :value="formData[item.field]" v-bind="item.props" />
           </a-form-item>
         </a-col>
       </template>
@@ -87,7 +87,7 @@
   import { ROW_GUTTER, DEFAULT_GRID_NUMS_EXTEND } from '@/common/constants'
   import { AnyObject } from '@/common/types/global'
   import MSearchFormItem from '../m-search-form/components/index.vue'
-  import MTinymce from '@/components/m-tinymce/index.vue'
+  import MEditor from '@/components/m-editor/index.vue'
 
   // 表单属性
   interface MFormProps {

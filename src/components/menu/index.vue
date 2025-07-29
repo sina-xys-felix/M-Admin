@@ -91,13 +91,14 @@
         function travel(_route: RouteRecordRaw[], nodes = []) {
           if (_route) {
             _route.forEach((element, index) => {
-              // This is demo, modify nodes as needed
+              const childrenLen = element.children?.length ?? 0
+
               const icon = element?.meta?.icon
                 ? () =>
                     h(
                       compile(
                         `<icon-${element?.meta?.icon} style="font-size:${
-                          element.children.length || !element.component ? '20px' : '18px'
+                          childrenLen || !element.component ? '20px' : '18px'
                         };color: var(--color-white);background-color: ${
                           index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
                         };padding: 2px;border-radius: 4px;font-weight:500" />
@@ -109,12 +110,10 @@
                       ? h(
                           compile(`
                       <i class="ri-${element?.meta?.remix}" style="width:${
-                            element.children.length || !element.component ? '20px' : '18px'
-                          };height:${
-                            element.children.length || !element.component ? '20px' : '18px'
-                          };background-color: ${
+                            childrenLen || !element.component ? '20px' : '18px'
+                          };height:${childrenLen || !element.component ? '20px' : '18px'};background-color: ${
                             index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
-                          };padding: 2px;border-radius: 4px;"></i>
+                          };padding: 2px;border-radius: 4px;color:var(--color-white)"></i>
                         `)
                         )
                       : null

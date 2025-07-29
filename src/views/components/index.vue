@@ -157,8 +157,8 @@
           </template>
           <template v-if="current === 12">
             <a-space direction="vertical" fill>
-              <a-alert type="warning">这里将tinymce文件放在public下,避免部署到生产环境后编辑器无法加载问题。</a-alert>
-              <MTinymce v-model="editor" :height="400" />
+              <a-alert type="warning">WangEditor: https://www.wangeditor.com/ </a-alert>
+              <MEditor v-model="editor" height="640px" :disabled="false" />
             </a-space>
           </template>
           <template v-if="current === 13">
@@ -166,6 +166,12 @@
               <a-alert>原生组件中，popup显示的Text为Q1、Q2的形式，更改为1季度、2季度的显示方式，增加用户体验。</a-alert>
 
               <MQuarterSelect v-model="quarter" style="width: 240px" />
+            </a-space>
+          </template>
+          <template v-if="current === 14">
+            <a-space direction="vertical">
+              <a-alert>该组件仅有前端示例，具体使用需要对接API</a-alert>
+              <MUploadImage v-model="fileList" />
             </a-space>
           </template>
         </div>
@@ -188,9 +194,10 @@
   import MPagination from '@/components/m-paginantion/index.vue'
   import MSearchForm from '@/components/m-search-form/index.vue'
   import MSpeak from '@/components/m-speak/index.vue'
-  import MTinymce from '@/components/m-tinymce/index.vue'
+  import MEditor from '@/components/m-editor/index.vue'
   import MQuarterSelect from '@/components/m-quarter-select/index.vue'
   import MForm from '@/components/m-form/index.vue'
+  import MUploadImage from '@/components/m-upload-image/index.vue' 
 
   const current = ref(1)
 
@@ -247,6 +254,10 @@
       key: '13',
       title: 'components.quarter.select',
     },
+    {
+      key: '14',
+      title: 'components.image',
+    },
   ])
 
   const dictValue = ref('10000001')
@@ -258,7 +269,7 @@
   )
 
   const editor = ref(
-    '<p><img src="https://img0.baidu.com/it/u=4172295007,3022602453&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=500&amp;h=667" alt="" width="157" height="204">这是一张图片。</p>'
+    '<p><img src="https://img0.baidu.com/it/u=4172295007,3022602453&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=50&amp;h=66" alt="" width="15" height="20">这是一张图片。</p>'
   )
 
   const quarter = ref('')
@@ -461,6 +472,8 @@
       },
     },
   ])
+
+ const fileList = ref('[{"index":0,"url":"https://img1.baidu.com/it/u=2957354879,1371671344&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=300"},{"index":1,"url":"https://img0.baidu.com/it/u=1987377923,862381789&fm=253&app=138&f=JPEG?w=500&h=500"}]')
 
   const MSearchFormRef = ref<InstanceType<typeof MSearchForm>>()
   const mFormRef = ref<InstanceType<typeof MForm>>()

@@ -1,5 +1,13 @@
 /// <reference types="vite/client" />
 
+import { JSX as JSXInternal } from 'vue/jsx-runtime'
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends JSXInternal.IntrinsicElements {}
+  }
+}
+
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
@@ -9,9 +17,7 @@ declare module '*.vue' {
 
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string
-  readonly VITE_API_PLATFORM_URL: string
 }
 
-declare module '@jsdawn/vue3-tinymce'
-declare module 'crypto-js';
-declare module 'particles.vue3'
+
+declare module 'vue-img-cutter'

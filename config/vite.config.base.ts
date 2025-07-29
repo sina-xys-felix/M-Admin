@@ -5,11 +5,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import svgLoader from 'vite-svg-loader'
 import AutoImport from 'unplugin-auto-import/vite'
 import { viteMockServe } from 'vite-plugin-mock'
+import configArcoStyleImportPlugin from './plugin/arcoStyleImport'
 
 export default defineConfig({
   plugins: [
     vue({
-      include: [/\.vue$/, /\.md$/], // 允许解析 .md 文件
+      include: [/\.vue$/], // 允许解析 .md 文件
     }),
     vueJsx(),
     svgLoader({ svgoConfig: {} }),
@@ -29,6 +30,7 @@ export default defineConfig({
           setupProdMockServer();
         `,
     }),
+    configArcoStyleImportPlugin()
   ],
   resolve: {
     alias: [

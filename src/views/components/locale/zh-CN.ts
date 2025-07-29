@@ -14,4 +14,5 @@ export default {
   'components.image.upload': '图片上传',
   'components.file.upload': '文件上传',
   'components.quarter.select': '季度选择器',
+  'components.image': '上传图片',
 }

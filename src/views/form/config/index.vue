@@ -108,7 +108,6 @@
       options: [
         { value: '1', label: '男' },
         { value: '2', label: '女' },
-        { value: '3', label: '未知' },
       ],
       attrs: {
         'label-col-props': { flex: '100px' },
@@ -163,6 +162,10 @@
         'label-col-props': { flex: '100px' },
         'wrapper-col-props': { flex: 1 },
       },
+      props:{
+        'checked-text':'启用',
+        'unchecked-text':'禁用',
+      }
     },
     {
       field: 'editor',
@@ -175,7 +178,7 @@
       },
       props: {
         style: { width: '100%' },
-        height: '300px',
+        height: '480px',
       },
     },
     {
