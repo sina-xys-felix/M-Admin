@@ -1,8 +1,8 @@
-import type { RouteRecordRaw } from 'vue-router';
-import { REDIRECT_ROUTE_NAME } from '@/router/constants';
+import type { RouteRecordRaw } from 'vue-router'
+import { REDIRECT_ROUTE_NAME } from '@/router/constants'
 
-export const DEFAULT_LAYOUT = () => import('@/layout/default-layout.vue');
-export const PAGE_LAYOUT = () => import('@/layout/page-layout.vue');
+export const DEFAULT_LAYOUT = () => import('@/layout/default-layout.vue')
+export const PAGE_LAYOUT = () => import('@/layout/page-layout.vue')
 
 export const REDIRECT_MAIN: RouteRecordRaw = {
   path: '/redirect',
@@ -11,6 +11,7 @@ export const REDIRECT_MAIN: RouteRecordRaw = {
   meta: {
     requiresAuth: true,
     hideInMenu: true,
+    noAffix:true
   },
   children: [
     {
@@ -20,13 +21,14 @@ export const REDIRECT_MAIN: RouteRecordRaw = {
       meta: {
         requiresAuth: true,
         hideInMenu: true,
+        noAffix: false,
       },
     },
   ],
-};
+}
 
 export const NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'notFound',
   component: () => import('@/views/exception/404/index.vue'),
-};
+}

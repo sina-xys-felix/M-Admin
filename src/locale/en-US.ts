@@ -12,7 +12,7 @@ import localeRole from '@/views/system/roles/locale/en-US'
 import locale403 from '@/views/exception/403/locale/en-US'
 import locale404 from '@/views/exception/404/locale/en-US'
 import locale500 from '@/views/exception/500/locale/en-US'
-
+import localeTab from '@/layout/locale/en-US'
 import localeGroup from '@/views/form/group/locale/en-US'
 import localeBasic from '@/views/table/base/locale/en-US'
 import localeMenu from '@/views/system/menu/locale/en-US'
@@ -90,10 +90,7 @@ export default {
   'sys.userMenage.newPassword': 'NewPassword',
   'sys.userMenage.password2': 'Confirm',
   'navbar.action.locale': 'Language Switch',
-  'navbar.action.document': 'Document',
-  'navbar.action.github': 'Github Code',
-  'navbar.action.gitee': 'Gitee Code',
-
+  ...localeTab,
   ...localeLogin,
   ...localeRouterTitle,
   ...localeSettings,
@@ -108,5 +105,5 @@ export default {
   ...localeMenu,
   ...MessageBox,
   ...localeDashboard,
-  ...localeComponents
+  ...localeComponents,
 }

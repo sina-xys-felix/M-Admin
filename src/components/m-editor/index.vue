@@ -8,6 +8,7 @@
       :mode="mode"
       :defaultConfig="editorConfig"
       @onCreated="onCreateEditor"
+      @onChange="onChange"
     />
   </div>
 </template>
@@ -145,12 +146,16 @@
   // 编辑器创建回调
   const onCreateEditor = (editor: IDomEditor) => {
     editorRef.value = editor
-
-    emit(
-      'update:modelValue',
-      editorRef.value.getHtml(),
-    )
   }
+
+    // 编辑器内容改变时触发
+  const onChange = (editor: IDomEditor) => {
+    editorRef.value = editor
+    const currentEditor = editorRef.value.getHtml()
+    emit('update:modelValue', currentEditor)
+    emit('change', currentEditor)
+  }
+
 
   onBeforeUnmount(() => {
     const editor = editorRef.value

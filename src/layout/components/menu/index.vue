@@ -102,19 +102,19 @@
                         };color: var(--color-white);background-color: ${
                           index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
                         };padding: 2px;border-radius: 4px;font-weight:500" />
-                        `
-                      )
+                        `,
+                      ),
                     )
                 : () =>
                     element?.meta?.remix
                       ? h(
                           compile(`
                       <i class="ri-${element?.meta?.remix}" style="width:${
-                            childrenLen || !element.component ? '20px' : '18px'
-                          };height:${childrenLen || !element.component ? '20px' : '18px'};background-color: ${
-                            index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
-                          };padding: 2px;border-radius: 4px;color:var(--color-white)"></i>
-                        `)
+                        childrenLen || !element.component ? '20px' : '18px'
+                      };height:${childrenLen || !element.component ? '20px' : '18px'};background-color: ${
+                        index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
+                      };padding: 2px;border-radius: 4px;color:var(--color-white)"></i>
+                        `),
                         )
                       : null
               const node =
@@ -127,9 +127,9 @@
                         h(
                           compile(
                             `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${t(
-                              element?.meta?.locale || ''
-                            )}</span>`
-                          )
+                              element?.meta?.locale || '',
+                            )}</span>`,
+                          ),
                         ),
                     }}
                   >

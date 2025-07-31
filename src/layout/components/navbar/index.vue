@@ -176,18 +176,15 @@
 
 <script lang="ts" setup>
   import { computed, ref, inject } from 'vue'
-  import { Message } from '@arco-design/web-vue'
   import { useDark, useToggle, useFullscreen } from '@vueuse/core'
-  import { IconUser } from '@arco-design/web-vue/es/icon'
-  import { useAppStore, useUserStore } from '@/store'
+  import { useAppStore } from '@/store'
   import { LOCALE_OPTIONS } from '@/locale'
   import useLocale from '@/hooks/locale'
   import useUser from '@/hooks/user'
-  import Menu from '@/components/menu/index.vue'
-  import MessageBox from '../message-box/index.vue'
+  import Menu from '@/layout/components/menu/index.vue'
+  import MessageBox from '@/components/message-box/index.vue'
 
   const appStore = useAppStore()
-  const userStore = useUserStore()
   const { logout } = useUser()
   const { changeLocale, currentLocale } = useLocale()
   const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()

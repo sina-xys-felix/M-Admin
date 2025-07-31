@@ -55,8 +55,8 @@
   const contentOpts = computed(() => [
     { name: 'settings.navbar', key: 'navbar', defaultVal: appStore.navbar },
     { name: 'settings.footer', key: 'footer', defaultVal: appStore.footer },
-    { name: 'settings.tabBar', key: 'tabBar', defaultVal: appStore.tabBar },
     { name: 'settings.dark.menu', key: 'darkMenu', defaultVal: appStore.darkMenu }, // todo
+    { name: 'settings.tabBar', key: 'tabBar', defaultVal: appStore.tabBar },
     {
       name: 'settings.menuWidth',
       key: 'menuWidth',

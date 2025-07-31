@@ -12,13 +12,11 @@ import localeRole from '@/views/system/roles/locale/zh-CN'
 import locale403 from '@/views/exception/403/locale/zh-CN'
 import locale404 from '@/views/exception/404/locale/zh-CN'
 import locale500 from '@/views/exception/500/locale/zh-CN'
-
+import localeTab from '@/layout/locale/zh-CN'
 import localeGroup from '@/views/form/group/locale/zh-CN'
 import localeBasic from '@/views/table/base/locale/zh-CN'
 import localeMenu from '@/views/system/menu/locale/zh-CN'
-
 import MessageBox from '@/components/message-box/locale/zh-CN'
-
 import localeDashboard from '@/views/dashboard/locale/zh-CN'
 import localeComponents from '@/views/components/locale/zh-CN'
 
@@ -90,10 +88,7 @@ export default {
   'sys.userMenage.newPassword': '新密码',
   'sys.userMenage.password2': '确认密码',
   'navbar.action.locale': '语言切换',
-  'navbar.action.document': '项目文档',
-  'navbar.action.github': 'Github源码',
-  'navbar.action.gitee': 'Gitee源码',
-
+  ...localeTab,
   ...localeLogin,
   ...localeRouterTitle,
   ...localeSettings,
@@ -108,5 +103,5 @@ export default {
   ...localeMenu,
   ...MessageBox,
   ...localeDashboard,
-  ...localeComponents
+  ...localeComponents,
 }

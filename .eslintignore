@@ -8,8 +8,6 @@ src/_common
 src/constants
 src/assets
 static
-cypress
-script/test/cypress
 _site
 temp*
 static/

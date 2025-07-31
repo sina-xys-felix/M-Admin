@@ -6,15 +6,6 @@
   </router-view>
 </template>
 
-<script lang="ts" setup>
-  import { computed } from 'vue'
-  import { useTabBarStore } from '@/store'
-
-  const tabBarStore = useTabBarStore()
-
-  computed(() => tabBarStore.getCacheList)
-</script>
-
 <style>
   .fade-enter-active,
   .fade-leave-active {

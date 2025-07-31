@@ -1,44 +1,41 @@
 <template>
   <a-dropdown trigger="contextMenu" :popup-max-height="false" @select="actionSelect">
     <span
-      class="arco-tag arco-tag-size-medium arco-tag-checked"
+      class="arco-tag arco-tag-size-large arco-tag-checked"
       :class="{ 'link-activated': itemData.fullPath === $route.fullPath }"
       @click="goto(itemData)"
     >
       <span class="tag-link">
         {{ $t(itemData.title) }}
       </span>
-      <span
-        class="arco-icon-hover arco-tag-icon-hover arco-icon-hover-size-medium arco-tag-close-btn"
-        @click.stop="tagClose(itemData, index)"
-      >
-        <icon-close />
+      <span class="arco-icon-hover arco-tag-icon-hover arco-icon-hover-size-large arco-tag-close-btn">
+        <icon-close @click.stop="tagClose(itemData, index)" />
       </span>
     </span>
     <template #content>
       <a-doption :disabled="disabledReload" :value="Eaction.reload">
         <icon-refresh />
-        <span>重新加载</span>
+        <span>{{ $t('tab.pane.reload') }}</span>
       </a-doption>
       <a-doption class="sperate-line" :disabled="disabledCurrent" :value="Eaction.current">
         <icon-close />
-        <span>关闭当前标签页</span>
+        <span>{{ $t('tab.pane.current') }}</span>
       </a-doption>
       <a-doption :disabled="disabledLeft" :value="Eaction.left">
-        <icon-to-left />
-        <span>关闭左侧标签页</span>
+        <icon-double-left />
+        <span>{{ $t('tab.pane.left') }}</span>
       </a-doption>
       <a-doption class="sperate-line" :disabled="disabledRight" :value="Eaction.right">
-        <icon-to-right />
-        <span>关闭右侧标签页</span>
+        <icon-double-right />
+        <span>{{ $t('tab.pane.right') }}</span>
       </a-doption>
       <a-doption :value="Eaction.others">
         <icon-swap />
-        <span>关闭其它标签页</span>
+        <span>{{ $t('tab.pane.other') }}</span>
       </a-doption>
       <a-doption :value="Eaction.all">
         <icon-folder-delete />
-        <span>关闭全部标签页</span>
+        <span>{{ $t('tab.pane.all') }}</span>
       </a-doption>
     </template>
   </a-dropdown>
@@ -171,11 +168,32 @@
   }
   .link-activated {
     color: rgb(var(--link-6));
+    position: relative;
     .tag-link {
       color: rgb(var(--link-6));
     }
     & + .arco-tag-close-btn {
       color: rgb(var(--link-6));
+    }
+
+    svg {
+      width: 0;
+      transition: all 0.2s;
+    }
+    &:hover {
+      svg {
+        width: 16px;
+      }
+    }
+
+    &::before {
+      content: '';
+      width: 90%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      border-bottom: 2px solid rgb(var(--primary-6));
     }
   }
   :deep(.arco-dropdown-option-content) {
@@ -193,5 +211,33 @@
   }
   .sperate-line {
     border-bottom: 1px solid var(--color-neutral-3);
+  }
+
+  .arco-tag {
+    background: unset;
+    position: relative;
+    svg {
+      width: 0;
+      transition: all 0.2s;
+    }
+    &:hover {
+      svg {
+        width: 16px;
+      }
+
+      &::before {
+        content: '';
+        width: 90%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        border-bottom: 2px solid rgb(var(--primary-6));
+      }
+    }
+  }
+
+  .arco-tag-size-large {
+    height: 37px;
   }
 </style>

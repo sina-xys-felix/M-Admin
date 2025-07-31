@@ -345,7 +345,7 @@
   // 计算表格横向滚动的高度
   const maxWidth = ref<number>(500)
   const maxHeight = ref<number>(500)
-  maxHeight.value = document.documentElement.offsetHeight - 188
+  maxHeight.value = document.documentElement.offsetHeight - 196
   // @ts-ignore
   const horizontalScroll = ref<string | number | boolean>()
   // 根据是否填充空行来确定最小行高
@@ -401,7 +401,7 @@
   const treeConfig = ref<any>()
   treeConfig.value = treeColumns && treeColumns[0]?.search
 
-  tableScroll.value = document.documentElement.offsetHeight - 173
+  tableScroll.value = document.documentElement.offsetHeight -181
   const cacheName = props.remember ? `${findQuickCode(props.title)}SearchCache` : ''
   const searchCache = props.remember ? JSON.parse(localStorage.getItem(cacheName)!) || {} : {}
   const tableInitParams = props.remember ? Object.assign({}, props.initParam, searchCache) : props.initParam
@@ -544,9 +544,9 @@
     () => appStore.footer,
     (value) => {
       if (value) {
-        maxHeight.value = document.documentElement.offsetHeight - 164 - 1
+        maxHeight.value = document.documentElement.offsetHeight - 173
       } else {
-        maxHeight.value = document.documentElement.offsetHeight - 164 + 40 - 1
+        maxHeight.value = document.documentElement.offsetHeight -133
       }
     },
     { immediate: true, deep: true }
@@ -556,7 +556,7 @@
     () => appStore.menuCollapse,
     (newVal) => {
       if (newVal) {
-        maxWidth.value = document.documentElement.offsetWidth - 90 - 48
+        maxWidth.value = document.documentElement.offsetWidth -138
       } else {
         maxWidth.value = document.documentElement.offsetWidth - 90 - config.menuWidth
       }
@@ -566,10 +566,10 @@
   )
 
   const onResize = () => {
-    maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124) - 1
-    tableScroll.value = document.documentElement.offsetHeight - 173 - 16
+    maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124) - 9
+    tableScroll.value = document.documentElement.offsetHeight - 197
     if (appStore.menuCollapse) {
-      maxWidth.value = document.documentElement.offsetWidth - 90 - 48
+      maxWidth.value = document.documentElement.offsetWidth -138
     } else {
       maxWidth.value = document.documentElement.offsetWidth - 48 - config.menuWidth
     }

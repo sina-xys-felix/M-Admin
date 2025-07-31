@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import svgLoader from 'vite-svg-loader'
 import AutoImport from 'unplugin-auto-import/vite'
+import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import configArcoStyleImportPlugin from './plugin/arcoStyleImport'
 
@@ -15,7 +16,11 @@ export default defineConfig({
     vueJsx(),
     svgLoader({ svgoConfig: {} }),
     AutoImport({
+      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       imports: ['vue', 'vue-router'],
+       // arco组件的按需加载
+      resolvers: [ArcoResolver()],
+        // 配置文件生成位置
       dts: './auto-imports.d.ts',
     }),
     viteMockServe({

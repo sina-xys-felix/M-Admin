@@ -63,7 +63,7 @@
               :column="handleColumns(item.field)"
               :search-param="formData"
             />
-            <MEditor v-else :value="formData[item.field]" v-bind="item.props" />
+            <MEditor v-else v-model="formData[item.field]" :disabled="item.disabled" v-bind="item.props" />
           </a-form-item>
         </a-col>
       </template>

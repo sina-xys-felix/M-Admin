@@ -33,7 +33,7 @@
           <Menu />
         </a-drawer>
         <a-layout class="layout-content" :style="paddingStyle">
-          <TabBar v-if="appStore.tabBar" />
+          <TabBarBtn v-if="appStore.tabBar" />
           <a-layout-content>
             <PageLayout />
           </a-layout-content>
@@ -48,10 +48,10 @@
   import { ref, computed, watch, provide, onMounted } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import { useAppStore, useUserStore } from '@/store'
-  import NavBar from '@/components/navbar/index.vue'
-  import Menu from '@/components/menu/index.vue'
-  import MFooter from '@/components/m-footer/index.vue'
-  import TabBar from '@/components/m-tabBar/index.vue'
+  import NavBar from './components/navbar/index.vue'
+  import Menu from '@/layout/components/menu/index.vue'
+  import MFooter from './components/m-footer/index.vue'
+  import TabBarBtn from './components/m-tabBar/index.vue'
   import usePermission from '@/hooks/permission'
   import useResponsive from '@/hooks/responsive'
   import PageLayout from './page-layout.vue'
@@ -75,7 +75,6 @@
   const collapsed = computed(() => {
     return appStore.menuCollapse
   })
-
   const paddingStyle = computed(() => {
     const paddingLeft = renderMenu.value && !hideMenu.value ? { paddingLeft: `${menuWidth.value}px` } : {}
     const paddingTop = navbar.value ? { paddingTop: navbarHeight } : {}
@@ -89,7 +88,7 @@
     () => userStore.role,
     (roleValue) => {
       if (roleValue && !permission.accessRouter(route)) router.push({ name: 'notFound' })
-    }
+    },
   )
   const drawerVisible = ref(false)
   const drawerCancel = () => {

@@ -27,9 +27,9 @@
   const dynamic_height = ref<number>(0)
 
   const updateHeight = () => {
-    dynamic_height.value = document.body.clientHeight - 490
+    dynamic_height.value = document.body.clientHeight - 498
     if (appStore.footer) {
-      dynamic_height.value = dynamic_height.value - 40
+      dynamic_height.value = dynamic_height.value - 48
     }
   }
 

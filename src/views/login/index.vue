@@ -20,7 +20,7 @@
   import { useAppStore } from '@/store'
   import settings from '@/config/settings.json'
   import loginForm from './components/login-form.vue'
-  import MFooter from '@/components/m-footer/index.vue'
+  import MFooter from '@/layout/components/m-footer/index.vue'
 
   const appStore = useAppStore()
 

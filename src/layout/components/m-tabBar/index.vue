@@ -51,21 +51,21 @@
 
 <style scoped lang="less">
   .tab-bar-container {
-    height: 32px;
+    height: 40px;
     position: relative;
     background-color: var(--color-bg-2);
     .tab-bar-box {
       display: flex;
-      padding: 0 0 0 20px;
+      padding: 0 0 0 16px;
       background-color: var(--color-bg-2);
       border-bottom: 1px solid var(--color-border);
       .tab-bar-scroll {
-        height: 32px;
+        height: 40px;
         flex: 1;
         overflow: hidden;
         .tags-wrap {
-          padding: 4px 0;
           height: 48px;
+          padding: 4px 0 0 0 ;
           white-space: nowrap;
           overflow-x: auto;
 
@@ -86,7 +86,7 @@
 
     .tag-bar-operation {
       width: 100px;
-      height: 32px;
+      height: 40px;
     }
   }
 </style>

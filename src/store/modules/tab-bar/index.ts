@@ -6,7 +6,7 @@ import { TabBarState, TagProps } from './types'
 
 const formatTag = (route: RouteLocationNormalized): TagProps => {
   const { name, meta, fullPath, query } = route
-  if (route.tabar !== false) {
+  if (route.noAffix !== false) {
     return {
       title: meta.locale || '',
       name: String(name),
@@ -38,7 +38,7 @@ const useTabBar = defineStore('tabBar', {
   actions: {
     updateTabList(route: RouteLocationNormalized) {
       if (BAN_LIST.includes(route.name as string)) return
-      if (route.meta.tabar !== false) this.tagList.push(formatTag(route))
+      if (route.meta.noAffix !== false) this.tagList.push(formatTag(route))
       if (!route.meta.ignoreCache) {
         this.cacheTabList.add(route.name as string)
       }
