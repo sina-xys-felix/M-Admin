@@ -238,6 +238,6 @@
   }
 
   .arco-tag-size-large {
-    height: 37px;
+    height: 41px;
   }
 </style>

@@ -33,11 +33,11 @@
           <Menu />
         </a-drawer>
         <a-layout class="layout-content" :style="paddingStyle">
-          <TabBarBtn v-if="appStore.tabBar" />
+          <TabBar v-if="appStore.tabBar" />
           <a-layout-content>
             <PageLayout />
           </a-layout-content>
-          <MFooter v-if="footer" />
+          <Footer v-if="footer" />
         </a-layout>
       </a-layout>
     </a-layout>
@@ -45,13 +45,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, computed, watch, provide, onMounted } from 'vue'
-  import { useRouter, useRoute } from 'vue-router'
   import { useAppStore, useUserStore } from '@/store'
   import NavBar from './components/navbar/index.vue'
   import Menu from '@/layout/components/menu/index.vue'
-  import MFooter from './components/m-footer/index.vue'
-  import TabBarBtn from './components/m-tabBar/index.vue'
+  import Footer from './components/footer/index.vue'
+  import TabBar from './components/tabBar/index.vue'
   import usePermission from '@/hooks/permission'
   import useResponsive from '@/hooks/responsive'
   import PageLayout from './page-layout.vue'

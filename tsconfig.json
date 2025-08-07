@@ -9,12 +9,12 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "baseUrl": "/",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
     "types": ["vite/client", "node"],
-    "lib": ["es2020", "dom"],
+    "lib": ["ESNext", "dom"],
     "skipLibCheck": true
   },
   "include": ["src/**/*", "src/**/*.vue", "./*.d.ts", "config/**/*"],

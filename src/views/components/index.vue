@@ -21,7 +21,7 @@
                 >系统的底部信息。点击可以跳转
                 <a href="https://beian.miit.gov.cn/" target="__blank">https://beian.miit.gov.cn/</a>
               </a-alert>
-              <MFooter />
+              <Footer />
             </a-space>
           </template>
           <template v-if="current === 2">
@@ -56,7 +56,7 @@
           </template>
 
           <template v-if="current === 4">
-            <MTabBar />
+            <TabBar />
           </template>
           <template v-if="current === 5">
             <a-alert> 公用按钮组 （默认提供详情，编辑，删除三个按钮，如需更多按钮通过slot自定义） </a-alert>
@@ -174,6 +174,27 @@
               <MUploadImage v-model="fileList" />
             </a-space>
           </template>
+          <template v-if="current === 15">
+            <a-alert
+              >qrcode地址:
+              <a href="https://www.npmjs.com/package/qrcode">https://www.npmjs.com/package/qrcode</a></a-alert
+            >
+
+            <a-divider orientation="left">img渲染模式</a-divider>
+            <a-space fill>
+              <div class="qrcode" v-for="item in qrcodeList.slice(0, 3)" :key="item.id">
+                <MQrcode :type="item.tag" :text="item.text" :logo-url="item.logoUrl" :options="item.options" />
+                <div>{{ item.docs }}</div>
+              </div>
+            </a-space>
+            <a-divider orientation="left">Canvas渲染模式</a-divider>
+            <a-space fill>
+              <div class="qrcode" v-for="item in qrcodeList.slice(3, 5)" :key="item.id">
+                <MQrcode :type="item.tag" :text="item.text" :logo-url="item.logoUrl" :options="item.options" />
+                <div>{{ item.docs }}</div>
+              </div>
+            </a-space>
+          </template>
         </div>
       </div>
     </div>
@@ -182,14 +203,15 @@
 
 <script lang="tsx" setup>
   import { Message, ValidatedError } from '@arco-design/web-vue'
+  import logoImg from '@/assets/logo.png'
   import { DictEnum } from '@/common/enums/dict-enum'
   import { Operations } from '@/common/enums/status-enum'
   import { FORM_CONFIG } from '@/common/constants/form-config'
   import { checkIdBT } from '@/utils/tools'
-  import MFooter from '@/layout/components/m-footer/index.vue'
+  import Footer from '@/layout/components/footer/index.vue'
   import MIconFont from '@/components/m-iconfont/index.vue'
   import MIframe from '@/components/m-iframe/index.vue'
-  import MTabBar from '@/layout/components/m-tabBar/index.vue'
+  import TabBar from '@/layout/components/tabBar/index.vue'
   import MEmpty from '@/components/m-empty/index.vue'
   import MPagination from '@/components/m-paginantion/index.vue'
   import MSearchForm from '@/components/m-search-form/index.vue'
@@ -197,7 +219,8 @@
   import MEditor from '@/components/m-editor/index.vue'
   import MQuarterSelect from '@/components/m-quarter-select/index.vue'
   import MForm from '@/components/m-form/index.vue'
-  import MUploadImage from '@/components/m-upload-image/index.vue' 
+  import MUploadImage from '@/components/m-upload-image/index.vue'
+  import MQrcode from '@/components/m-qrcode/index.vue'
 
   const current = ref(1)
 
@@ -258,6 +281,10 @@
       key: '14',
       title: 'components.image',
     },
+    {
+      key: '15',
+      title: 'components.qrcode',
+    },
   ])
 
   const dictValue = ref('10000001')
@@ -265,11 +292,11 @@
   const dictValue2 = ref('10000201')
 
   const speakText = ref(
-    '人生如蚕，自缚于茧中，丝缕缠绕，黑暗四面围困。初时不觉其苦，继而闷热难当，终至于呼吸维艰。然而，蚕不作茧自缚，何由成蛾？茧不作黑暗围困，何由见光明？向来所谓绝境，不过是造化设下的一道窄门罢了。过此门者，先是筋骨酸痛，继而皮开肉绽，终至于脱胎换骨。那些半途而废者，只见门前血迹斑斑，便以为此路不通；殊不知，血迹尽处，正是新肌生长之所。人常道"山重水复疑无路"，却不知自己双目为叶所障。揭去眼前一叶，便见柳暗花明。困厄之为物，不过是磨刀之石，愈磨愈利；不过是淬火之水，愈淬愈坚。当此之际，与其坐而待毙，何如起而前行？纵使荆棘满途，也要踏出血路；纵使狂风暴雨，也要昂首向前。世上从无绝望的处境，只有对处境绝望的人。蚕终于咬破茧壳时，翅膀还是湿软的。但它知道，只要向着光，终能飞向天空。'
+    '人生如蚕，自缚于茧中，丝缕缠绕，黑暗四面围困。初时不觉其苦，继而闷热难当，终至于呼吸维艰。然而，蚕不作茧自缚，何由成蛾？茧不作黑暗围困，何由见光明？向来所谓绝境，不过是造化设下的一道窄门罢了。过此门者，先是筋骨酸痛，继而皮开肉绽，终至于脱胎换骨。那些半途而废者，只见门前血迹斑斑，便以为此路不通；殊不知，血迹尽处，正是新肌生长之所。人常道"山重水复疑无路"，却不知自己双目为叶所障。揭去眼前一叶，便见柳暗花明。困厄之为物，不过是磨刀之石，愈磨愈利；不过是淬火之水，愈淬愈坚。当此之际，与其坐而待毙，何如起而前行？纵使荆棘满途，也要踏出血路；纵使狂风暴雨，也要昂首向前。世上从无绝望的处境，只有对处境绝望的人。蚕终于咬破茧壳时，翅膀还是湿软的。但它知道，只要向着光，终能飞向天空。',
   )
 
   const editor = ref(
-    '<p><img src="https://img0.baidu.com/it/u=4172295007,3022602453&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=50&amp;h=66" alt="" width="15" height="20">这是一张图片。</p>'
+    '<p><img src="https://img0.baidu.com/it/u=4172295007,3022602453&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=50&amp;h=66" alt="" width="15" height="20">这是一张图片。</p>',
   )
 
   const quarter = ref('')
@@ -473,14 +500,106 @@
     },
   ])
 
- const fileList = ref('[{"index":0,"url":"https://img1.baidu.com/it/u=2957354879,1371671344&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=300"},{"index":1,"url":"https://img0.baidu.com/it/u=1987377923,862381789&fm=253&app=138&f=JPEG?w=500&h=500"}]')
+  const fileList = ref(
+    '[{"index":0,"url":"https://img1.baidu.com/it/u=2957354879,1371671344&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=300"},{"index":1,"url":"https://img0.baidu.com/it/u=1987377923,862381789&fm=253&app=138&f=JPEG?w=500&h=500"}]',
+  )
+
+  const qrcodeList = computed(() => [
+    {
+      id: 1,
+      text: 'https://gitee.com/sina_xys/M-Admin',
+      docs: '普通格式(img)',
+      tag: 'img',
+      options: {
+        width: 160,
+        height: 160,
+        color: {
+          dark: '#000000',
+          light: '#ffffff',
+        },
+        margin: 4,
+        scale: 4,
+        errorCorrectionLevel: 'H',
+      },
+    },
+    {
+      id: 2,
+      text: 'https://gitee.com/sina_xys/M-Admin',
+      docs: '自定义颜色',
+      tag: 'img',
+      options: {
+        width: 160,
+        height: 160,
+        color: {
+          dark: '#2962ff',
+          light: '#f7f8fa',
+        },
+        margin: 4,
+        scale: 4,
+        errorCorrectionLevel: 'H',
+      },
+    },
+    {
+      id: 3,
+      text: 'https://gitee.com/sina_xys/M-Admin',
+      docs: '高清晰度(img)',
+      tag: 'img',
+      options: {
+        width: 160,
+        height: 160,
+        color: {
+          dark: '#000000',
+          light: '#ffffff',
+        },
+        margin: 4,
+        scale: 4,
+        quality: 1,
+        errorCorrectionLevel: 'H',
+      },
+    },
+    {
+      id: 4,
+      text: 'https://gitee.com/sina_xys/M-Admin',
+      docs: '普通模式(canvas)',
+      tag: 'canvas',
+      options: {
+        width: 160,
+        height: 160,
+        color: {
+          dark: '#000000',
+          light: '#ffffff',
+        },
+        margin: 4,
+        scale: 4,
+        errorCorrectionLevel: 'H',
+      },
+    },
+    {
+      id: 5,
+      text: 'https://gitee.com/sina_xys/M-Admin',
+      docs: 'canvas(设置logo)',
+      tag: 'canvas',
+      logoUrl: logoImg,
+      options: {
+        width: 160,
+        height: 160,
+        color: {
+          dark: '#000000',
+          light: '#ffffff',
+        },
+        margin: 4,
+        scale: 4,
+        errorCorrectionLevel: 'H',
+      },
+    },
+  ])
 
   const MSearchFormRef = ref<InstanceType<typeof MSearchForm>>()
   const mFormRef = ref<InstanceType<typeof MForm>>()
 
   const handleSubmit = async (
     data: { values: Record<string, any>; errors: Record<string, ValidatedError> | undefined },
-    ev: Event
+    ev: Event,
   ) => {
     const errors = await mFormRef.value.onSubmit(data, ev)
     if (!errors) {
@@ -556,6 +675,13 @@
         &__content {
           flex: 1;
           padding: 16px;
+          .qrcode {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin: 8px;
+          }
         }
       }
     }

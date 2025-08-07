@@ -15,4 +15,5 @@ export default {
   'components.file.upload': '文件上传',
   'components.quarter.select': '季度选择器',
   'components.image': '上传图片',
+  'components.qrcode': '二维码',
 }

@@ -10,7 +10,7 @@ import externalGlobal from 'rollup-plugin-external-globals'
 export default mergeConfig(
   {
     mode: 'production',
-    base: '/',
+    base: './',
     plugins: [
       configCompressPlugin('gzip'),
       configVisualizerPlugin(),

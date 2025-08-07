@@ -45,6 +45,7 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "pinyin-pro": "^3.19.6",
     "print-js": "^1.6.0",
+    "qrcode": "^1.5.4",
     "qs": "^6.11.2",
     "remixicon": "^4.6.0",
     "rollup-plugin-external-globals": "^0.9.2",

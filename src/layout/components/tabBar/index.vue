@@ -64,8 +64,6 @@
         flex: 1;
         overflow: hidden;
         .tags-wrap {
-          height: 48px;
-          padding: 4px 0 0 0 ;
           white-space: nowrap;
           overflow-x: auto;
 

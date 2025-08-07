@@ -2,7 +2,7 @@
   <div class="container">
     <Particles id="particles" :options="options" />
     <loginForm />
-    <MFooter v-if="settings.footer" />
+    <Footer v-if="settings.footer" />
 
     <a-tooltip :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')">
       <a-button class="nav-btn" type="text" :shape="'circle'" @click="handleToggleTheme">
@@ -20,7 +20,7 @@
   import { useAppStore } from '@/store'
   import settings from '@/config/settings.json'
   import loginForm from './components/login-form.vue'
-  import MFooter from '@/layout/components/m-footer/index.vue'
+  import Footer from '@/layout/components/footer/index.vue'
 
   const appStore = useAppStore()
 
