@@ -1,4 +1,4 @@
-module.exports = {
+export default{
   extends: [
     'stylelint-config-standard',
     'stylelint-config-rational-order',
@@ -27,4 +27,4 @@ module.exports = {
       },
     ],
   },
-};
+}

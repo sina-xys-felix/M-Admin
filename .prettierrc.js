@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   tabWidth: 2,
   semi: false,
   printWidth: 120,
@@ -8,5 +8,5 @@ module.exports = {
   vueIndentScriptAndStyle: true,
   rangeStart: 0,
   rangeEnd: Infinity,
-  aendOfLine:'auto'
-};
+  aendOfLine: 'auto',
+}

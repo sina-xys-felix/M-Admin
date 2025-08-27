@@ -195,6 +195,7 @@
       left: 5%;
       border-bottom: 2px solid rgb(var(--primary-6));
     }
+    
   }
   :deep(.arco-dropdown-option-content) {
     span {
