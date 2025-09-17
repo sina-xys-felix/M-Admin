@@ -23,6 +23,7 @@ export default {
   'menu.directive.water.marker': '水印',
   'menu.directive.throttle': '节流',
   'menu.directive.debounce': '防抖',
+  'menu.directive.permission': '按钮权限',
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',
@@ -34,5 +35,5 @@ export default {
   'menu.document': '参考文档',
   'menu.document.arco': 'ArcoDesign',
   'menu.document.vite': 'Vite',
-  'menu.document.url': '项目地址(外链)'
+  'menu.document.url': '项目地址(外链)',
 }

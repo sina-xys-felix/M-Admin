@@ -1,18 +1,15 @@
 import { DirectiveBinding } from 'vue'
-import { useUserStore } from '@/store'
-import settings from '@/config/settings.json'
 
 function checkPermission(el: HTMLElement, binding: DirectiveBinding) {
   const { value } = binding
-  const userStore = useUserStore()
-  const { roles } = userStore
+  const operationIds = localStorage.getItem('menu') || []
   if (typeof value === 'string' || typeof value === 'number') {
-    const hasPermission = settings.menuFromSeyrver ? roles[0].operationIds.includes(value) : true
+    const hasPermission = operationIds.includes(value)
     if (!hasPermission && el.parentNode) {
       el.parentNode.removeChild(el)
     }
   } else {
-    throw new Error(`need ids! Like v-permission="['10000','10001']"`)
+    throw new Error(`need ids! Like v-permission="'10001'"`)
   }
 }
 

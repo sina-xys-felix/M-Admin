@@ -1,10 +1,24 @@
 import { SelectOption } from '@arco-design/web-vue'
 
-const PAGINATION_OPTIONS: SelectOption[] = [
+const PAGINATION_OPTIONS_1: SelectOption[] = [
+  { value: 10, label: 'paniation.item-10' },
+  { value: 20, label: 'paniation.item-20' },
+  { value: 50, label: 'paniation.item-50' },
+  { value: 100, label: 'paniation.item-100' },
+]
+
+const PAGINATION_OPTIONS_2: SelectOption[] = [
   { value: 15, label: 'paniation.item-15' },
   { value: 25, label: 'paniation.item-25' },
   { value: 50, label: 'paniation.item-50' },
   { value: 100, label: 'paniation.item-100' },
+]
+
+const PAGINATION_OPTIONS_4: SelectOption[] = [
+  { value: 30, label: 'paniation.item-30' },
+  { value: 50, label: 'paniation.item-50' },
+  { value: 100, label: 'paniation.item-100' },
+  { value: 200, label: 'paniation.item-200' },
 ]
 
 // grid gutter
@@ -45,7 +59,9 @@ const TITLE_MAP = {
 }
 
 export {
-  PAGINATION_OPTIONS,
+  PAGINATION_OPTIONS_1,
+  PAGINATION_OPTIONS_2,
+  PAGINATION_OPTIONS_4,
   ROW_GUTTER,
   MAX_SEARCH_ITEM_NUMBER,
   MAX_SEARCH_ITEM_NUMBER_SPLIT,

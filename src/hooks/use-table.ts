@@ -1,8 +1,11 @@
 import { TableStateProps } from '@/common/types/table'
 import { AnyObject, Pagination } from '@/common/types/global'
 import useLoading from '@/hooks/loading'
+import { useScreenInfo } from '@/hooks/use-screen-info'
 
 const { loading, setLoading } = useLoading(false)
+
+const { resolutionLevel } = useScreenInfo()
 
 /**
  * @description table 页面操作方法封装
@@ -16,7 +19,7 @@ export const useTable = (
   initParam: { [key: string]: unknown } = {},
   isPageable = true,
   fillRows = false,
-  dataCallBack?: (data: AnyObject) => AnyObject
+  dataCallBack?: (data: AnyObject) => AnyObject,
 ) => {
   const state = reactive<TableStateProps>({
     // 表格数据
@@ -26,7 +29,7 @@ export const useTable = (
       // 当前页数
       current: 1,
       // 每页显示条数
-      pageSize: 10,
+      pageSize: resolutionLevel.value,
       // 总条数
       total: 0,
     },
@@ -65,7 +68,7 @@ export const useTable = (
       Object.assign(state.totalParam, state.searchInitParam, state.searchParam, isPageable ? pageParam.value : {})
       const params = filterParams(state.totalParam)
       let data = await api!(params)
-      const maxRows = isPageable ? state.pageable.pageSize : 10
+      const maxRows = isPageable ? state.pageable.pageSize : resolutionLevel.value
       // 如果后台有分页数据返回，则在这里进行解构赋值
       if (dataCallBack) {
         data = dataCallBack(data)
@@ -173,7 +176,7 @@ export const useTable = (
    * */
   const reset = (remember?: boolean) => {
     state.pageable.current = 1
-    state.pageable.pageSize = 10
+    state.pageable.pageSize = resolutionLevel.value
     state.searchParam = {}
     // 重置搜索表单的时，如果有默认搜索参数，则重置默认的搜索参数
     if (remember) {

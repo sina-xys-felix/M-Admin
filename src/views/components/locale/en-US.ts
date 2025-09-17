@@ -16,4 +16,7 @@ export default {
   'components.quarter.select': 'MQuarterSelect',
   'components.image': 'UploadIMage',
   'components.qrcode': 'QRCode',
+  'components.video': 'Video',
+  'components.mint.filter': 'MintFilter',
+  'components.typeit': 'TypeIt',
 }

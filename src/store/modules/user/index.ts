@@ -62,6 +62,7 @@ const useUserStore = defineStore('user', {
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm)
+        localStorage.setItem('menu', res.operations)
         setToken(res.token)
         return res.token
       } catch (err) {

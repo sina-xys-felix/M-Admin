@@ -23,6 +23,7 @@ export default {
   'menu.directive.water.marker': 'WaterMarker',
   'menu.directive.throttle': 'Throttle',
   'menu.directive.debounce': 'Debounce',
+  'menu.directive.permission': 'Permission',
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',
@@ -34,5 +35,5 @@ export default {
   'menu.document': 'Document',
   'menu.document.arco': 'ArcoDesign Document',
   'menu.document.vite': 'Vite Document',
-  'menu.document.url': 'Project Address (External Link)'
+  'menu.document.url': 'Project Address (External Link)',
 }

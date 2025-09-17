@@ -236,6 +236,18 @@ const Components: ServerRouteRecordRaw[] = [
           id: '1702',
         },
       },
+      {
+        path: 'permission',
+        name: 'Permission',
+        component: () => import('@/views/directive/permission/index.vue'),
+        meta: {
+          locale: 'menu.directive.permission',
+          requiresAuth: true,
+          icon: 'lock',
+          roles: ['*'],
+          id: '1703',
+        },
+      },
     ],
   },
   // 异常管理

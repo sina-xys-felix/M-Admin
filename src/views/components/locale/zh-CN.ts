@@ -16,4 +16,7 @@ export default {
   'components.quarter.select': '季度选择器',
   'components.image': '上传图片',
   'components.qrcode': '二维码',
+  'components.video': '视频播放器',
+  'components.mint.filter': '敏感词过滤',
+  'components.typeit': '打字机效果',
 }

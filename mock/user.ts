@@ -35,11 +35,13 @@ export default defineMock([
       if (account === 'admin' && password === 'admin') {
         return successResponseWrap({
           token: 'token_admin',
+          operations: ['1701', '1702', '1703'],
         })
       }
       if (account === 'user' && password === 'user') {
         return successResponseWrap({
           token: 'token_user',
+          operations: ['1701'],
         })
       }
       return failResponseWrap(null, '账号或者密码错误', 50000)
