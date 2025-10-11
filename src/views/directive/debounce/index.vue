@@ -10,21 +10,22 @@
 </template>
 
 <script setup lang="ts">
-  import { Message } from '@arco-design/web-vue'
-  const onClick = () => {
-    Message.success('1s后执行')
-  }
+import { Message } from '@arco-design/web-vue'
+const onClick = () => {
+  Message.success('1s后执行')
+}
+
 </script>
 
 <style lang="less" scoped>
-  .box {
-    width: 100%;
-    height: 100%;
-    background: var(--color-bg-2);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
+.box {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-2);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
 </style>

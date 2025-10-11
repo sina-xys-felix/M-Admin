@@ -13,6 +13,7 @@ export default {
   'settings.navbar.screen.toFull': 'Click to switch to full screen mode',
   'settings.navbar.screen.toExit': 'Click to exit the full screen mode',
   'settings.navbar.alerts': 'alerts',
+  'settings.bigScreen': 'DataView',
   'settings.menu': 'Menu',
   'settings.topMenu': 'Top Menu',
   'settings.tabBar': 'Tab Bar',

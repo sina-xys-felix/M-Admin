@@ -67,6 +67,8 @@ const RESOLUTION_TO_OPTIONS: Record<number, PaginationOption[]> = {
   30: PAGINATION_OPTIONS_4, // 4K（假设新增 PAGINATION_OPTIONS_3）
 };
 
+console.log("resolutionLevel:" + resolutionLevel.value)
+
 // 在计算属性中使用映射对象
 const pageSelect = computed<PaginationOption[]>(() => {
   const sourceOptions = RESOLUTION_TO_OPTIONS[resolutionLevel.value] || PAGINATION_OPTIONS_1; // 默认值

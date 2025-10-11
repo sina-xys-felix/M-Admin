@@ -1,9 +1,5 @@
-export default{
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-rational-order',
-    'stylelint-config-prettier',
-  ],
+export default {
+  extends: ['stylelint-config-standard', 'stylelint-config-rational-order', 'stylelint-config-prettier', 'prettier'],
   customSyntax: 'postcss-html',
   defaultSeverity: 'warning',
   plugins: ['stylelint-order'],

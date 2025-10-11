@@ -8,5 +8,5 @@ export default {
   vueIndentScriptAndStyle: true,
   rangeStart: 0,
   rangeEnd: Infinity,
-  aendOfLine: 'auto',
+  endOfLine: 'auto',
 }

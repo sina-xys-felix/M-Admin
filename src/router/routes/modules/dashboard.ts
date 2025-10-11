@@ -40,6 +40,24 @@ const DASHBOARD: ServerRouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/dataview',
+    name: 'DataView',
+    component: () => import('@/views/dataview/index.vue'),
+    meta: {
+      id: '7100',
+      locale: 'settings.bigScreen',
+      icon: 'desktop',
+      requiresAuth: true,
+      order: 0,
+      type: 'screen',
+      level: 1,
+      noAffix: false,
+      tabar: false,
+      hideInMenu: true,
+      ignoreCache: true,
+    },
+  },
 ]
 
 export default DASHBOARD

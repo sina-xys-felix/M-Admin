@@ -1,7 +1,7 @@
 <template>
   <a-layout-footer class="footer" :style="{ justifyContent: align }">
     <span>Copyright © 2025</span>
-    <a href="https://beian.miit.gov.cn/" target="_blank">滇ICP备2025067921号</a>
+    <a href="https://beian.miit.gov.cn/" target="_blank">滇ICP备2025067921号-1</a>
   </a-layout-footer>
 </template>
 

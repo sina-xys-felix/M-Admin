@@ -13,6 +13,7 @@ export default {
   'settings.navbar.screen.toFull': '点击切换全屏模式',
   'settings.navbar.screen.toExit': '点击退出全屏模式',
   'settings.navbar.alerts': '消息通知',
+  'settings.bigScreen': '数据大屏',
   'settings.menu': '默认布局',
   'settings.topMenu': '顶部布局',
   'settings.tabBar': '多页签',

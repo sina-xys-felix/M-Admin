@@ -13,7 +13,7 @@ const RESOLUTION_THRESHOLDS = {
  */
 const getResolutionLevel = (): number => {
   if (typeof window === 'undefined') return 10 // SSR 默认值
-  const screenWidth = window.screen.width
+  const screenWidth = window.screen.width || window.innerWidth
 
   if (screenWidth >= RESOLUTION_THRESHOLDS.K4) return 30
   if (screenWidth >= RESOLUTION_THRESHOLDS.K2) return 15
