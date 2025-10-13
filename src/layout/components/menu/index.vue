@@ -1,6 +1,5 @@
 <script lang="tsx">
   import { defineComponent, ref, h, compile, computed } from 'vue'
-  import { useI18n } from 'vue-i18n'
   import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
   import type { RouteMeta } from 'vue-router'
   import { useAppStore } from '@/store'
@@ -11,7 +10,6 @@
   export default defineComponent({
     emit: ['collapse'],
     setup() {
-      const { t } = useI18n()
       const appStore = useAppStore()
       const router = useRouter()
       const route = useRoute()
@@ -105,18 +103,7 @@
                         `,
                       ),
                     )
-                : () =>
-                    element?.meta?.remix
-                      ? h(
-                          compile(`
-                      <i class="ri-${element?.meta?.remix}" style="width:${
-                        childrenLen || !element.component ? '20px' : '18px'
-                      };height:${childrenLen || !element.component ? '20px' : '18px'};background-color: ${
-                        index % 2 === 0 ? 'rgb(22,93,255)' : 'rgb(35,195,67)'
-                      };padding: 2px;border-radius: 4px;color:var(--color-white)"></i>
-                        `),
-                        )
-                      : null
+                : null
               const node =
                 element?.children && element?.children.length !== 0 ? (
                   <a-sub-menu
@@ -126,9 +113,9 @@
                       title: () =>
                         h(
                           compile(
-                            `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${t(
-                              element?.meta?.locale || '',
-                            )}</span>`,
+                            `<span style="color:${appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)'}">${
+                              element?.meta?.locale || ''
+                            }</span>`,
                           ),
                         ),
                     }}
@@ -138,7 +125,7 @@
                 ) : (
                   <a-menu-item key={element?.name} v-slots={{ icon }} onClick={() => goto(element)}>
                     <span style={{ color: appStore.darkMenu ? '#ffffff' : 'var(--color-text-1)' }}>
-                      {t(element?.meta?.locale || '')}
+                      {element?.meta?.locale || ''}
                     </span>
                   </a-menu-item>
                 )

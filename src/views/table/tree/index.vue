@@ -2,8 +2,8 @@
   <div class="container">
     <MTable
       ref="basicTableRef"
-      :title="t('menu.table.columnar')"
-      :sub-title="t('menu.table.tree.area')"
+      :title="'表格展示'"
+      :sub-title="'区域树'"
       :bordered="{ cell: true }"
       :columns="columns"
       :selectId="'id'"
@@ -17,12 +17,17 @@
       </template>
 
       <template #filterType="{ record }">
-        {{ t(`basicTable.form.filterType.${record.filterType}`) }}
+        {{
+          {
+            rules: '规则筛选',
+            artificial: '人工筛选',
+          }[record.filterType] || record.filterType
+        }}
       </template>
       <template #status="{ record }">
         <span v-if="record.status === 'offline'" class="circle"></span>
         <span v-else class="circle pass"></span>
-        {{ record.status === 'offline' ? t('common.status.disabled') : t('common.status.normal') }}
+        {{ record.status === 'offline' ? '禁用' : '正常' }}
       </template>
       <template #createdTime="{ record }">
         {{ record.createdTime?.slice(0, 10) }}
@@ -41,15 +46,12 @@
 </script>
 
 <script lang="ts" setup>
-  import { useI18n } from 'vue-i18n'
   import { Message } from '@arco-design/web-vue'
   import { MTableInstance, ColumnProps } from '@/components/m-table/types'
   import { DataCallBackProps } from '@/api/types'
   import { AnyObject } from '@/common/types/global'
   import { queryPolicyList } from '@/api/table'
   import { treeData } from './data'
-
-  const { t } = useI18n()
 
   const generateFormModel = () => {
     return {
@@ -82,18 +84,18 @@
 
   const statusOptions = computed(() => [
     {
-      label: t('common.status.normal'),
+      label: '正常',
       value: '1',
     },
     {
-      label: t('common.status.disabled'),
+      label: '禁用',
       value: '0',
     },
   ])
 
   const columns = computed<ColumnProps[]>(() => [
     {
-      title: t('basicTable.columns.index'),
+      title: '序号',
       dataIndex: 'index',
       slotName: 'index',
       width: 64,
@@ -101,7 +103,7 @@
       fixed: 'left',
     },
     {
-      title: t('basicTable.columns.number'),
+      title: '集合编号',
       dataIndex: 'number',
       width: 120,
       extra: {
@@ -113,7 +115,7 @@
       },
     },
     {
-      title: t('basicTable.columns.name'),
+      title: '名称',
       dataIndex: 'name',
       width: 150,
       search: {
@@ -126,7 +128,7 @@
       },
     },
     {
-      title: t('basicTable.columns.contentType'),
+      title: '内容体裁',
       dataIndex: 'contentType',
       width: 150,
       extra: {
@@ -139,18 +141,18 @@
       },
     },
     {
-      title: t('basicTable.columns.filterType'),
+      title: '数据来源',
       dataIndex: 'filterType',
       slotName: 'filterType',
       width: 150,
       filterable: {
         filters: [
           {
-            text: t('basicTable.form.filterType.rules'),
+            text: '规则筛选',
             value: 'rules',
           },
           {
-            text: t('basicTable.form.filterType.artificial'),
+            text: '人工筛选',
             value: 'artificial',
           },
         ],
@@ -160,7 +162,7 @@
       },
     },
     {
-      title: t('basicTable.columns.count'),
+      title: '支付金额',
       dataIndex: 'count',
       width: 120,
       sortable: {
@@ -168,18 +170,20 @@
       },
     },
     {
-      title: t('basicTable.columns.address'),
+      title: '详细地址',
       dataIndex: 'address',
       minWidth: 160,
+      ellipsis: true,
+      tooltip: true,
     },
     {
-      title: t('basicTable.columns.createdTime'),
+      title: '创建时间',
       dataIndex: 'createdTime',
       slotName: 'createdTime',
       width: 160,
     },
     {
-      title: t('basicTable.columns.status'),
+      title: '状态',
       dataIndex: 'status',
       slotName: 'status',
       width: 100,
@@ -190,7 +194,7 @@
       },
     },
     {
-      title: t('basicTable.columns.operations'),
+      title: '操作',
       dataIndex: 'operations',
       slotName: 'operations',
       width: 130,

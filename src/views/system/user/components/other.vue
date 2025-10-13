@@ -3,46 +3,46 @@
     ref="formRef"
     layout="vertical"
     auto-label-width
-    :label-align="(FORM_CONFIG.labelAlign as any)"
+    :label-align="FORM_CONFIG.labelAlign as any"
     :content-flex="FORM_CONFIG.contentFlex"
     :model="formData"
     :disabled="type === Operations.LOOK"
   >
     <a-row :gutter="80" style="border-bottom: 1px solid var(--color-neutral-3); margin-top: 16px">
       <a-col :span="24" style="margin-bottom: 16px">
-        <span style="font-size: 16px; color: var(--color-text-2)">{{ t('staff.basic.work') }}</span>
+        <span style="font-size: 16px; color: var(--color-text-2)">工作信息</span>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="storeIds" :label="t('staff.column.storeId')" show-colon> </a-form-item>
+        <a-form-item field="storeIds" :label="'部门'" show-colon> </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.isFull')" field="isFull" show-colon>
+        <a-form-item :label="'是否全职'" field="isFull" show-colon>
           <span v-if="disabled" class="text-extra">
             <a-tag :color="formData.isFull === true ? 'green' : 'red'">{{
-              formData.isFull === true ? t('common.flag.true') : t('common.flag.false')
+              formData.isFull === true ? '是' : '否'
             }}</a-tag>
           </span>
           <a-switch v-else v-model="formData.isFull" :checked-value="true" :unchecked-value="false">
-            <template #checked> {{ t('common.flag.true') }} </template>
-            <template #unchecked> {{ t('common.flag.false') }} </template>
+            <template #checked> 是 </template>
+            <template #unchecked> 否 </template>
           </a-switch>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.isIntern')" field="isIntern" show-colon>
+        <a-form-item :label="'是否实习生'" field="isIntern" show-colon>
           <span v-if="disabled" class="text-extra">
             <a-tag :color="formData.isIntern === true ? 'green' : 'red'">{{
-              formData.isIntern === true ? t('common.flag.true') : t('common.flag.false')
+              formData.isIntern === true ? '是' : '否'
             }}</a-tag>
           </span>
           <a-switch v-else v-model="formData.isIntern" :checked-value="true" :unchecked-value="false">
-            <template #checked> {{ t('common.flag.true') }} </template>
-            <template #unchecked> {{ t('common.flag.false') }} </template>
+            <template #checked> 是 </template>
+            <template #unchecked> 否 </template>
           </a-switch>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.entryTime')" field="entryTime" show-colon>
+        <a-form-item :label="'入职时间'" field="entryTime" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.entryTime) }}</span>
           <a-date-picker
             v-else
@@ -56,7 +56,7 @@
       </a-col>
 
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.leaveTime')" field="leaveTime" show-colon>
+        <a-form-item :label="'离职时间'" field="leaveTime" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.leaveTime) }}</span>
           <a-date-picker
             v-else
@@ -72,138 +72,105 @@
 
     <a-row :gutter="80" style="border-bottom: 1px solid var(--color-neutral-3); margin-top: 16px">
       <a-col :span="24" style="margin-bottom: 16px">
-        <span style="font-size: 16px; color: var(--color-text-2)">{{ t('staff.basic.contact') }}</span>
+        <span style="font-size: 16px; color: var(--color-text-2)">联系方式</span>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.contact')" field="contact" show-colon>
+        <a-form-item :label="'联系人'" field="contact" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.contact) }}</span>
-          <a-input
-            v-else
-            v-model="formData.contact"
-            :placeholder="t('common.input') + t('staff.column.contact')"
-          ></a-input>
+          <a-input v-else v-model="formData.contact" :placeholder="'请输入联系人'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
           field="mobile"
-          :label="t('staff.column.contactMobile')"
+          :label="'联系电话'"
           show-colon
           asterisk-position="end"
           :hide-asterisk="true"
           :rules="[
             {
               required: false,
-              message: t('common.input') + t('staff.column.contactMobile'),
+              message: '请输入联系电话',
               validator: checkPhone,
             },
           ]"
         >
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.contactMobile) }}</span>
-          <a-input
-            v-else
-            v-model="formData.contactMobile"
-            allow-clear
-            :placeholder="t('common.input') + t('staff.column.contactMobile')"
-          />
+          <a-input v-else v-model="formData.contactMobile" allow-clear :placeholder="'请输入联系电话'" />
         </a-form-item>
       </a-col>
     </a-row>
 
     <a-row :gutter="80" style="margin-top: 16px">
       <a-col :span="24" style="margin-bottom: 16px">
-        <span style="font-size: 16px; color: var(--color-text-2)">{{ t('staff.basic.detail') }}</span>
+        <span style="font-size: 16px; color: var(--color-text-2)">详细信息</span>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.countryId')" field="countryId" show-colon> </a-form-item>
+        <a-form-item :label="'国家/地区'" field="countryId" show-colon> </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.address')" field="address" show-colon>
+        <a-form-item :label="'通讯地址'" field="address" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.address) }}</span>
-          <a-input
-            v-else
-            v-model="formData.address"
-            :placeholder="t('common.input') + t('staff.column.address')"
-          ></a-input>
+          <a-input v-else v-model="formData.address" :placeholder="'请输入通讯地址'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.zipcode')" field="zipcode" show-colon>
+        <a-form-item :label="'邮政编码'" field="zipcode" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.zipcode) }}</span>
-          <a-input
-            v-else
-            v-model="formData.zipcode"
-            :placeholder="t('common.input') + t('staff.column.zipcode')"
-          ></a-input>
+          <a-input v-else v-model="formData.zipcode" :placeholder="'请输入邮政编码'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="height" :label="t('staff.column.height')" show-colon>
+        <a-form-item field="height" :label="'身高'" show-colon>
           <span v-if="disabled" class="text-extra">{{ formData.height || 0 + ' CM' }}</span>
-          <a-input-number
-            v-else
-            v-model="formData.height"
-            :min="0"
-            :placeholder="t('common.input') + t('staff.column.height')"
-            hide-button
-          >
+          <a-input-number v-else v-model="formData.height" :min="0" :placeholder="'请输入身高'" hide-button>
             <template #suffix>CM</template>
           </a-input-number>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="weight" :label="t('staff.column.weight')" show-colon>
+        <a-form-item field="weight" :label="'体重'" show-colon>
           <span v-if="disabled" class="text-extra">{{ formData.weight || 0 + ' KG' }}</span>
-          <a-input-number
-            v-else
-            v-model="formData.weight"
-            :min="0"
-            :placeholder="t('common.input') + t('staff.column.weight')"
-            hide-button
-          >
+          <a-input-number v-else v-model="formData.weight" :min="0" :placeholder="'请输入体重'" hide-button>
             <template #suffix>KG</template>
           </a-input-number>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.procreation')" field="procreation" show-colon>
+        <a-form-item :label="'是否生育'" field="procreation" show-colon>
           <span v-if="disabled" class="text-extra">
             <a-tag :color="formData.procreation === true ? 'green' : 'red'">{{
-              formData.procreation === true ? t('common.flag.true') : t('common.flag.false')
+              formData.procreation === true ? '是' : '否'
             }}</a-tag>
           </span>
           <a-switch v-else v-model="formData.procreation" :checked-value="true" :unchecked-value="false">
-            <template #checked> {{ t('common.flag.true') }} </template>
-            <template #unchecked> {{ t('common.flag.false') }} </template>
+            <template #checked> 是 </template>
+            <template #unchecked> 否 </template>
           </a-switch>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="scholl" :label="t('staff.column.scholl')" show-colon>
+        <a-form-item field="scholl" :label="'毕业院校'" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.scholl) }}</span>
-          <a-input
-            v-else
-            v-model="formData.scholl"
-            :placeholder="t('common.input') + t('staff.column.scholl')"
-          ></a-input>
+          <a-input v-else v-model="formData.scholl" :placeholder="'请输入毕业院校'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="major" :label="t('staff.column.major')" show-colon>
+        <a-form-item field="major" :label="'专业'" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.major) }}</span>
-          <a-input v-else v-model="formData.major" :placeholder="t('common.input') + t('staff.column.major')"></a-input>
+          <a-input v-else v-model="formData.major" :placeholder="'请输入专业'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item field="native" :label="t('staff.column.native')" show-colon>
+        <a-form-item field="native" :label="'籍贯'" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.native) }}</span>
-          <a-input v-else :placeholder="t('common.input') + t('staff.column.native')"></a-input>
+          <a-input v-else :placeholder="'请输入籍贯'"></a-input>
         </a-form-item>
       </a-col>
       <a-col :span="24">
         <a-form-item
           field="remark"
-          :label="t('form.remark')"
+          :label="'备注'"
           show-colon
           :rules="[
             {
@@ -219,7 +186,7 @@
             :max-length="255"
             v-model="formData.remark"
             :auto-size="{ minRows: 3 }"
-            :placeholder="t('common.input') + t('form.remark')"
+            :placeholder="'请输入备注'"
             show-word-limit
           ></a-textarea>
         </a-form-item>
@@ -227,15 +194,9 @@
     </a-row>
     <div class="actions" :style="{ left: config.menuWidth + 20 + 'px' }">
       <a-space :style="{ 'padding-left': config.menuWidth + 'px' }">
-        <a-button @click="resetForm" v-if="type !== Operations.LOOK">
-          {{ $t('common.reset') }}
-        </a-button>
-        <a-button type="primary" @click="goPrev">
-          {{ $t('common.prev') }}
-        </a-button>
-        <a-button type="primary" @click="onSubmitClick" v-if="type !== Operations.LOOK">
-          {{ $t('common.submit') }}
-        </a-button>
+        <a-button @click="resetForm" v-if="type !== Operations.LOOK"> 重置 </a-button>
+        <a-button type="primary" @click="goPrev"> 上一步 </a-button>
+        <a-button type="primary" @click="onSubmitClick" v-if="type !== Operations.LOOK"> 提交 </a-button>
       </a-space>
     </div>
   </a-form>
@@ -249,7 +210,7 @@
 
 <script lang="ts" setup>
   import { FormInstance } from '@arco-design/web-vue'
-  import { useI18n } from 'vue-i18n'
+
   import { type IOtherProps } from '@/api/staff/types'
   import { Operations } from '@/common/enums/status-enum'
   import { DictEnum } from '@/common/enums/dict-enum'
@@ -274,8 +235,6 @@
 
   const formRef = ref<FormInstance>()
 
-  const { t } = useI18n()
-
   const resetForm = async () => {
     await formRef.value?.resetFields()
     await formData.value?.clearValidate()
@@ -293,7 +252,6 @@
       emits('changeStep', 'submit', { ...formData.value })
     }
   }
-
 </script>
 
 <style lang="less" scoped>

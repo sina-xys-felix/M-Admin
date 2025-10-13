@@ -1,4 +1,6 @@
-// 定义操作类型
+/**
+ *  操作按钮自定义
+ *  */
 export enum Operations {
   ADD = 1,
   EDIT = 2,

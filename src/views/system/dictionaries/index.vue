@@ -2,7 +2,7 @@
   <div class="container">
     <MTable
       ref="xTableRef"
-      :title="t('sys.dict.title')"
+      :title="'字典管理'"
       :selected="'id'"
       :columns="columns"
       :bordered="{ cell: true }"
@@ -19,7 +19,7 @@
         <div>
           <a-input-search
             style="margin-bottom: 8px; width: 100%"
-            :placeholder="t('form.quickCode') + '/' + t('form.name')"
+            :placeholder="'速查代码/名称'"
             v-model="searchKey"
           />
           <a-tree
@@ -33,7 +33,7 @@
             }"
           >
             <template #extra="nodeData">
-              <a-tooltip :content="t('common.table.edit')">
+              <a-tooltip :content="'编辑'">
                 <IconEdit
                   v-if="nodeData.editable"
                   style="position: absolute; right: 10px; font-size: 14px; top: 10px; color: #3370ff"
@@ -60,7 +60,7 @@
           <template #icon>
             <icon-plus size="16" theme="outline" />
           </template>
-          {{ t('common.add') }}
+          添加
         </a-button>
       </template>
       <template #index="{ record, rowIndex }">
@@ -70,8 +70,8 @@
       <template #status="{ record }">
         <!--  0 禁用 1启用 -->
         <a-switch v-model="record.status" :checked-value="1" :unchecked-value="0" @change="change(record)">
-          <template #checked> {{ t('common.status.normal') }} </template>
-          <template #unchecked> {{ t('common.status.disabled') }} </template>
+          <template #checked> 正常 </template>
+          <template #unchecked> 禁用 </template>
         </a-switch>
       </template>
       <template #operations="{ record }">
@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { useI18n } from 'vue-i18n'
+
   import { ColumnProps, MTableInstance } from '@/components/m-table/types'
   import { getDictList, getDictItemList } from '@/api/dict'
   import { Message, TreeNodeData } from '@arco-design/web-vue'
@@ -110,10 +110,9 @@
     data: null,
   })
 
-  const { t } = useI18n()
   const columns = computed<ColumnProps[]>(() => [
     {
-      title: t('basicTable.columns.index'),
+      title: '序号',
       dataIndex: 'index',
       slotName: 'index',
       width: 80,
@@ -121,44 +120,44 @@
     },
     {
       dataIndex: 'name',
-      title: t('form.name'),
+      title: '名称',
       // fixed: 'left',
       width: 120,
     },
     {
       dataIndex: 'code',
-      title: t('form.value'),
+      title: '字典值',
       width: 80,
     },
     {
       dataIndex: 'alias',
-      title: t('sys.dict.alias'),
+      title: '别名',
       width: 80,
     },
     {
       dataIndex: 'code',
-      title: t('form.code'),
+      title: '编码',
       width: 120,
     },
     {
-      title: t('form.quickCode'),
+      title: '速查代码',
       dataIndex: 'quickCode',
       width: 100,
     },
     {
-      title: t('form.sort'),
+      title: '序号',
       dataIndex: 'index',
       width: 100,
     },
     {
-      title: t('sys.dict.description'),
+      title: '描述',
       dataIndex: 'description',
       width: 320,
       ellipsis: true,
       tooltip: true,
     },
     {
-      title: t('role.column.status'),
+      title: '状态',
       dataIndex: 'status',
       slotName: 'status',
       align: 'center',
@@ -166,7 +165,7 @@
       fixed: 'right',
     },
     {
-      title: t('table.column.operation'),
+      title: '操作',
       dataIndex: 'operations',
       slotName: 'operations',
       width: 110,

@@ -9,7 +9,7 @@ const Components: ServerRouteRecordRaw[] = [
     component: DEFAULT_LAYOUT,
     meta: {
       id: '10',
-      locale: 'menu.table',
+      locale: '列表管理',
       icon: 'list',
       requiresAuth: true,
       order: 1,
@@ -20,7 +20,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'Base',
         component: () => import('@/views/table/base/index.vue'),
         meta: {
-          locale: 'menu.table.basic',
+          locale: '基础表格',
           requiresAuth: true,
           icon: 'menu',
           roles: ['*'],
@@ -32,7 +32,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'Tree',
         component: () => import('@/views/table/tree/index.vue'),
         meta: {
-          locale: 'menu.table.columnar',
+          locale: '分栏表格',
           requiresAuth: true,
           icon: 'mind-mapping',
           roles: ['*'],
@@ -48,7 +48,7 @@ const Components: ServerRouteRecordRaw[] = [
     component: DEFAULT_LAYOUT,
     meta: {
       id: '13',
-      locale: 'menu.form',
+      locale: '表单管理',
       icon: 'bookmark',
       requiresAuth: true,
       order: 1,
@@ -59,7 +59,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'Group',
         component: () => import('@/views/form/group/index.vue'),
         meta: {
-          locale: 'menu.form.basic',
+          locale: '基础表单',
           requiresAuth: true,
           icon: 'archive',
           roles: ['*'],
@@ -71,7 +71,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'Config',
         component: () => import('@/views/form/config/index.vue'),
         meta: {
-          locale: 'menu.form.config',
+          locale: '配置表单',
           requiresAuth: true,
           icon: 'tool',
           roles: ['*'],
@@ -87,7 +87,7 @@ const Components: ServerRouteRecordRaw[] = [
     component: DEFAULT_LAYOUT,
     meta: {
       id: '16',
-      locale: 'menu.form.menus',
+      locale: '多级菜单',
       icon: 'mind-mapping',
       requiresAuth: true,
       order: 1,
@@ -98,7 +98,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'second-1',
         component: () => import('@/views/multilevel/second1.vue'),
         meta: {
-          locale: 'menu.form.menus.second.1',
+          locale: '二级菜单-1',
           requiresAuth: true,
           icon: 'menu',
           roles: ['*'],
@@ -110,7 +110,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: 'second-2',
         component: PAGE_LAYOUT,
         meta: {
-          locale: 'menu.form.menus.second.2',
+          locale: '二级菜单-2',
           requiresAuth: true,
           icon: 'menu',
           roles: ['*'],
@@ -122,7 +122,7 @@ const Components: ServerRouteRecordRaw[] = [
             name: 'third-1',
             component: () => import('@/views/multilevel/third1.vue'),
             meta: {
-              locale: 'menu.form.menus.third.1',
+              locale: '三级级菜单-1',
               requiresAuth: true,
               icon: 'menu',
               roles: ['*'],
@@ -134,7 +134,7 @@ const Components: ServerRouteRecordRaw[] = [
             name: 'third-2',
             component: () => import('@/views/multilevel/third2.vue'),
             meta: {
-              locale: 'menu.form.menus.third.2',
+              locale: '三级级菜单-2',
               requiresAuth: true,
               icon: 'menu',
               roles: ['*'],
@@ -146,7 +146,7 @@ const Components: ServerRouteRecordRaw[] = [
             name: 'third-3',
             component: () => import('@/views/multilevel/third3.vue'),
             meta: {
-              locale: 'menu.form.menus.third.3',
+              locale: '三级级菜单-3',
               requiresAuth: true,
               icon: 'menu',
               roles: ['*'],
@@ -157,99 +157,6 @@ const Components: ServerRouteRecordRaw[] = [
       },
     ],
   },
-  // 常用组件
-  {
-    path: '/components',
-    name: 'Components',
-    component: DEFAULT_LAYOUT,
-    redirect: '/components/example',
-    meta: {
-      id: '14',
-      locale: 'menu.components',
-      icon: 'layers',
-      requiresAuth: true,
-      order: 1,
-      hideChildrenInMenu: true,
-      activeMenu: 'Components',
-    },
-    children: [
-      {
-        path: 'example',
-        name: 'Example',
-        component: () => import('@/views/components/index.vue'),
-        meta: {
-          locale: 'menu.components',
-          requiresAuth: true,
-          icon: 'folder',
-          roles: ['*'],
-          id: '1401',
-        },
-      },
-    ],
-  },
-  // 自定义指令
-  {
-    path: '/directive',
-    name: 'Directive',
-    component: DEFAULT_LAYOUT,
-    meta: {
-      id: '17',
-      locale: 'menu.directive',
-      icon: 'thunderbolt',
-      requiresAuth: true,
-      order: 1,
-    },
-    children: [
-      {
-        path: 'water-marker',
-        name: 'WaterMarker',
-        component: () => import('@/views/directive/water-marker/index.vue'),
-        meta: {
-          locale: 'menu.directive.water.marker',
-          requiresAuth: true,
-          icon: 'bg-colors',
-          roles: ['*'],
-          id: '1701',
-        },
-      },
-      {
-        path: 'throttle',
-        name: 'Throttle',
-        component: () => import('@/views/directive/throttle/index.vue'),
-        meta: {
-          locale: 'menu.directive.throttle',
-          requiresAuth: true,
-          icon: 'experiment',
-          roles: ['*'],
-          id: '1702',
-        },
-      },
-      {
-        path: 'debounce',
-        name: 'Debounce',
-        component: () => import('@/views/directive/debounce/index.vue'),
-        meta: {
-          locale: 'menu.directive.debounce',
-          requiresAuth: true,
-          icon: 'sync',
-          roles: ['*'],
-          id: '1702',
-        },
-      },
-      {
-        path: 'permission',
-        name: 'Permission',
-        component: () => import('@/views/directive/permission/index.vue'),
-        meta: {
-          locale: 'menu.directive.permission',
-          requiresAuth: true,
-          icon: 'lock',
-          roles: ['*'],
-          id: '1703',
-        },
-      },
-    ],
-  },
   // 异常管理
   {
     path: '/exception',
@@ -257,7 +164,7 @@ const Components: ServerRouteRecordRaw[] = [
     component: DEFAULT_LAYOUT,
     meta: {
       id: '15',
-      locale: 'menu.exception',
+      locale: '异常管理',
       icon: 'exclamation-circle',
       requiresAuth: true,
       order: 1,
@@ -268,7 +175,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: '403',
         component: () => import('@/views/exception/403/index.vue'),
         meta: {
-          locale: 'menu.exception.403',
+          locale: '403',
           requiresAuth: true,
           icon: 'clock-circle',
           roles: ['*'],
@@ -280,7 +187,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: '404',
         component: () => import('@/views/exception/404/index.vue'),
         meta: {
-          locale: 'menu.exception.404',
+          locale: '404',
           requiresAuth: true,
           icon: 'question-circle',
           roles: ['*'],
@@ -292,7 +199,7 @@ const Components: ServerRouteRecordRaw[] = [
         name: '500',
         component: () => import('@/views/exception/500/index.vue'),
         meta: {
-          locale: 'menu.exception.500',
+          locale: '500',
           requiresAuth: true,
           icon: 'close-circle',
           roles: ['*'],

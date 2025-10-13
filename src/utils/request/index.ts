@@ -1,6 +1,6 @@
 import isString from 'lodash/isString'
 import merge from 'lodash/merge'
-import type { InternalAxiosRequestConfig,AxiosRequestConfig ,AxiosResponse,AxiosError} from 'axios'
+import type { InternalAxiosRequestConfig, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import type { AxiosTransform, CreateAxiosOptions } from './axios-transform'
 import { VAxios } from './axios-service'
 import { joinTimestamp, formatRequestDate, setObjToUrlParams } from './utils'
@@ -108,7 +108,7 @@ const transform: AxiosTransform = {
   },
 
   // 请求拦截器处理，设置请求头
-    requestInterceptors: (config: AxiosRequestConfig) => {
+  requestInterceptors: (config: AxiosRequestConfig) => {
     // 请求之前处理config
     if (config?.url?.indexOf('/user/login') > -1) {
       // console.log('登录')
@@ -213,8 +213,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           },
         },
       },
-      opt || {}
-    )
+      opt || {},
+    ),
   )
 }
 

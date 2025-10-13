@@ -33,10 +33,12 @@
   const currentQuarter = ref(0)
 
   const props = defineProps({
+    /** 绑定值 */
     modelValue: {
       type: [String, Number],
       default: '',
     },
+    /** 提示文字 */
     placeholder: {
       type: String,
       default: '请选择季度',
@@ -76,7 +78,7 @@
         currentQuarter.value = 0
       }
     },
-    { immediate: true }
+    { immediate: true },
   )
 </script>
 

@@ -6,7 +6,7 @@
       @click="goto(itemData)"
     >
       <span class="tag-link">
-        {{ $t(itemData.title) }}
+        {{ itemData.title }}
       </span>
       <span class="arco-icon-hover arco-tag-icon-hover arco-icon-hover-size-large arco-tag-close-btn">
         <icon-close @click.stop="tagClose(itemData, index)" />
@@ -15,27 +15,27 @@
     <template #content>
       <a-doption :disabled="disabledReload" :value="Eaction.reload">
         <icon-refresh />
-        <span>{{ $t('tab.pane.reload') }}</span>
+        <span>重新加载</span>
       </a-doption>
       <a-doption class="sperate-line" :disabled="disabledCurrent" :value="Eaction.current">
         <icon-close />
-        <span>{{ $t('tab.pane.current') }}</span>
+        <span>关闭当前</span>
       </a-doption>
       <a-doption :disabled="disabledLeft" :value="Eaction.left">
         <icon-double-left />
-        <span>{{ $t('tab.pane.left') }}</span>
+        <span>关闭左侧</span>
       </a-doption>
       <a-doption class="sperate-line" :disabled="disabledRight" :value="Eaction.right">
         <icon-double-right />
-        <span>{{ $t('tab.pane.right') }}</span>
+        <span>关闭右侧</span>
       </a-doption>
       <a-doption :value="Eaction.others">
         <icon-swap />
-        <span>{{ $t('tab.pane.other') }}</span>
+        <span>关闭其他</span>
       </a-doption>
       <a-doption :value="Eaction.all">
         <icon-folder-delete />
-        <span>{{ $t('tab.pane.all') }}</span>
+        <span>关闭全部</span>
       </a-doption>
     </template>
   </a-dropdown>
@@ -54,7 +54,6 @@
   import type { TagProps } from '@/store/modules/tab-bar/types'
   import { DEFAULT_ROUTE_NAME, REDIRECT_ROUTE_NAME } from '@/router/constants'
 
-  // eslint-disable-next-line no-shadow
   enum Eaction {
     reload = 'reload',
     current = 'current',
@@ -195,7 +194,6 @@
       left: 5%;
       border-bottom: 2px solid rgb(var(--primary-6));
     }
-    
   }
   :deep(.arco-dropdown-option-content) {
     span {

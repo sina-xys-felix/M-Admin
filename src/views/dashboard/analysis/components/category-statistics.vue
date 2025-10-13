@@ -1,6 +1,6 @@
 <template>
   <a-spin :loading="loading" style="width: 100%">
-    <Card :title="$t('dashboard.analysis.categoryStatistics')">
+    <Card title="分类统计">
       <div class="chart">
         <MChart :option="chartOption" />
       </div>

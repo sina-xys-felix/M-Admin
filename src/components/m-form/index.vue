@@ -89,26 +89,41 @@
   import MSearchFormItem from '../m-search-form/components/index.vue'
   import MEditor from '@/components/m-editor/index.vue'
 
-  // 表单属性
+  /**表单属性*/
   interface MFormProps {
-    columns: MFormItemProps[] // 表单项配置
-    formData: AnyObject // 表单绑定的值,默认为{}
-    layout?: Layout // 表单的布局方式，包括水平、垂直、多列,默认为 horizontal
-    size?: Size //表单控件的尺寸,默认为medium
-    labelColProps?: ColProps //标签元素布局选项。参数同 <col> 组件一致,默认为 { span: 5, offset: 0 }
-    wrapperColProps?: ColProps //表单控件布局选项。参数同 <col> 组件一致,默认为{ span: 19, offset: 0 }
-    labelAlign?: Align //标签的对齐方向,默认为 right
-    disabled?: boolean //是否禁用表单,默认为 false
-    rules?: Record<string, FieldRule | FieldRule[]> //表单项校验规则,默认为 {}
-    autoLabelWidth?: boolean //是否开启自动标签宽度，仅在 layout="horizontal" 下生效。,默认为 false
-    id?: string //表单控件 id 的前缀,默认为 空
-    scrollToFirstError?: boolean //验证失败后滚动到第一个错误字段,默认为 false
+    /** 表单项配置 */
+    columns: MFormItemProps[]
+    /** 表单绑定的值,默认为{} */
+    formData: AnyObject
+    /** 表单的布局方式，包括水平、垂直、多列,默认为 horizontal */
+    layout?: Layout
+    /** 表单控件的尺寸,默认为medium */
+    size?: Size
+    /** 标签元素布局选项。参数同 <col> 组件一致,默认为 { span: 5, offset: 0 } */
+    labelColProps?: ColProps
+    /** 表单控件布局选项。参数同 <col> 组件一致,默认为{ span: 19, offset: 0 } */
+    wrapperColProps?: ColProps
+    /** 标签的对齐方向,默认为 right */
+    labelAlign?: Align
+    /** 是否禁用表单,默认为 false */
+    disabled?: boolean
+    /** 表单项校验规则,默认为 {} */
+    rules?: Record<string, FieldRule | FieldRule[]>
+    /** 是否开启自动标签宽度，仅在 layout="horizontal" 下生效。,默认为 false */
+    autoLabelWidth?: boolean
+    /** 表单控件 id 的前缀,默认为 空 */
+    id?: string
+    /** 验证失败后滚动到第一个错误字段,默认为 false */
+    scrollToFirstError?: boolean
+    /** form 组件的 style */
     style?: CSSProperties
+    /** form 组件的 classname */
     className?: string
+    /** 行属性配置 */
     rowConfig?: RowConfigProps
   }
 
-  // 设置默认值
+  /** 设置默认值 */
   const props = withDefaults(defineProps<MFormProps>(), {
     formData: () => {
       return {}
@@ -142,15 +157,15 @@
 
   const emits = defineEmits(['onSubmit'])
 
-  // Form DOM
+  /** Form 实例 */
   const mFormRef = ref<FormInstance>()
 
-  // 初始化表单项的列
+  /** 初始化表单项的列 */
   const formItems = ref<MFormItemProps[]>([])
 
   const onSubmit = async (
     data: { values: Record<string, any>; errors: Record<string, ValidatedError> | undefined },
-    ev: Event
+    ev: Event,
   ) => {
     const res = await mFormRef.value?.validate()
     if (!res) {
@@ -180,7 +195,7 @@
       if (newList.length) formItems.value = newList.sort((a, b) => a!.order! - b!.order!)
       else formItems.value = []
     },
-    { immediate: true, deep: true }
+    { immediate: true, deep: true },
   )
 
   defineExpose({

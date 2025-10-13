@@ -1,4 +1,5 @@
 import { StatusNumProps } from '@/common/types/index'
+
 export interface ICommonProps {
   code?: string | number
   enable?: boolean

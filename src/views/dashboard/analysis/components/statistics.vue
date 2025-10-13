@@ -4,7 +4,7 @@
       <a-avatar :size="64" style="background-color: var(--color-fill-2)">
         <MIconFont :name="`${item.icon}`" :size="42" />
       </a-avatar>
-      <a-statistic :title="$t(`${item.title}`)" :value="item.value" show-group-separator>
+      <a-statistic :title="item.title" :value="item.value" show-group-separator>
         <template #suffix>
           <icon-arrow-rise v-if="index % 2 === 0" style="color: rgb(var(--danger-6))" />
           <icon-arrow-fall v-else style="color: rgb(var(--success-6))" />
@@ -26,33 +26,33 @@
   const list = computed(() => {
     return [
       {
-        title: 'dashboard.analysis.statistics.visit',
-        value: Math.floor(Math.random()*1000),
+        title: '访问量',
+        value: Math.floor(Math.random() * 1000),
         icon: 'visit',
       },
       {
-        title: 'dashboard.analysis.statistics.like',
-        value: Math.floor(Math.random()*3000),
+        title: '点赞量',
+        value: Math.floor(Math.random() * 3000),
         icon: 'like',
       },
       {
-        title: 'dashboard.analysis.statistics.collect',
-        value: Math.floor(Math.random()*1000),
+        title: '收藏量',
+        value: Math.floor(Math.random() * 1000),
         icon: 'collect',
       },
       {
-        title: 'dashboard.analysis.statistics.comment',
-        value: Math.floor(Math.random()*2500),
+        title: '评论量',
+        value: Math.floor(Math.random() * 2500),
         icon: 'comment',
       },
       {
-        title: 'dashboard.analysis.statistics.share',
-        value: Math.floor(Math.random()*3500),
+        title: '分享量',
+        value: Math.floor(Math.random() * 3500),
         icon: 'share',
       },
       {
-        title: 'dashboard.analysis.statistics.add',
-        value: Math.floor(Math.random()*800),
+        title: '新增量',
+        value: Math.floor(Math.random() * 800),
         icon: 'add',
       },
     ]

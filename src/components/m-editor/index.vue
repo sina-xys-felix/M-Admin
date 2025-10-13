@@ -15,10 +15,10 @@
 
 <script setup lang="ts">
   import '@wangeditor/editor/dist/css/style.css'
-  import { onBeforeUnmount,  shallowRef, computed } from 'vue'
+  import { onBeforeUnmount, shallowRef, computed } from 'vue'
   import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
   import { IDomEditor, IToolbarConfig, IEditorConfig } from '@wangeditor/editor'
-  import {Message } from '@arco-design/web-vue'
+  import { Message } from '@arco-design/web-vue'
 
   defineOptions({ name: 'MEditor' })
 
@@ -59,7 +59,7 @@
 
   const emit = defineEmits(['update:modelValue', 'change'])
 
-  // 编辑器实例
+  /** 编辑器实例 */
   const editorRef = shallowRef<IDomEditor>()
 
   const valueHtml = computed({
@@ -79,7 +79,7 @@
     },
   })
 
-  // 常量配置
+  /** 常用配置 */
   const DEFAULT_UPLOAD_CONFIG = {
     maxFileSize: 3 * 1024 * 1024, // 3MB
     maxNumberOfFiles: 10,
@@ -87,20 +87,16 @@
     allowedFileTypes: ['image/*'],
   } as const
 
-  // 合并上传配置
+  /** 合并上传配置 */
   const mergedUploadConfig = computed(() => ({
     ...DEFAULT_UPLOAD_CONFIG,
     ...props.uploadConfig,
   }))
 
-  
-  // 上传服务器地址,这里暂且仅做示例，实际使用中替换为自己的API地址
-  const uploadServer = computed(
-    () =>
-      props.uploadConfig?.server || `${import.meta.env.VITE_API_BASE_URL}/api/upload`
-  )
+  /** 上传服务器地址,这里暂且仅做示例，实际使用中替换为自己的API地址 */
+  const uploadServer = computed(() => props.uploadConfig?.server || `${import.meta.env.VITE_API_BASE_URL}/api/upload`)
 
-  // 工具栏配置
+  /**  工具栏配置 */
   const toolbarConfig = computed((): Partial<IToolbarConfig> => {
     const config: Partial<IToolbarConfig> = {}
 
@@ -121,7 +117,7 @@
     return config
   })
 
-  // 编辑器配置
+  /** 编辑器配置 */
   const editorConfig: Partial<IEditorConfig> = {
     placeholder: props.placeholder,
     MENU_CONF: {
@@ -138,17 +134,17 @@
         onError(file: File, err: any, res: any) {
           console.error('图片上传失败:', err, res)
           Message.error('图片上传失败')
-        }
+        },
       },
     },
   }
 
-  // 编辑器创建回调
+  /** 编辑器创建回调 */
   const onCreateEditor = (editor: IDomEditor) => {
     editorRef.value = editor
   }
 
-    // 编辑器内容改变时触发
+  /** 编辑器内容改变时触发 */
   const onChange = (editor: IDomEditor) => {
     editorRef.value = editor
     const currentEditor = editorRef.value.getHtml()
@@ -156,16 +152,13 @@
     emit('change', currentEditor)
   }
 
-
   onBeforeUnmount(() => {
     const editor = editorRef.value
     if (editor) {
       editor.destroy()
     }
   })
-  
 
-   // 暴露编辑器实例和方法
   defineExpose({
     /** 获取编辑器实例 */
     getEditor: () => editorRef.value,

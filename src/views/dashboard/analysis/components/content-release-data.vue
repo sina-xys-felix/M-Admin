@@ -1,13 +1,12 @@
 <template>
   <a-spin :loading="loading" style="width: 100%">
-    <Card :title="$t('dashboard.analysis.contentReleaseData')">
+    <Card title="内容发布数据">
       <div class="chart">
         <MChart :option="chartOption" />
       </div>
     </Card>
   </a-spin>
 </template>
-
 
 <script lang="ts">
   export default {
@@ -35,7 +34,7 @@
     <span class="tooltip-value">
       ${Number(el.value).toLocaleString()}
     </span>
-  </div>`
+  </div>`,
       )
       .join('')
   }

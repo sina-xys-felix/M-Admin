@@ -1,6 +1,6 @@
 <template>
   <a-spin :loading="loading" style="width: 100%">
-    <Card :title="$t('dashboard.analysis.dataContent')">
+    <Card title="数据内容">
       <div class="chart">
         <MChart :option="chartOption" />
       </div>
@@ -56,7 +56,7 @@
         graphicElements.value[0].style.fill = '#4E5969'
         graphicElements.value[1].style.fill = '#4E5969'
       }
-    }
+    },
   )
 
   const { chartOption } = useChartOption((isDark) => {

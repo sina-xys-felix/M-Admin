@@ -3,7 +3,7 @@
     <MTable
       ref="xTableRef"
       :selectId="'id'"
-      :title="t('mer.menu')"
+      :title="'系统菜单'"
       :columns="columns"
       :bordered="{ cell: true }"
       :data="tableData"
@@ -14,7 +14,7 @@
     >
       <template #isShow="{ record }">
         <a-tag :color="record.isShow === true ? 'green' : 'red'">{{
-          record.isShow === true ? t('common.show') : t('common.hidden')
+          record.isShow === true ? '显示' : '隐藏'
         }}</a-tag>
       </template>
       <template #type="{ record }">
@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue'
-  import { useI18n } from 'vue-i18n'
+
   import { MenuItem } from '@arco-design/web-vue'
   import { ColumnProps, MTableInstance } from '@/components/m-table/types'
   import { getUserMenus } from '@/api/table'
@@ -36,48 +36,47 @@
   const tableData = ref([])
   const expandedRowKeys = ref<string[]>([])
 
-  const { t } = useI18n()
   const columns = computed<ColumnProps[]>(() => [
     {
       dataIndex: 'name',
-      title: t('mer.menu.name'),
+      title: '名称',
       width: 200,
     },
     {
       dataIndex: 'alias',
-      title: t('mer.menu.alias'),
+      title: '简称',
       width: 100,
     },
     {
-      title: t('mer.menu.quickCode'),
+      title: '速查码',
       dataIndex: 'quickCode',
       width: 150,
     },
     {
-      title: t('mer.menu.type'),
+      title: '类型',
       dataIndex: 'level',
       slotName: 'type',
       width: 100,
     },
     {
-      title: t('mer.menu.id'),
+      title: '标识',
       dataIndex: 'id',
       width: 100,
     },
     {
-      title: t('mer.menu.level'),
+      title: '层级',
       dataIndex: 'level',
       width: 100,
     },
     {
-      title: t('mer.menu.clientRouter'),
+      title: '路径',
       dataIndex: 'clientRouter',
       ellipsis: true,
       tooltip: true,
       width: 320,
     },
     {
-      title: t('mer.menu.isShow'),
+      title: '显示',
       dataIndex: 'isShow',
       slotName: 'isShow',
       width: 80,

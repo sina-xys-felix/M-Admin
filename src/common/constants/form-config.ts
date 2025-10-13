@@ -1,11 +1,31 @@
+/**
+ * 表单(项)常用配置
+ * */
 const FORM_CONFIG = {
+  /**
+   *  是否显示冒号
+   * */
   showColon: true,
-  // form
-  labelAlign: 'left', // 表单label对齐方式
-  layout: 'vertical', //表单对其方式 'horizontal' | 'vertical' | 'inline'
-  contentFlex: true, // 内容层是否开启 flex 布局
-  // item
-  hideAsterisk: false, // 表单必填是否显示星号
-  asteriskPosition: 'end', // 表单星号放于lable前还是后   'start' | 'end'
+  /**
+   * 标签的对齐方向
+   * */
+  labelAlign: 'left',
+  /**
+   * 表单的布局方式，包括水平、垂直、多列
+   * */
+  layout: 'vertical',
+  /**
+   * 内容层是否开启 flex 布局
+   * */
+  contentFlex: true,
+  /**
+   * 是否隐藏星号
+   * */
+  hideAsterisk: false,
+  /**
+   * 可选择将星号置于 label 前/后
+   * */
+  asteriskPosition: 'end',
 }
+
 export { FORM_CONFIG }

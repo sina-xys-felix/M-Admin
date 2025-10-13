@@ -1,4 +1,3 @@
-// * 请求枚举配置
 /**
  * @description：请求配置
  */
@@ -42,5 +41,4 @@ export enum ContentTypeEnum {
   FORM_URLENCODED = 'application/x-www-form-urlencoded;charset=UTF-8',
   // form-data 上传
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
-
 }

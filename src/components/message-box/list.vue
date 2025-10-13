@@ -50,10 +50,10 @@
     <template #footer>
       <a-space fill :size="0" :class="{ 'add-border-top': renderList.length < showMax }">
         <div class="footer-wrap">
-          <a-link @click="allRead">{{ $t('messageBox.allRead') }}</a-link>
+          <a-link @click="allRead">全部已读</a-link>
         </div>
         <div class="footer-wrap">
-          <a-link>{{ $t('messageBox.viewMore') }}</a-link>
+          <a-link>更多</a-link>
         </div>
       </a-space>
     </template>

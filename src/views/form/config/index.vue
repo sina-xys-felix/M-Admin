@@ -1,5 +1,5 @@
 <template>
-  <MBox :title="$t('menu.form.config')" :loading="loading" :is-back="false" @submit="handleSubmit" @cancel="onCancel">
+  <MBox title="配置表单" :loading="loading" :is-back="false" @submit="handleSubmit" @cancel="onCancel">
     <template #default="{ scroll }">
       <MForm
         ref="daynamicRef"
@@ -16,7 +16,6 @@
 </template>
 
 <script lang="tsx" setup>
-  import { useI18n } from 'vue-i18n'
   import { useAppStore } from '@/store'
   import useLoading from '@/hooks/loading'
   import MForm from '@/components/m-form/index.vue'
@@ -26,7 +25,6 @@
   const appStore = useAppStore()
   const { loading, setLoading } = useLoading()
 
-  const { t } = useI18n()
   const formData = ref({
     name: '',
     alias: '',
@@ -134,7 +132,7 @@
             data={cascaderOptions.value}
             requestParam={requestParam.value}
             fieldNames={{ value: 'value', label: 'label' }}
-            placeholder={t('common.select') + t('basicTable.actions.one')}
+            placeholder={'请选择机构'}
             mode={1}
             allowSearch
           />
@@ -162,10 +160,10 @@
         'label-col-props': { flex: '100px' },
         'wrapper-col-props': { flex: 1 },
       },
-      props:{
-        'checked-text':'启用',
-        'unchecked-text':'禁用',
-      }
+      props: {
+        'checked-text': '启用',
+        'unchecked-text': '禁用',
+      },
     },
     {
       field: 'editor',
@@ -204,7 +202,7 @@
     }
   }
 
-  const onCancel = async ()=>{
+  const onCancel = async () => {
     await daynamicRef.value?.element.clearValidate()
   }
 </script>

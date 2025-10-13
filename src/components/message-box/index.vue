@@ -3,17 +3,15 @@
     <a-tabs v-model:activeKey="messageType" type="rounded" destroy-on-hide>
       <a-tab-pane v-for="item in tabList" :key="item.key">
         <template #title>
-          <span> {{ $t(`${item.title}`) }} </span>
+          <span> {{ item.title }} </span>
         </template>
         <a-result v-if="!renderList.length" status="404">
-          <template #subtitle> {{ $t('messageBox.noContent') }} </template>
+          <template #subtitle>暂无内容 </template>
         </a-result>
         <List :render-list="renderList" :unread-count="unreadCount" @item-click="handleItemClick" />
       </a-tab-pane>
       <template #extra>
-        <a-button type="text" @click="emptyList">
-          {{ $t('messageBox.tab.button') }}
-        </a-button>
+        <a-button type="text" @click="emptyList"> 清空 </a-button>
       </template>
     </a-tabs>
   </a-spin>
@@ -50,15 +48,15 @@
   const tabList: TabItem[] = [
     {
       key: 'message',
-      title: 'messageBox.tab.title.message',
+      title: '消息',
     },
     {
       key: 'notice',
-      title: 'messageBox.tab.title.notice',
+      title: '通知',
     },
     {
       key: 'todo',
-      title: 'messageBox.tab.title.todo',
+      title: '待办',
     },
   ]
   async function fetchSourceData() {
@@ -86,10 +84,6 @@
   const getUnreadList = (type: string) => {
     const list = messageList.value.filter((item) => item.type === type && !item.status)
     return list
-  }
-  const formatUnreadLength = (type: string) => {
-    const list = getUnreadList(type)
-    return list.length ? `(${list.length})` : ``
   }
   const handleItemClick = (items: MessageListType) => {
     if (renderList.value.length) readMessage([...items])

@@ -4,7 +4,7 @@
       <template #image>
         <img src="@/assets/images/empty-2.png" alt="" />
       </template>
-      {{ t('common.empty') }}
+      暂无数据
     </a-empty>
   </div>
 </template>
@@ -16,16 +16,13 @@
 </script>
 
 <script lang="ts" setup>
-  import { useI18n } from 'vue-i18n'
-  interface XEmpty {
+  interface MEmpty {
     minHeight?: number | string
   }
 
-  withDefaults(defineProps<XEmpty>(), {
+  withDefaults(defineProps<MEmpty>(), {
     minHeight: 200,
   })
-
-  const { t } = useI18n()
 </script>
 
 <style lang="less" scoped>

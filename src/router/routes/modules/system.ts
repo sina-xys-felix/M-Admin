@@ -8,7 +8,7 @@ const MENUS: ServerRouteRecordRaw[] = [
     component: DEFAULT_LAYOUT,
     meta: {
       id: '10',
-      locale: 'menu.system',
+      locale: '系统管理',
       icon: 'apps',
       requiresAuth: true,
       order: 99,
@@ -21,7 +21,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         component: () => import('@/views/system/dictionaries/index.vue'),
         meta: {
           id: '1001',
-          locale: 'menu.system.dict',
+          locale: '字典管理',
           requiresAuth: true,
           icon: 'interaction',
           level: 2,
@@ -33,7 +33,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         component: () => import('@/views/system/roles/index.vue'),
         meta: {
           id: '1002',
-          locale: 'menu.system.role',
+          locale: '角色管理',
           requiresAuth: true,
           icon: 'user-group',
           level: 2,
@@ -45,7 +45,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         component: () => import('@/views/system/user/index.vue'),
         meta: {
           id: '1003',
-          locale: 'menu.system.user',
+          locale: '用户管理',
           requiresAuth: true,
           icon: 'user',
           level: 2,
@@ -57,7 +57,7 @@ const MENUS: ServerRouteRecordRaw[] = [
         component: () => import('@/views/system/menu/index.vue'),
         meta: {
           id: '1004',
-          locale: 'menu.system.menu',
+          locale: '系统菜单',
           requiresAuth: true,
           icon: 'menu',
           level: 2,

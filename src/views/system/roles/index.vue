@@ -2,7 +2,7 @@
   <div class="container">
     <MTable
       ref="roleTableRef"
-      :title="t('role.title')"
+      :title="'角色管理'"
       :selectId="'id'"
       :stripe="true"
       :columns="columns"
@@ -18,7 +18,7 @@
           <template #icon>
             <icon-plus size="16" theme="outline" />
           </template>
-          {{ t('common.add') }}
+          添加
         </a-button>
       </template>
       <!-- 自定义单元 -->
@@ -29,8 +29,8 @@
       <template #status="{ record }">
         <!--  0 禁用 1启用 -->
         <a-switch v-model="record.status" :checked-value="1" :unchecked-value="0" @change="change(record)">
-          <template #checked> {{ t('common.status.normal') }} </template>
-          <template #unchecked> {{ t('common.status.disabled') }} </template>
+          <template #checked> 正常 </template>
+          <template #unchecked> 禁用 </template>
         </a-switch>
       </template>
       <template #operations="{ record }">
@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
   import { ref, computed } from 'vue'
-  import { useI18n } from 'vue-i18n'
+
   import { getRoleList } from '@/api/role'
   import { ColumnProps, MTableInstance } from '@/components/m-table/types'
   import type { TableColumnData } from '@arco-design/web-vue/es/table/interface'
@@ -67,7 +67,6 @@
   // roleTableRef DOM
   const roleTableRef = ref<MTableInstance>()
 
-  const { t } = useI18n()
   const formModel = ref(generateFormModel())
 
   type Columns = TableColumnData & ColumnProps
@@ -75,7 +74,7 @@
   // 表格配置列
   const columns = computed<Columns[]>(() => [
     {
-      title: t('table.column.index'),
+      title: '序号',
       dataIndex: 'index',
       slotName: 'index',
       width: 80,
@@ -83,7 +82,7 @@
       // fixed: 'left',
     },
     {
-      title: t('role.column.name'),
+      title: '名称',
       dataIndex: 'name',
       width: 120,
       search: {
@@ -94,39 +93,39 @@
       // fixed: 'left',
     },
     {
-      title: t('role.column.alias'),
+      title: '别名',
       dataIndex: 'alias',
       width: 100,
     },
     {
-      title: t('role.column.code'),
+      title: '代码',
       dataIndex: 'code',
       width: 130,
     },
     {
-      title: t('role.column.quickCode'),
+      title: '速查码',
       dataIndex: 'quickCode',
       width: 130,
     },
     {
-      title: t('role.column.descripton'),
+      title: '描述',
       dataIndex: 'descripton',
       ellipsis: true,
       tooltip: true,
       minWidth: 240,
     },
     {
-      title: t('role.column.start'),
+      title: '启用时间',
       dataIndex: 'start',
       width: 180,
     },
     {
-      title: t('role.column.end'),
+      title: '停用时间',
       dataIndex: 'end',
       width: 180,
     },
     {
-      title: t('role.column.status'),
+      title: '状态',
       dataIndex: 'status',
       slotName: 'status',
       width: 100,
@@ -134,7 +133,7 @@
       align: 'center',
     },
     {
-      title: t('table.column.operation'),
+      title: '操作',
       dataIndex: 'operations',
       slotName: 'operations',
       width: 130,

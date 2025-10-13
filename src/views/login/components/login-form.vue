@@ -6,16 +6,16 @@
         M-Admin
       </div>
       <div class="desc">
-        <span>{{ $t('login.banner.slogan1') }}</span>
-        <span> {{ $t('login.banner.subSlogan1') }}</span>
+        <span>一款开箱即用的后台管理系统</span>
+        <span>丰富的的页面模板，覆盖大多数典型业务场景</span>
       </div>
     </div>
     <div class="login-right">
-      <div class="login-right-title">{{ $t('login.form.title') }}</div>
+      <div class="login-right-title">欢迎登录</div>
       <a-form ref="loginForm" :model="userInfo" class="login-form" layout="vertical" @submit="handleSubmit">
         <a-form-item
           field="account"
-          :rules="[{ required: true, message: $t('login.form.account.errMsg') }]"
+          :rules="[{ required: true, message: '用户名错误' }]"
           :validate-trigger="['change', 'blur']"
           hide-label
         >
@@ -27,7 +27,7 @@
         </a-form-item>
         <a-form-item
           field="password"
-          :rules="[{ required: true, message: $t('login.form.password.errMsg') }]"
+          :rules="[{ required: true, message: '密码不能为空' }]"
           :validate-trigger="['change', 'blur']"
           hide-label
         >
@@ -45,12 +45,11 @@
         </a-form-item>
         <a-form-item
           field="code"
-          :rules="[{ required: true, message: $t('login.form.verifyCode.errMsg') }]"
+          :rules="[{ required: true, message: '验证码错误' }]"
           :validate-trigger="['change', 'blur']"
           hide-label
         >
-          <a-input size="large" v-model="userInfo.code" :placeholder="$t('login.form.verifyCode')" allow-clear>
-          </a-input>
+          <a-input size="large" v-model="userInfo.code" placeholder="验证码" allow-clear> </a-input>
           <VueVerifyCode
             ref="verifyCodeRef"
             :width="74"
@@ -67,7 +66,7 @@
               :model-value="loginConfig.rememberPassword"
               @change="setRememberPassword"
             >
-              {{ $t('login.form.rememberPassword') }}
+              忘记密码
             </a-checkbox>
           </div>
           <a-button
@@ -78,7 +77,7 @@
             long
             :loading="loading"
           >
-            {{ $t('login.form.login') }}
+            登录
           </a-button>
         </a-space>
       </a-form>
@@ -96,7 +95,6 @@
   import { ValidatedError, Message } from '@arco-design/web-vue'
   import { useStorage } from '@vueuse/core'
   import { useUserStore } from '@/store'
-  import { useI18n } from 'vue-i18n'
   import useLoading from '@/hooks/loading'
   import VueVerifyCode from './verify-code.vue'
 
@@ -105,7 +103,6 @@
   const visibility = ref(true)
   const { loading, setLoading } = useLoading()
   const userStore = useUserStore()
-  const { t } = useI18n()
 
   const verifyCodeRef = ref()
 
@@ -155,11 +152,11 @@
         const res = await userStore.login(formData)
         if (res) {
           router.push({
-            name: 'Welcome',
+            name: 'Analysis',
           })
-          Message.success(t('login.form.login.success'))
+          Message.success('登录成功!')
         } else {
-          Message.success(t('login.form.login.errMsg'))
+          Message.success('登录失败!')
         }
         const { rememberPassword } = loginConfig.value
         const { account, password } = values

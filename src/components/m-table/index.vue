@@ -304,14 +304,6 @@
     showExpand: true,
   })
 
-  // 组件异步加载
-  // const MTree = defineAsyncComponent({
-  //   loader: () => import('@/components/m-tree/index.vue'),
-  //   loadingComponent: MEmpty,
-  //   delay: 15, // 毫秒
-  //   errorComponent: MEmpty,
-  //   timeout: 3000, // 毫秒
-  // })
   //  插槽集
   const slots = useSlots()
   //  用来记录是否使用了子标题 插槽
@@ -386,7 +378,7 @@
   const searchColumns = props.columns
     .filter(
       (item) =>
-        (item.search?.el && item.search?.isShow !== false) || (item.search?.render && item.search?.isShow !== false)
+        (item.search?.el && item.search?.isShow !== false) || (item.search?.render && item.search?.isShow !== false),
     )
     .sort((a, b) => a.search!.order! - b.search!.order!)
   // 此处 是否合理
@@ -401,7 +393,7 @@
   const treeConfig = ref<any>()
   treeConfig.value = treeColumns && treeColumns[0]?.search
 
-  tableScroll.value = document.documentElement.offsetHeight -181
+  tableScroll.value = document.documentElement.offsetHeight - 181
   const cacheName = props.remember ? `${findQuickCode(props.title)}SearchCache` : ''
   const searchCache = props.remember ? JSON.parse(localStorage.getItem(cacheName)!) || {} : {}
   const tableInitParams = props.remember ? Object.assign({}, props.initParam, searchCache) : props.initParam
@@ -527,14 +519,14 @@
         }
       }
     },
-    { immediate: true, deep: true }
+    { immediate: true, deep: true },
   )
 
   watch(
     () => props.expandedRowKeys,
     (newVal) => {
       activeRowkeys.value = newVal
-    }
+    },
   )
 
   // 监听页面 initParam 改化，重新获取表格数据
@@ -546,30 +538,30 @@
       if (value) {
         maxHeight.value = document.documentElement.offsetHeight - 173
       } else {
-        maxHeight.value = document.documentElement.offsetHeight -133
+        maxHeight.value = document.documentElement.offsetHeight - 133
       }
     },
-    { immediate: true, deep: true }
+    { immediate: true, deep: true },
   )
 
   watch(
     () => appStore.menuCollapse,
     (newVal) => {
       if (newVal) {
-        maxWidth.value = document.documentElement.offsetWidth -138
+        maxWidth.value = document.documentElement.offsetWidth - 138
       } else {
         maxWidth.value = document.documentElement.offsetWidth - 90 - config.menuWidth
       }
       horizontalScroll.value = props.xScroll === true ? maxWidth.value : props.xScroll
     },
-    { immediate: true }
+    { immediate: true },
   )
 
   const onResize = () => {
     maxHeight.value = document.documentElement.offsetHeight - (appStore.footer ? 164 : 124) - 9
     tableScroll.value = document.documentElement.offsetHeight - 197
     if (appStore.menuCollapse) {
-      maxWidth.value = document.documentElement.offsetWidth -138
+      maxWidth.value = document.documentElement.offsetWidth - 138
     } else {
       maxWidth.value = document.documentElement.offsetWidth - 48 - config.menuWidth
     }

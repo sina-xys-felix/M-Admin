@@ -52,25 +52,6 @@ export function isWindow(el: any): el is Window {
   return el === window
 }
 
-// 是否为空
-export function isEmpty(obj) {
-  return Reflect.ownKeys(obj).length === 0 && obj.constructor === Object
-}
-
-// 月份差
-export function monthDiff(startDate, endDate) {
-  return Math.max(0, (endDate.getFullYear() - startDate.getFullYear()) * 12 - startDate.getMonth() + endDate.getMonth())
-}
-
-// 一步从时间中提取年月日时分秒
-export function extract(date) {
-  const d = new Date(new Date(date).getTime() + 8 * 3600 * 1000)
-  return new Date(d)
-    .toISOString()
-    .split(/[^0-9]/)
-    .slice(0, -1)
-}
-
 export function filterEmpty(value) {
   if (!value) return '--'
   return value

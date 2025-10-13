@@ -2,7 +2,7 @@ export default {
   path: 'https://gitee.com/sina_xys/M-Admin',
   name: 'MFaq',
   meta: {
-    locale: 'menu.document.url',
+    locale: '项目地址(外链)',
     icon: 'link',
     requiresAuth: false,
     order: 101,

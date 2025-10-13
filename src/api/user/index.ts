@@ -3,7 +3,7 @@ import { UserParams, UserProps } from './types'
 
 /**
  * @name 角色管理API
- * @author xuyingping
+ * @author m-admin
  * */
 
 const api = {

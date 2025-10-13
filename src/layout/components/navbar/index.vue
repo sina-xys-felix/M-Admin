@@ -32,40 +32,17 @@
     </div>
     <ul class="right-side">
       <li>
-        <a-tooltip :content="$t('settings.language')">
-          <a-button
-            class="nav-btn"
-            type="text"
-            :shape="'circle'"
-            @click="setDropDownVisible"
-          >
+        <a-tooltip content="数据大屏">
+          <a-button class="nav-btn" type="text" :shape="'circle'" @click="openScreen">
             <template #icon>
-              <icon-language  />
+              <icon-desktop />
             </template>
           </a-button>
         </a-tooltip>
-        <a-dropdown trigger="click" @select="changeLocale">
-          <div ref="triggerBtn" class="trigger-btn"></div>
-          <template #content>
-            <a-doption v-for="item in locales" :key="item.value" :value="item.value">
-              <template #icon>
-                <icon-check v-show="item.value === currentLocale" />
-              </template>
-              {{ item.label }}
-            </a-doption>
-          </template>
-        </a-dropdown>
       </li>
       <li>
-        <a-tooltip
-          :content="theme === 'light' ? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')"
-        >
-          <a-button
-            class="nav-btn"
-            type="text"
-            :shape="'circle'"
-            @click="handleToggleTheme"
-          >
+        <a-tooltip :content="theme === 'light' ? '点击切换为暗黑模式' : '点击切换为亮色模式'">
+          <a-button class="nav-btn" type="text" :shape="'circle'" @click="handleToggleTheme">
             <template #icon>
               <icon-moon-fill v-if="theme === 'dark'" />
               <icon-sun-fill v-else />
@@ -74,15 +51,10 @@
         </a-tooltip>
       </li>
       <li>
-        <a-tooltip :content="$t('settings.navbar.alerts')">
+        <a-tooltip content="消息通知">
           <div class="message-box-trigger">
             <a-badge :count="9" dot>
-              <a-button
-                class="nav-btn"
-                type="text"
-                :shape="'circle'"
-                @click="setPopoverVisible"
-              >
+              <a-button class="nav-btn" type="text" :shape="'circle'" @click="setPopoverVisible">
                 <icon-notification />
               </a-button>
             </a-badge>
@@ -101,13 +73,8 @@
         </a-popover>
       </li>
       <li>
-        <a-tooltip :content="isFullscreen ? $t('settings.navbar.screen.toExit') : $t('settings.navbar.screen.toFull')">
-          <a-button
-            class="nav-btn"
-            type="text"
-            :shape="'circle'"
-            @click="toggleFullScreen"
-          >
+        <a-tooltip :content="isFullscreen ? '点击退出全屏模式' : '点击切换全屏模式'">
+          <a-button class="nav-btn" type="text" :shape="'circle'" @click="toggleFullScreen">
             <template #icon>
               <icon-fullscreen-exit v-if="isFullscreen" />
               <icon-fullscreen v-else />
@@ -116,13 +83,8 @@
         </a-tooltip>
       </li>
       <li>
-        <a-tooltip :content="$t('settings.title')">
-          <a-button
-            class="nav-btn"
-            type="text"
-            :shape="'circle'"
-            @click="setVisible"
-          >
+        <a-tooltip content="页面配置">
+          <a-button class="nav-btn" type="text" :shape="'circle'" @click="setVisible">
             <template #icon>
               <icon-settings />
             </template>
@@ -138,33 +100,25 @@
             <a-doption>
               <a-space @click="handleClick('1')">
                 <icon-tag class="icon-normal" />
-                <span>
-                  {{ $t('navbar.action.document') }}
-                </span>
+                <span> 项目文档 </span>
               </a-space>
             </a-doption>
             <a-doption>
               <a-space @click="handleClick('2')">
                 <icon-google-circle-fill class="icon-success" />
-                <span>
-                  {{ $t('navbar.action.gitee') }}
-                </span>
+                <span> Gitee源码 </span>
               </a-space>
             </a-doption>
             <a-doption>
               <a-space @click="handleClick('3')">
                 <icon-github class="icon-normal" />
-                <span>
-                  {{ $t('navbar.action.github') }}
-                </span>
+                <span> Github源码 </span>
               </a-space>
             </a-doption>
             <a-doption>
               <a-space @click="handleLogout">
                 <icon-export class="icon-success" />
-                <span>
-                  {{ $t('messageBox.logout') }}
-                </span>
+                <span> 退出登录 </span>
               </a-space>
             </a-doption>
           </template>
@@ -178,17 +132,13 @@
   import { computed, ref, inject } from 'vue'
   import { useDark, useToggle, useFullscreen } from '@vueuse/core'
   import { useAppStore } from '@/store'
-  import { LOCALE_OPTIONS } from '@/locale'
-  import useLocale from '@/hooks/locale'
   import useUser from '@/hooks/user'
   import Menu from '@/layout/components/menu/index.vue'
   import MessageBox from '@/components/message-box/index.vue'
 
   const appStore = useAppStore()
   const { logout } = useUser()
-  const { changeLocale, currentLocale } = useLocale()
   const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
-  const locales = [...LOCALE_OPTIONS]
   const theme = computed(() => {
     return appStore.theme
   })
@@ -200,7 +150,6 @@
     valueLight: 'light',
     storageKey: 'arco-theme',
     onChanged(dark: boolean) {
-      // overridden default behavior
       appStore.toggleTheme(dark)
     },
   })
@@ -212,7 +161,7 @@
     appStore.updateSettings({ globalSettings: true })
   }
   const refBtn = ref()
-  const triggerBtn = ref()
+
   const setPopoverVisible = () => {
     const event = new MouseEvent('click', {
       view: window,
@@ -223,14 +172,6 @@
   }
   const handleLogout = () => {
     logout()
-  }
-  const setDropDownVisible = () => {
-    const event = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    })
-    triggerBtn.value.dispatchEvent(event)
   }
   const handleClick = async (type: string) => {
     if (type === '1') {
@@ -244,6 +185,12 @@
     }
   }
   const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void
+
+  const router = useRouter()
+  const openScreen = () => {
+    const routeData = router.resolve({ path: '/dataview' })
+    window.open(routeData.href, '_blank')
+  }
 </script>
 
 <style scoped lang="less">

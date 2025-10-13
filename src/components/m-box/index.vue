@@ -4,7 +4,7 @@
       <div class="box-header" :class="{ 'border-bottom': borderedBottom }">
         <slot name="title" v-if="isTitle"></slot>
         <template v-else>
-          <a-tooltip placement="top" :content="$t('exception.result.403.back')">
+          <a-tooltip placement="top" content="返回">
             <div v-if="isBack" class="back" @click="goBack">
               <icon-arrow-fall class="icon" />
             </div>
@@ -20,13 +20,13 @@
           <a-space>
             <a-button :loading="loading" html-type="submit" @click="onSubmit('cancel')">
               <template #icon><icon-refresh /></template>
-              {{ $t('common.cancel') }}
+              取消
             </a-button>
             <a-button type="primary" :loading="loading" html-type="submit" @click="onSubmit('submit')">
               <template #icon>
                 <icon-check />
               </template>
-              {{ $t('common.submit') }}
+              提交
             </a-button>
             <slot name="extra"></slot>
           </a-space>
@@ -98,6 +98,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--color-bg-1);
+
     &-header {
       height: 48px;
       padding: 8px 16px;
@@ -124,6 +125,7 @@
         margin-right: 8px;
         margin-top: 2px;
         cursor: pointer;
+
         .icon {
           color: #fff;
           font-weight: 600;
@@ -131,13 +133,16 @@
         }
       }
     }
+
     &-content {
       flex: 1;
       padding: 16px;
+
       div {
         height: 100%;
       }
     }
+
     &-footer {
       height: 48px;
       padding: 8px 16px;
@@ -146,12 +151,15 @@
       align-items: center;
     }
   }
+
   .border {
     border: 1px solid var(--color-neutral-3);
   }
+
   .border-bottom {
     border-bottom: 1px solid var(--color-neutral-3);
   }
+
   .border-top {
     border-top: 1px solid var(--color-neutral-3);
   }

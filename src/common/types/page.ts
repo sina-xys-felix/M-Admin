@@ -1,4 +1,4 @@
-// 组件内传输的值类型
+/** 组件传输参数  */
 export interface routerParams {
   id?: string
   type?: number

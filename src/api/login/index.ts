@@ -4,7 +4,7 @@ import { LoginData } from './types'
 
 /**
  * @name 登录模块
- * @author xuyingping
+ * @author m-admin
  * */
 
 const Api = {
@@ -19,7 +19,7 @@ const Api = {
 export const login = (data: LoginData) => {
   return request.post<Result>({
     url: `${Api.login}`,
-    data
+    data,
   })
 }
 

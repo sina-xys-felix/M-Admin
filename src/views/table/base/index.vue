@@ -2,7 +2,7 @@
   <div class="container">
     <MTable
       ref="basicTableRef"
-      :title="t('menu.list.basicTable')"
+      :title="'基础表格'"
       :columns="columns"
       :bordered="{ cell: true }"
       :selectId="'id'"
@@ -17,7 +17,7 @@
             <template #icon>
               <icon-plus theme="outline" size="16" />
             </template>
-            {{ t('common.add') }}
+            新增
           </a-button>
           <a-button
             type="primary"
@@ -28,7 +28,7 @@
             <template #icon>
               <icon-delete theme="outline" size="16" />
             </template>
-            {{ t('common.table.delete') }}
+            删除
           </a-button>
         </a-space>
       </template>
@@ -37,7 +37,7 @@
           <template #icon>
             <icon-export theme="outline" size="16" />
           </template>
-          {{ t('common.export') }}
+          导出
         </a-button>
       </template>
 
@@ -54,7 +54,12 @@
         </a-avatar>
       </template>
       <template #filterType="{ record }">
-        {{ t(`basicTable.form.filterType.${record.filterType}`) }}
+        {{
+          {
+            rules: '规则筛选',
+            artificial: '人工筛选',
+          }[record.filterType] || record.filterType
+        }}
       </template>
       <template #count="{ record }">
         <a-statistic :value="Number(record.count)" show-group-separator :value-style="{ fontSize: '14px' }">
@@ -69,8 +74,8 @@
           checked-color="#165dff"
           unchecked-color="#ff5722"
         >
-          <template #checked> {{ t('common.status.normal') }} </template>
-          <template #unchecked> {{ t('common.status.disabled') }} </template>
+          <template #checked> 正常 </template>
+          <template #unchecked> 禁用 </template>
         </a-switch>
       </template>
       <template #createdTime="{ record }">
@@ -90,15 +95,12 @@
 </script>
 
 <script lang="ts" setup>
-  import { useI18n } from 'vue-i18n'
   import { Message } from '@arco-design/web-vue'
   import { MTableInstance, ColumnProps } from '@/components/m-table/types'
   import { DataCallBackProps } from '@/api/types'
   import { AnyObject } from '@/common/types/global'
   import { queryBasicList } from '@/api/table'
   import { Operations } from '@/common/enums/status-enum'
-
-  const { t } = useI18n()
 
   const generateFormModel = () => {
     return {
@@ -115,24 +117,24 @@
 
   const statusOptions = computed(() => [
     {
-      label: t('common.status.normal'),
+      label: '正常',
       value: '1',
     },
     {
-      label: t('common.status.disabled'),
+      label: '禁用',
       value: '0',
     },
   ])
 
   const columns = computed<ColumnProps[]>(() => [
     {
-      title: t('basicTable.columns.avatar'),
+      title: '头像',
       dataIndex: 'avatar',
       slotName: 'avatar',
       width: 72,
     },
     {
-      title: t('basicTable.columns.name'),
+      title: '名称',
       dataIndex: 'name',
       width: 120,
       search: {
@@ -141,7 +143,7 @@
       },
     },
     {
-      title: t('basicTable.columns.phone'),
+      title: '手机号',
       dataIndex: 'phone',
       width: 160,
       search: {
@@ -150,7 +152,7 @@
       },
     },
     {
-      title: t('basicTable.columns.email'),
+      title: '电子邮箱',
       dataIndex: 'email',
       width: 240,
       ellipsis: true,
@@ -161,18 +163,18 @@
       },
     },
     {
-      title: t('basicTable.columns.filterType'),
+      title: '数据来源',
       dataIndex: 'filterType',
       slotName: 'filterType',
       width: 160,
       filterable: {
         filters: [
           {
-            text: t('basicTable.form.filterType.rules'),
+            text: '规则筛选',
             value: 'rules',
           },
           {
-            text: t('basicTable.form.filterType.artificial'),
+            text: '人工筛选',
             value: 'artificial',
           },
         ],
@@ -182,7 +184,7 @@
       },
     },
     {
-      title: t('basicTable.columns.count'),
+      title: '支付金额',
       dataIndex: 'count',
       slotName: 'count',
       width: 120,
@@ -192,18 +194,20 @@
       },
     },
     {
-      title: t('basicTable.columns.address'),
+      title: '详细地址',
       dataIndex: 'address',
       minWidth: 160,
+      ellipsis: true,
+      tooltip: true,
     },
     {
-      title: t('basicTable.columns.createdTime'),
+      title: '创建时间',
       dataIndex: 'createdTime',
       slotName: 'createdTime',
       width: 120,
     },
     {
-      title: t('basicTable.columns.status'),
+      title: '状态',
       dataIndex: 'status',
       slotName: 'status',
       align: 'center',
@@ -215,7 +219,7 @@
       },
     },
     {
-      title: t('basicTable.columns.operations'),
+      title: '操作',
       dataIndex: 'operations',
       slotName: 'operations',
       width: 220,

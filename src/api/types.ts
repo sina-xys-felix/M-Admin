@@ -2,7 +2,7 @@ import { AnyObject } from '@/common/types/global'
 
 /**
  * @name Api中共用的types
- * @author xuyingping
+ * @author m-admin
  * */
 export interface DeleteParams {
   id: string

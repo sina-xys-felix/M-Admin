@@ -14,8 +14,6 @@ import MTable from './m-table/index.vue'
 import MBtnGroup from './m-button-group/index.vue'
 import MDict from './m-dict/index.vue'
 
-// Manually introduce ECharts modules to reduce packing size
-
 use([
   CanvasRenderer,
   BarChart,

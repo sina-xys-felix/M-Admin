@@ -54,7 +54,6 @@ interface MFormItemProps {
   offset?: number // 表单项偏移栅格数
   flex?: ColTypes
   colProps?: ColProps // a-col 的其他属性
-
   field: string // 表单元素在数据对象中的path（数据项必填）
   label?: string // 标签的文本
   showColon?: boolean // 是否显示冒号

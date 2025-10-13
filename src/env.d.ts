@@ -19,4 +19,3 @@ interface ImportMetaEnv {
 }
 
 declare module 'vue-img-cutter'
-declare module 'qrcode'

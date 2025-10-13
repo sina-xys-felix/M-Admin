@@ -3,7 +3,7 @@ import IStaffProps from './types'
 import { IPageable } from '../types'
 /**
  * @name 职员接口API
- * @author xuyingping
+ * @author m-admin
  * */
 
 const Api = {

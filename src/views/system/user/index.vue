@@ -2,7 +2,7 @@
   <div class="container">
     <MTable
       ref="staffTableRef"
-      :title="t('staff.title')"
+      :title="'职员管理'"
       :selectId="'memberId'"
       :columns="columns"
       :bordered="{ cell: true }"
@@ -17,7 +17,7 @@
           <template #icon>
             <icon-plus theme="outline" size="16" />
           </template>
-          {{ t('common.add') }}
+          添加
         </a-button>
       </template>
       <!-- 自定义单元 -->
@@ -26,7 +26,7 @@
       </template>
       <template #status="{ record }">
         <a-tag :color="record.status === 1 ? 'green' : 'red'">{{
-          record.status === 1 ? t('common.status.normal') : t('common.status.disabled')
+          record.status === 1 ? '正常' : '禁用'
         }}</a-tag>
       </template>
       <template #operations="{ record }">
@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
   import { computed, ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
+
   import { Operations } from '@/common/enums/status-enum'
   import { geStaffList } from '@/api/staff/index'
   import { Message, SelectOptionData, TableColumnData } from '@arco-design/web-vue'
@@ -56,36 +56,34 @@
 
   const staffTableRef = ref<MTableInstance>()
 
-  const { t } = useI18n()
-
   const formModel = ref(generateFormModel())
 
   const statusOptions = computed<SelectOptionData[]>(() => [
     {
-      label: t('common.status.normal'),
+      label: '正常',
       value: '1',
     },
     {
-      label: t('common.status.disabled'),
+      label: '禁用',
       value: '0',
     },
   ])
 
   const columns = computed<TableColumnData[]>(() => [
     {
-      title: t('table.column.index'),
+      title: '序号',
       dataIndex: 'index',
       slotName: 'index',
       width: 80,
       align: 'center',
     },
     {
-      title: t('staff.column.no'),
+      title: '工号',
       dataIndex: 'no',
       width: 150,
     },
     {
-      title: t('staff.column.name'),
+      title: '姓名',
       dataIndex: 'name',
       isShow: true,
       width: 150,
@@ -96,18 +94,18 @@
       },
     },
     {
-      title: t('staff.column.nickName'),
+      title: '昵称',
       dataIndex: 'nickName',
       isShow: true,
       width: 120,
     },
     {
-      title: t('staff.column.idNumber'),
+      title: '身份证',
       dataIndex: 'idNumber',
       minWidth: 180,
     },
     {
-      title: t('staff.column.mobile'),
+      title: '手机号',
       dataIndex: 'mobile',
       width: 150,
       search: {
@@ -117,17 +115,17 @@
       },
     },
     {
-      title: t('staff.column.entryTime'),
+      title: '入职时间',
       dataIndex: 'entryTime',
       width: 120,
     },
     {
-      title: t('staff.column.leaveTime'),
+      title: '离职时间',
       dataIndex: 'leaveTime',
       width: 120,
     },
     {
-      title: t('staff.column.status'),
+      title: '状态',
       dataIndex: 'status',
       slotName: 'status',
       align: 'center',
@@ -140,7 +138,7 @@
       },
     },
     {
-      title: t('table.column.operation'),
+      title: '操作',
       dataIndex: 'operations',
       slotName: 'operations',
       width: 130,

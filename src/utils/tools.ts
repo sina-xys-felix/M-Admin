@@ -1,5 +1,4 @@
 import { pinyin } from 'pinyin-pro'
-import { isArray } from './is'
 import { AnyFn } from '@vueuse/core'
 
 /**
@@ -13,29 +12,6 @@ export const handleProp = (prop: string) => {
   return propArr[propArr.length - 1]
 }
 
-/**
- * @description 处理无数据情况
- * @param {String} callValue 需要处理的值
- * @return
- * */
-export function formatValue(callValue: AnyFn) {
-  // 如果当前值为数组,使用 / 拼接（根据需求自定义）
-  if (isArray(callValue)) return callValue.length ? callValue.join(' / ') : '--'
-  return callValue ?? '--'
-}
-
-//身份证验证
-export function checkId(value: string, callback: AnyFn) {
-  if (value) {
-    if (/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(value)) {
-      // callback({ result: true })
-    } else {
-      callback('请输入正确的身份证号码')
-    }
-  } else {
-    // callback('请输入正确的身份证号码')
-  }
-}
 // 必填
 export function checkIdBT(value: string, callback: AnyFn) {
   if (value) {
@@ -113,26 +89,7 @@ export function analyzeIDCard(IDCard: string) {
   return getDataByIdCard
 }
 
-/**
- * 屏幕缩放
- * width: 1920px;
- * height: 1080px;
- * transform-origin: 0 0;
- * position: absolute;
- * left: 50%;
- * top: 50%;
- * transform: translate(-50%, -50%) scale(1);
- */
-export function resizeScreen(width = 1920, height = 1080) {
-  const scaleX = window.innerWidth / width
-  const scaleY = window.innerHeight / height
-  const scale = Math.min(scaleX, scaleY)
-  document.getElementById('app').style.transform = `scale(${scale})`
-}
-
-
-
-export function base64ToFile(base64String:string, filename:string, mimeType:string) {
+export function base64ToFile(base64String: string, filename: string, mimeType: string) {
   // 移除Base64前缀（如果有）
   const base64WithoutPrefix = base64String.split(',')[1] || base64String
 
@@ -157,12 +114,11 @@ export function base64ToFile(base64String:string, filename:string, mimeType:stri
   return new File([blob], filename, { type: mimeType })
 }
 
-
- export function fileToBase64(file:File) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-      });
-    }
+export function fileToBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = (error) => reject(error)
+  })
+}

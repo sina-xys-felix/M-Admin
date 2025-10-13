@@ -4,7 +4,7 @@ import { AnyObject } from '@/common/types/global'
 
 /**
  * @name 字典集合API
- * @author xuyingping
+ * @author m-admin
  */
 
 type DictItemSearchProps = DictItemSearch & AnyObject

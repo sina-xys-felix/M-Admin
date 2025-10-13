@@ -9,7 +9,7 @@
               ? searchColumns
               : searchColumns.slice(
                   0,
-                  isSplit ? GRID_TOTAL / DEFAULT_GRID_NUMS_EXTEND : GRID_TOTAL / DEFAULT_GRID_NUMS
+                  isSplit ? GRID_TOTAL / DEFAULT_GRID_NUMS_EXTEND : GRID_TOTAL / DEFAULT_GRID_NUMS,
                 )"
             :key="item.dataIndex + '' + index"
             :span="item?.search?.span ?? (isSplit ? DEFAULT_GRID_NUMS_EXTEND : DEFAULT_GRID_NUMS)"
@@ -85,15 +85,17 @@
   } from '@/common/constants/index'
   import MSearchFormItem from './components/index.vue'
 
-  // 从父组件传过来的参数属性
   interface ProTableProps {
+    /** 表格页是否拆分，用来判断占用栅格数  */
     isSplit?: boolean
-    isHeader?: boolean
+    /** 是否显示展开收缩按钮 */
     showExpand?: boolean
-    searchColumns?: ColumnProps[] // 搜索列，用来加载搜索列的内容
-    searchParam?: AnyObject // 搜索配置项,即 搜索列的各个属性初始值
-    search: (param: AnyObject) => void // 搜索方法
-    reset: (param: AnyObject) => void // 重置方法
+    /** 搜索列，用来加载搜索列的内容 */
+    searchColumns?: ColumnProps[]
+    /** 搜索配置项,即 搜索列的各个属性初始值 */
+    searchParam?: AnyObject
+    search: (param: AnyObject) => void
+    reset: (param: AnyObject) => void
   }
 
   const props = withDefaults(defineProps<ProTableProps>(), {
@@ -110,7 +112,7 @@
   const rowHeight = ref(32)
 
   const maxArr = props.searchColumns.map(
-    (item) => item.search?.span ?? (props.isSplit ? DEFAULT_GRID_NUMS_EXTEND : DEFAULT_GRID_NUMS)
+    (item) => item.search?.span ?? (props.isSplit ? DEFAULT_GRID_NUMS_EXTEND : DEFAULT_GRID_NUMS),
   )
 
   const maxSpan = Math.max(...maxArr)

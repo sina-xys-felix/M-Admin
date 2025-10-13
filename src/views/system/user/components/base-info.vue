@@ -12,14 +12,14 @@
       <a-col :span="8">
         <a-form-item
           field="name"
-          :label="t('staff.column.name')"
+          :label="'姓名'"
           show-colon
           :asterisk-position="FORM_CONFIG.asteriskPosition"
           :hide-asterisk="FORM_CONFIG.hideAsterisk"
           :rules="[
             {
               required: true,
-              message: t('common.input') + t('staff.column.name'),
+              message: '请输入姓名',
               minLength: 1,
               maxLength: 50,
             },
@@ -31,13 +31,13 @@
             v-model="formData.name"
             allow-clear
             @input="inputChange"
-            :placeholder="t('common.input') + t('staff.column.name') + '(' + t('common.required') + ')'"
+            :placeholder="'请输入姓名(必填)'"
           />
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
-          :label="t('staff.column.quickCode')"
+          :label="'速查码'"
           field="quickCode"
           show-colon
           :rules="[
@@ -53,13 +53,13 @@
             v-else
             v-model="formData.quickCode"
             allow-clear
-            :placeholder="t('common.input') + t('staff.column.quickCode')"
+            :placeholder="'请输入速查码'"
           />
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
-          :label="t('staff.column.nickName')"
+          :label="'昵称'"
           field="nickName"
           show-colon
           :rules="[
@@ -75,13 +75,13 @@
             v-else
             v-model="formData.nickName"
             allow-clear
-            :placeholder="t('common.input') + t('staff.column.nickName')"
+            :placeholder="'请输入昵称'"
           />
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
-          :label="t('staff.column.no')"
+          :label="'工号'"
           field="no"
           show-colon
           :rules="[
@@ -93,12 +93,12 @@
           ]"
         >
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.no) }}</span>
-          <a-input v-else v-model="formData.no" allow-clear :placeholder="t('common.input') + t('staff.column.no')" />
+          <a-input v-else v-model="formData.no" allow-clear :placeholder="'请输入工号'" />
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
-          :label="t('staff.column.job')"
+          :label="'成员类型'"
           field="job"
           show-colon
           :asterisk-position="FORM_CONFIG.asteriskPosition"
@@ -106,7 +106,7 @@
           :rules="[
             {
               required: true,
-              message: t('common.input') + t('staff.column.job'),
+              message: '请选择成员类型',
             },
           ]"
         >
@@ -114,19 +114,19 @@
             v-model="formData.job"
             :disabled="disabled"
             :code="DictEnum.USERTYPE"
-            :placeholder="t('common.select') + t('staff.column.job') + '(' + t('common.required') + ')'"
+            :placeholder="'请选择成员类型(必填)'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
           field="idNumber"
-          :label="t('staff.column.idNumber')"
+          :label="'身份证'"
           show-colon
           :rules="[
             {
               required: false,
-              message: t('common.input') + t('staff.column.idNumber'),
+              message: '请输入身份证',
               validator: !disabled ? checkId : '',
             },
           ]"
@@ -137,29 +137,29 @@
             v-model="formData.idNumber"
             allow-clear
             @blur="onNumberBlur"
-            :placeholder="t('common.input') + t('staff.column.idNumber')"
+            :placeholder="'请输入身份证'"
           />
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.gender')" field="gender" show-colon>
+        <a-form-item :label="'性别'" field="gender" show-colon>
           <MDict
             v-model="formData.gender"
             :code="DictEnum.GENDER"
             :disabled="disabled"
-            :placeholder="t('common.select') + t('staff.column.gender')"
+            :placeholder="'请选择性别'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
         <a-form-item
           field="mobile"
-          :label="t('staff.column.mobile')"
+          :label="'手机号'"
           show-colon
           :rules="[
             {
               required: false,
-              message: t('common.input') + t('staff.column.mobile'),
+              message: '请输入手机号',
               validator: !disabled ? checkPhone : '',
               length: 11,
             },
@@ -170,19 +170,19 @@
             v-else
             v-model="formData.mobile"
             allow-clear
-            :placeholder="t('common.input') + t('staff.column.mobile')"
+            :placeholder="'请输入手机号'"
           />
         </a-form-item>
       </a-col>
 
       <a-col :span="8">
-        <a-form-item field="phone" :label="t('staff.column.phone')" show-colon>
+        <a-form-item field="phone" :label="'电话号码'" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.phone) }}</span>
           <a-input
             v-else
             v-model="formData.phone"
             allow-clear
-            :placeholder="t('common.input') + t('staff.column.phone')"
+            :placeholder="'请输入电话号码'"
           />
         </a-form-item>
       </a-col>
@@ -190,12 +190,12 @@
       <a-col :span="8">
         <a-form-item
           field="email"
-          :label="t('staff.column.email')"
+          :label="'邮箱'"
           show-colon
           :rules="[
             {
               required: false,
-              message: t('common.input') + t('staff.column.email'),
+              message: '请输入邮箱',
               type: 'email',
             },
           ]"
@@ -205,12 +205,12 @@
             v-else
             v-model="formData.email"
             allow-clear
-            :placeholder="t('common.input') + t('staff.column.email')"
+            :placeholder="'请输入邮箱'"
           />
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.birthday')" field="birthday" show-colon>
+        <a-form-item :label="'出生日期'" field="birthday" show-colon>
           <span v-if="disabled" class="text-extra">{{ filterEmpty(formData.birthday) }}</span>
           <a-date-picker
             v-else
@@ -224,7 +224,7 @@
       </a-col>
       <a-col :span="8">
         <a-form-item
-          :label="t('staff.column.maritalStatus')"
+          :label="'婚烟状况'"
           field="maritalStatus"
           show-colon
           :asterisk-position="FORM_CONFIG.asteriskPosition"
@@ -232,7 +232,7 @@
           :rules="[
             {
               required: false,
-              message: t('common.input') + t('staff.column.maritalStatus'),
+              message: '请选择婚烟状况',
             },
           ]"
         >
@@ -240,42 +240,42 @@
             v-model="formData.maritalStatus"
             :code="DictEnum.MARITAL_STATUS"
             :disabled="disabled"
-            :placeholder="t('common.select') + t('staff.column.maritalStatus')"
+            :placeholder="'请选择婚烟状况'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.nation')" field="nation" show-colon>
+        <a-form-item :label="'民族'" field="nation" show-colon>
           <MDict
             v-model="formData.nation"
             :code="DictEnum.NATION"
             :disabled="disabled"
-            :placeholder="t('common.select') + t('staff.column.nation')"
+            :placeholder="'请选择民族'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.education')" field="education" show-colon>
+        <a-form-item :label="'教育程度'" field="education" show-colon>
           <MDict
             v-model="formData.education"
             :code="DictEnum.EDU"
             :disabled="disabled"
-            :placeholder="t('common.select') + t('staff.column.education')"
+            :placeholder="'请选择教育程度'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.party')" field="party" show-colon>
+        <a-form-item :label="'政治面貌'" field="party" show-colon>
           <MDict
             v-model="formData.party"
             :code="DictEnum.PARTY"
             :disabled="disabled"
-            :placeholder="t('common.select') + t('staff.column.party')"
+            :placeholder="'请选择政治面貌'"
           ></MDict>
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.vaild.start')" field="timer" show-colon>
+        <a-form-item :label="'有效时间'" field="timer" show-colon>
           <span v-if="disabled" class="text-extra">{{
             formData.start ? formData.start + '~' + formData.end : '--'
           }}</span>
@@ -283,15 +283,15 @@
         </a-form-item>
       </a-col>
       <a-col :span="8">
-        <a-form-item :label="t('staff.column.isOfficial')" field="isOfficial" show-colon>
+        <a-form-item :label="'是否正式'" field="isOfficial" show-colon>
           <span v-if="disabled" class="text-extra">
             <a-tag :color="formData.isOfficial === true ? 'green' : 'red'">{{
-              formData.isOfficial === true ? t('common.flag.true') : t('common.flag.false')
+              formData.isOfficial === true ? '是' : '否'
             }}</a-tag>
           </span>
           <a-switch v-else v-model="formData.isOfficial" :checked-value="true" :unchecked-value="false">
-            <template #checked> {{ t('common.flag.true') }} </template>
-            <template #unchecked> {{ t('common.flag.false') }} </template>
+            <template #checked> 是 </template>
+            <template #unchecked> 否 </template>
           </a-switch>
         </a-form-item>
       </a-col>
@@ -299,10 +299,10 @@
     <div class="actions" :style="{ left: config.menuWidth + 20 + 'px' }">
       <a-space :style="{ 'padding-left': config.menuWidth + 'px' }">
         <a-button @click="resetForm" v-if="type !== Operations.LOOK">
-          {{ $t('common.reset') }}
+          重置
         </a-button>
         <a-button type="primary" @click="onSubmitClick">
-          {{ $t('common.next') }}
+          下一步
         </a-button>
       </a-space>
     </div>
@@ -317,7 +317,7 @@
 
 <script lang="ts" setup>
   import { FormInstance } from '@arco-design/web-vue'
-  import { useI18n } from 'vue-i18n'
+
   import { IBaseInfo } from '@/api/staff/types'
   import { DictEnum } from '@/common/enums/dict-enum'
   import { Operations } from '@/common/enums/status-enum'
@@ -341,7 +341,7 @@
 
   const formRef = ref<FormInstance>()
 
-  const { t } = useI18n()
+
 
   const inputChange = (text: string) => {
     formData.value.quickCode = findQuickCode(text)
