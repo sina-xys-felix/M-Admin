@@ -17,11 +17,11 @@
 
 <script lang="ts" setup>
   import { useI18n } from 'vue-i18n'
-  interface XEmpty {
+  interface MEmpty {
     minHeight?: number | string
   }
 
-  withDefaults(defineProps<XEmpty>(), {
+  withDefaults(defineProps<MEmpty>(), {
     minHeight: 200,
   })
 
