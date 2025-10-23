@@ -130,9 +130,7 @@ export function resizeScreen(width = 1920, height = 1080) {
   document.getElementById('app').style.transform = `scale(${scale})`
 }
 
-
-
-export function base64ToFile(base64String:string, filename:string, mimeType:string) {
+export function base64ToFile(base64String: string, filename: string, mimeType: string) {
   // 移除Base64前缀（如果有）
   const base64WithoutPrefix = base64String.split(',')[1] || base64String
 
@@ -157,12 +155,11 @@ export function base64ToFile(base64String:string, filename:string, mimeType:stri
   return new File([blob], filename, { type: mimeType })
 }
 
-
- export function fileToBase64(file:File) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-      });
-    }
+export function fileToBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = (error) => reject(error)
+  })
+}

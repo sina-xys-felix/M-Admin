@@ -1,88 +1,78 @@
 <template>
   <div class="login">
-    <div class="login-left">
-      <div class="logo">
-        <img src="@/assets/images/logo.png" />
-        M-Admin
-      </div>
-      <div class="desc">
-        <span>{{ $t('login.banner.slogan1') }}</span>
-        <span> {{ $t('login.banner.subSlogan1') }}</span>
-      </div>
+    <div class="login-header">
+      <div><img src="@/assets/images/logo.png" /> M-Admin</div>
     </div>
-    <div class="login-right">
-      <div class="login-right-title">{{ $t('login.form.title') }}</div>
-      <a-form ref="loginForm" :model="userInfo" class="login-form" layout="vertical" @submit="handleSubmit">
-        <a-form-item
-          field="account"
-          :rules="[{ required: true, message: $t('login.form.account.errMsg') }]"
-          :validate-trigger="['change', 'blur']"
-          hide-label
+
+    <a-form ref="loginForm" :model="userInfo" class="login-form" layout="vertical" @submit="handleSubmit">
+      <a-form-item
+        field="account"
+        :rules="[{ required: true, message: $t('login.form.account.errMsg') }]"
+        :validate-trigger="['change', 'blur']"
+        hide-label
+      >
+        <a-input v-model="userInfo.account" allow-clear placeholder="admin/user">
+          <template #prefix>
+            <icon-user />
+          </template>
+        </a-input>
+      </a-form-item>
+      <a-form-item
+        field="password"
+        :rules="[{ required: true, message: $t('login.form.password.errMsg') }]"
+        :validate-trigger="['change', 'blur']"
+        hide-label
+      >
+        <a-input-password
+          v-model="userInfo.password"
+          placeholder="admin/user"
+          v-model:visibility="visibility"
+          :defaultVisibility="false"
+          allow-clear
         >
-          <a-input v-model="userInfo.account" allow-clear placeholder="admin/user">
-            <template #prefix>
-              <icon-user />
-            </template>
-          </a-input>
-        </a-form-item>
-        <a-form-item
-          field="password"
-          :rules="[{ required: true, message: $t('login.form.password.errMsg') }]"
-          :validate-trigger="['change', 'blur']"
-          hide-label
-        >
-          <a-input-password
-            v-model="userInfo.password"
-            placeholder="admin/user"
-            v-model:visibility="visibility"
-            :defaultVisibility="false"
-            allow-clear
+          <template #prefix>
+            <icon-lock />
+          </template>
+        </a-input-password>
+      </a-form-item>
+      <a-form-item
+        field="code"
+        :rules="[{ required: true, message: $t('login.form.verifyCode.errMsg') }]"
+        :validate-trigger="['change', 'blur']"
+        hide-label
+      >
+        <a-input size="large" v-model="userInfo.code" :placeholder="$t('login.form.verifyCode')" allow-clear> </a-input>
+        <VueVerifyCode
+          ref="verifyCodeRef"
+          :width="74"
+          :height="34"
+          :code-length="4"
+          style="margin-left: 8px; border: 1px solid var(--color-border-2); padding: 0 2px"
+          @get-code="getCode"
+        />
+      </a-form-item>
+      <a-space :size="16" direction="vertical">
+        <div class="login-form-password-actions">
+          <a-checkbox
+            checked="rememberPassword"
+            :model-value="loginConfig.rememberPassword"
+            @change="setRememberPassword"
           >
-            <template #prefix>
-              <icon-lock />
-            </template>
-          </a-input-password>
-        </a-form-item>
-        <a-form-item
-          field="code"
-          :rules="[{ required: true, message: $t('login.form.verifyCode.errMsg') }]"
-          :validate-trigger="['change', 'blur']"
-          hide-label
+            {{ $t('login.form.rememberPassword') }}
+          </a-checkbox>
+        </div>
+        <a-button
+          class="login-form-submit"
+          :style="{ backgroundColor: loading ? '#678cf4' : '' }"
+          type="primary"
+          html-type="submit"
+          long
+          :loading="loading"
         >
-          <a-input size="large" v-model="userInfo.code" :placeholder="$t('login.form.verifyCode')" allow-clear>
-          </a-input>
-          <VueVerifyCode
-            ref="verifyCodeRef"
-            :width="74"
-            :height="34"
-            :code-length="4"
-            style="margin-left: 8px; border: 1px solid var(--color-border-2); padding: 0 2px"
-            @get-code="getCode"
-          />
-        </a-form-item>
-        <a-space :size="16" direction="vertical">
-          <div class="login-form-password-actions">
-            <a-checkbox
-              checked="rememberPassword"
-              :model-value="loginConfig.rememberPassword"
-              @change="setRememberPassword"
-            >
-              {{ $t('login.form.rememberPassword') }}
-            </a-checkbox>
-          </div>
-          <a-button
-            class="login-form-submit"
-            :style="{ backgroundColor: loading ? '#678cf4' : '' }"
-            type="primary"
-            html-type="submit"
-            long
-            :loading="loading"
-          >
-            {{ $t('login.form.login') }}
-          </a-button>
-        </a-space>
-      </a-form>
-    </div>
+          {{ $t('login.form.login') }}
+        </a-button>
+      </a-space>
+    </a-form>
   </div>
 </template>
 
@@ -181,91 +171,75 @@
 
 <style lang="less" scoped>
   .login {
-    position: relative;
+    position: absolute;
+    right: 10vw;
     height: 60vh;
-    width: 50vw;
+    width: 28vw;
     border-radius: 16px;
     color: var(--color-text-1);
-    border: 1px solid var(--color-border-2);
     box-shadow: 1px 1px 2px var(--color-gray-1);
     background-color: var(--color-bg-3);
     display: flex;
-    &-btn {
-      position: absolute;
-      z-index: 2;
-      right: 10px;
-      top: 10px;
-    }
-    &-left {
-      flex: 3;
-      height: 100%;
-      border-radius: 16px 0 0 16px;
-      background-image: url('@/assets/images/login/decorate.png');
-      background-color: var(--color-bg-lg-2);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 18px;
-      position: relative;
-      .logo {
-        font-size: 28px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        img {
-          width: 32px;
-          height: 32px;
-        }
-      }
-      .desc {
-        margin-top: 0.75rem;
-        display: inline-flex;
-        flex-direction: column;
-        animation: bounce 1s linear infinite;
-        padding-bottom: 2px;
-        line-height: 1.6;
-      }
-    }
-    &-right {
-      height: 100%;
-      flex: 2;
-      padding: 32px;
+    flex-direction: column;
+    align-items: center;
+    &-header {
+      width: 72%;
+      font-size: 28px;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      flex-direction: column;
-      padding-top: 10vh;
-      gap: 24px;
-      &-title {
-        width: 248px;
-        font-size: 32px;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 2vw;
+      padding: 2vw;
+      border-bottom: 1px solid var(--color-border-2);
+      img {
+        width: 2vw;
+        height: 2vw;
       }
-      .login-form {
-        width: 248px;
-        .login-form-submit {
-          border-radius: 16px;
-        }
+    }
+    &-tip {
+      font-size: 18px;
+      color: var(--color-text-1);
+      margin-top: 0.5vw;
+    }
+    &-form {
+      width: 80%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.83vw;
+
+      &-password-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1vw;
+      }
+
+      &-submit {
+        border-radius: 16px;
+        height: 40px;
       }
     }
   }
 
-  @keyframes grow {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.05);
-    }
+  :deep(.arco-input-wrapper) {
+    height: 40px;
   }
-  @keyframes bounce {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-20%);
-    }
+
+  :deep(.arco-input-wrapper .arco-input-prefix > svg) {
+    font-size: 16px;
+  }
+
+  :deep(.arco-input-wrapper .arco-input.arco-input-size-medium) {
+    font-size: 16px;
+  }
+
+  :deep(.arco-icon) {
+    font-size: 16px;
+  }
+  :deep(.arco-form-item) {
+    margin-bottom: 28px;
   }
 </style>
