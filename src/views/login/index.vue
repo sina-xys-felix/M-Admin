@@ -7,8 +7,8 @@
     <a-tooltip :content="theme === 'light' ? '点击切换为暗黑模式' : '点击切换为亮色模式'">
       <a-button class="nav-btn" type="text" :shape="'circle'" @click="handleToggleTheme">
         <template #icon>
-          <icon-moon-fill v-if="theme === 'dark'" />
-          <icon-sun-fill color="#dfebfc" v-else />
+          <icon-sun-fill v-if="theme === 'dark'" />
+          <icon-moon-fill color="#dfebfc" v-else />
         </template>
       </a-button>
     </a-tooltip>
@@ -138,7 +138,8 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-color: var(--color-bg-lg-1);
+    background: url('@/assets/images/login-bg.png') no-repeat center center fixed;
+    background-size: 100% 100%;
     position: relative;
 
     .footer {
